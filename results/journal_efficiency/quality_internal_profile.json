@@ -1,0 +1,46 @@
+{
+  "experiment": "Original DCEC quality descriptor internal latency",
+  "dataset_split": "Flickr30K validation",
+  "final_test_accessed": false,
+  "batch_size": 32,
+  "measurement_repeats": 20,
+  "total_batch_ms_mean": 342.50904228538275,
+  "total_batch_ms_std": 12.276620484819457,
+  "components": {
+    "rgb_to_luminance": {
+      "batch_ms_mean": 98.25489148497581,
+      "batch_ms_std": 7.386776430020473,
+      "share_percent": 28.68680220217621
+    },
+    "mean_std": {
+      "batch_ms_mean": 15.170751791447401,
+      "batch_ms_std": 0.750412607644439,
+      "share_percent": 4.429299644243244
+    },
+    "laplacian": {
+      "batch_ms_mean": 35.61423569917679,
+      "batch_ms_std": 1.778126927065764,
+      "share_percent": 10.398042475475018
+    },
+    "gray_uint8_conversion": {
+      "batch_ms_mean": 11.305845528841019,
+      "batch_ms_std": 0.7474794615188188,
+      "share_percent": 3.300889650504715
+    },
+    "pil_gaussian_blur": {
+      "batch_ms_mean": 149.22475330531597,
+      "batch_ms_std": 3.4995612242673824,
+      "share_percent": 43.5681208033568
+    },
+    "high_frequency_residual": {
+      "batch_ms_mean": 16.41347138211131,
+      "batch_ms_std": 0.8058965206267159,
+      "share_percent": 4.792127901965112
+    },
+    "block_boundary_response": {
+      "batch_ms_mean": 16.355543863028288,
+      "batch_ms_std": 0.7399112516807809,
+      "share_percent": 4.775215204216608
+    }
+  }
+}

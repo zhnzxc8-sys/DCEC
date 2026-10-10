@@ -1,0 +1,18 @@
+{
+  "model": "openai/clip-vit-base-patch16",
+  "condition": "gaussian_blur_s1",
+  "images": 1014,
+  "captions": 5070,
+  "input_protocol": "exact same materialized images and TCR loader captions",
+  "final_test_accessed": false,
+  "metrics": {
+    "i2t_R@1": 82.24852071005917,
+    "t2i_R@1": 64.45759368836292,
+    "i2t_R@5": 96.64694280078895,
+    "t2i_R@5": 86.70611439842209,
+    "i2t_R@10": 98.52071005917159,
+    "t2i_R@10": 92.42603550295858,
+    "primary": 73.35305719921104,
+    "delta_vs_tcr_openai_frozen": 1.4792901992110359
+  }
+}

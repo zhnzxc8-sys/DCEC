@@ -1,0 +1,38 @@
+DISTRIBUTION NORMALIZATION BASELINE DECISION
+Date: 2026-09-28
+
+PRIMARY DN BASELINE
+- DN-Transductive
+- Flickr30K full validation evaluation
+- 100 unlabeled target-condition image samples
+- 100 unlabeled target-condition text samples
+- 5 fixed statistics seeds: 9501-9505
+- lambda = 0.25
+- CLIP ViT-B/32
+- No post-correction L2 normalization
+- Direct dot-product retrieval
+- Final Test NOT accessed
+
+RATIONALE
+DN-Transductive is used as the main DN result because it gives DN direct
+access to unlabeled target-distribution statistics and therefore provides
+a strong comparison.
+
+PROTOCOL SENSITIVITY
+DN-Disjoint synthetic calibration is retained on three representative cases:
+1. Clean
+2. Gaussian Blur S1
+3. Pixelate S3
+
+The three representative experiments showed small differences between
+transductive and disjoint statistics. Full 22-condition duplication is
+therefore not prioritized unless later evidence requires it.
+
+FROZEN PARITY
+Internal frozen parity: PASS
+External frozen parity: PASS
+
+DCEC
+- Main DCEC method remains frozen.
+- DCEC is not modified according to DN outcomes.
+- Mechanism intervention remains closed.

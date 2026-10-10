@@ -1,0 +1,167 @@
+{
+  "title": "DCEC Ablation Evidence Ledger",
+  "date": "2026-09-26",
+  "controlled_selection_protocol_note": "A1-A4 values are read directly from formal best checkpoints and share the controlled ablation selection protocol.",
+  "controlled_selection": [
+    {
+      "label": "A1",
+      "variant": "residual_only",
+      "params": 262912,
+      "checkpoint": "/root/autodl-tmp/CVIP2026_DCEC_v11_JOURNAL/results/ablation_formal/residual_only/best_dcec_ablation.pt",
+      "exists": true,
+      "checkpoint_variant": "residual_only",
+      "epoch": 3,
+      "seed": 2026,
+      "val_primary_score": 69.70019723865877,
+      "delta_vs_best_controlled": -0.46745562130178087
+    },
+    {
+      "label": "A2",
+      "variant": "quality_no_gate",
+      "params": 281600,
+      "checkpoint": "/root/autodl-tmp/CVIP2026_DCEC_v11_JOURNAL/results/ablation_formal/quality_no_gate/best_dcec_ablation.pt",
+      "exists": true,
+      "checkpoint_variant": "quality_no_gate",
+      "epoch": 3,
+      "seed": 2026,
+      "val_primary_score": 69.71400394477318,
+      "delta_vs_best_controlled": -0.4536489151873724
+    },
+    {
+      "label": "A3",
+      "variant": "no_sem",
+      "params": 283713,
+      "checkpoint": "/root/autodl-tmp/CVIP2026_DCEC_v11_JOURNAL/results/ablation_formal/no_sem/best_dcec_ablation.pt",
+      "exists": true,
+      "checkpoint_variant": "no_sem",
+      "epoch": 3,
+      "seed": 2026,
+      "val_primary_score": 70.16765285996055,
+      "delta_vs_best_controlled": 0.0
+    },
+    {
+      "label": "A4",
+      "variant": "no_rank",
+      "params": 283713,
+      "checkpoint": "/root/autodl-tmp/CVIP2026_DCEC_v11_JOURNAL/results/ablation_formal/no_rank/best_dcec_ablation.pt",
+      "exists": true,
+      "checkpoint_variant": "no_rank",
+      "epoch": 1,
+      "seed": 2026,
+      "val_primary_score": 69.46351084812623,
+      "delta_vs_best_controlled": -0.7041420118343211
+    }
+  ],
+  "a3_vs_a5_full_13_condition_validation": {
+    "exists": true,
+    "path": "/root/autodl-tmp/CVIP2026_DCEC_v11_JOURNAL/results/ablation_fullval/a3_vs_a5_summary.txt",
+    "conditions": [
+      {
+        "condition": "clean_S0",
+        "A3": 70.1479,
+        "A5": 69.9507,
+        "delta_A3_minus_A5": 0.1972
+      },
+      {
+        "condition": "jpeg_S1",
+        "A3": 70.9763,
+        "A5": 71.1045,
+        "delta_A3_minus_A5": -0.1282
+      },
+      {
+        "condition": "jpeg_S2",
+        "A3": 71.3905,
+        "A5": 71.0059,
+        "delta_A3_minus_A5": 0.3846
+      },
+      {
+        "condition": "jpeg_S3",
+        "A3": 71.4201,
+        "A5": 71.0651,
+        "delta_A3_minus_A5": 0.355
+      },
+      {
+        "condition": "gaussian_blur_S1",
+        "A3": 70.1677,
+        "A5": 70.1282,
+        "delta_A3_minus_A5": 0.0395
+      },
+      {
+        "condition": "gaussian_blur_S2",
+        "A3": 68.1558,
+        "A5": 68.3235,
+        "delta_A3_minus_A5": -0.1677
+      },
+      {
+        "condition": "gaussian_blur_S3",
+        "A3": 55.8679,
+        "A5": 56.1341,
+        "delta_A3_minus_A5": -0.2662
+      },
+      {
+        "condition": "gaussian_noise_S1",
+        "A3": 71.1538,
+        "A5": 70.9961,
+        "delta_A3_minus_A5": 0.1577
+      },
+      {
+        "condition": "gaussian_noise_S2",
+        "A3": 70.9073,
+        "A5": 70.6509,
+        "delta_A3_minus_A5": 0.2564
+      },
+      {
+        "condition": "gaussian_noise_S3",
+        "A3": 69.3195,
+        "A5": 69.3787,
+        "delta_A3_minus_A5": -0.0592
+      },
+      {
+        "condition": "low_light_S1",
+        "A3": 70.3846,
+        "A5": 70.0,
+        "delta_A3_minus_A5": 0.3846
+      },
+      {
+        "condition": "low_light_S2",
+        "A3": 70.2367,
+        "A5": 70.4832,
+        "delta_A3_minus_A5": -0.2465
+      },
+      {
+        "condition": "low_light_S3",
+        "A3": 69.1124,
+        "A5": 69.4379,
+        "delta_A3_minus_A5": -0.3255
+      }
+    ],
+    "mean_13_condition": {
+      "A3": 69.1724,
+      "A5": 69.1276,
+      "delta_A3_minus_A5": 0.0448
+    },
+    "mean_12_corruption": {
+      "A3": 69.0911,
+      "A5": 69.059,
+      "delta_A3_minus_A5": 0.0321
+    },
+    "wins_ties_losses_A3_vs_A5": {
+      "wins": 7,
+      "ties": 0,
+      "losses": 6
+    }
+  },
+  "A0_frozen": {
+    "status": "UNRESOLVED_PROVENANCE",
+    "note": "A same-protocol controlled-selection source for A0 Frozen CLIP has not yet been recovered. Do not mix historical or differently scoped Frozen CLIP numbers into the controlled table."
+  },
+  "A5_seed2026_checkpoint": {
+    "status": "UNRESOLVED_PROVENANCE",
+    "note": "The complete A3-vs-A5 13-condition validation summary exists, but the exact seed2026 A5 checkpoint path has not yet been recovered."
+  },
+  "interpretation_guardrails": [
+    "A3 vs A5 mean difference is small and should not be described as a large or statistically significant superiority without additional evidence.",
+    "A1-A4 controlled-selection scores and the A3-vs-A5 13-condition means are different evaluation scopes and must not be placed in one numerical column.",
+    "A0 should remain unresolved in the controlled table until exact provenance is recovered."
+  ]
+}

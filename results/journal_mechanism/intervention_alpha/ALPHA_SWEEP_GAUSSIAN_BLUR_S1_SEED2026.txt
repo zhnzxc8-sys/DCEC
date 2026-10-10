@@ -1,0 +1,24 @@
+DCEC ALPHA INTERVENTION
+Backbone: ViT-B/32
+Seed: 2026
+Condition: gaussian_blur S1
+
+alpha	I2T_R1	T2I_R1	PRIMARY	Δvs0	Δvs1
+-1	79.487179	55.917160	67.702170	-1.706114	-2.465483
+0	79.092702	59.723866	69.408284	+0.000000	-0.759369
+0.5	78.895464	60.966469	69.930966	+0.522682	-0.236686
+1	78.402367	61.932939	70.167653	+0.759369	+0.000000
+1.5	78.303748	62.445759	70.374753	+0.966469	+0.207101
+2	78.205128	62.564103	70.384615	+0.976331	+0.216963
+2.5	77.317554	62.642998	69.980276	+0.571992	-0.187377
+3	76.627219	62.307692	69.467456	+0.059172	-0.700197
+4	73.767258	61.439842	67.603550	-1.804734	-2.564103
+6	68.836292	58.520710	63.678501	-5.729783	-6.489152
+
+Best alpha: 2
+Best primary: 70.384615
+Best vs alpha=0: +0.976331
+Best vs alpha=1: +0.216963
+
+Interpretation:
+Reverse correction degrades retrieval; moderate positive scaling improves retrieval; excessive scaling causes over-correction and substantial performance degradation. This is functional intervention evidence for the learned correction direction/magnitude, not by itself a causal or universal claim.

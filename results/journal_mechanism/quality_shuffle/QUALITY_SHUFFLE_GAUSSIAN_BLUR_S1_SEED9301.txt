@@ -1,0 +1,23 @@
+WITHIN-CONDITION QUALITY SHUFFLE INTERVENTION
+Backbone: ViT-B/32
+A3 checkpoint seed: 2026
+Condition: gaussian_blur S1
+Quality shuffle seed: 9301
+
+Learned matched correction : 70.167653
+Quality shuffle            : 70.138067
+No correction              : 69.408284
+Correction shuffle mean    : 68.741617
+Random direction mean      : 68.554241
+
+Delta learned - quality shuffle: +0.029586
+Delta quality shuffle - no correction: +0.729783
+
+Interpretation:
+Within a fixed gaussian_blur S1 condition, permuting image-level quality
+descriptors causes little retrieval degradation. This suggests that exact
+per-image quality-descriptor matching is not the dominant source of the
+observed gain under a homogeneous degradation condition. In contrast,
+correction direction and image-correction matching show substantially
+larger effects. This is a boundary result and should not be interpreted
+as evidence that degradation-state conditioning is unnecessary.

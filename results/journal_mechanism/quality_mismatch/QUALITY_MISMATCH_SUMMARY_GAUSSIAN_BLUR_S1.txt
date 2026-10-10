@@ -1,0 +1,27 @@
+CROSS-DEGRADATION QUALITY MISMATCH ANALYSIS
+Backbone: ViT-B/32
+A3 checkpoint seed: 2026
+Target image condition: gaussian_blur S1
+
+SUPPLIED QUALITY        PRIMARY        DELTA_vs_CORRECT
+correct blur S1         70.167653      +0.000000
+clean S0                70.226824      +0.059172
+low_light S3            70.216963      +0.049310
+pixelate S3             70.207101      +0.039448
+
+Within-condition quality shuffle: 70.138067
+No correction: 69.408284
+
+Interpretation:
+Retrieval performance is largely insensitive to exact quality-descriptor
+matching under the tested gaussian_blur S1 target condition. Cross-degradation
+quality descriptors produce only small changes relative to the correctly matched
+descriptor. Therefore, the exact five-dimensional quality descriptor is not
+supported as the dominant source of DCEC's retrieval gain in this condition.
+
+Combined with the alpha-scaling, matched-norm random-direction, and correction-
+shuffle interventions, the stronger evidence points to learned correction
+geometry and image-correction matching as the primary functional factors.
+
+This is a condition-specific boundary result and should not be generalized
+beyond the tested setting without additional evidence.

@@ -1,0 +1,2 @@
+Loading weights:   0%|          | 0/398 [00:00<?, ?it/s]Loading weights:  82%|████████▏ | 328/398 [00:00<00:00, 3257.40it/s]Loading weights: 100%|██████████| 398/398 [00:00<00:00, 3220.95it/s]
+total DCEC trainable parameters: 283713

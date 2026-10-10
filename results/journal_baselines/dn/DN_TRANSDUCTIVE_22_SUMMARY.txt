@@ -1,0 +1,29 @@
+DN TRANSDUCTIVE 22-CONDITION SUMMARY
+
+clean                Frozen=69.240631  DN=70.925049±0.084087  Delta=+1.684418
+jpeg_s1              Frozen=69.911243  DN=71.398422±0.128281  Delta=+1.487179
+jpeg_s2              Frozen=69.911243  DN=71.376726±0.035966  Delta=+1.465483
+jpeg_s3              Frozen=70.138067  DN=71.500986±0.104927  Delta=+1.362919
+gaussian_blur_s1     Frozen=69.408284  DN=70.944773±0.198639  Delta=+1.536489
+gaussian_blur_s2     Frozen=66.173570  DN=68.258383±0.064894  Delta=+2.084813
+gaussian_blur_s3     Frozen=49.684418  DN=53.552268±0.147995  Delta=+3.867850
+gaussian_noise_s1    Frozen=70.404339  DN=71.879684±0.115767  Delta=+1.475345
+gaussian_noise_s2    Frozen=70.049310  DN=71.374753±0.097777  Delta=+1.325444
+gaussian_noise_s3    Frozen=68.372781  DN=69.749507±0.082393  Delta=+1.376726
+low_light_s1         Frozen=69.635108  DN=70.366864±0.107219  Delta=+0.731755
+low_light_s2         Frozen=69.240631  DN=70.029586±0.060793  Delta=+0.788955
+low_light_s3         Frozen=67.879684  DN=68.757396±0.056652  Delta=+0.877712
+motion_blur_s1       Frozen=68.954635  DN=70.025641±0.094489  Delta=+1.071006
+motion_blur_s2       Frozen=67.406312  DN=68.940828±0.096021  Delta=+1.534517
+motion_blur_s3       Frozen=57.820513  DN=59.254438±0.197436  Delta=+1.433925
+contrast_s1          Frozen=69.398422  DN=70.633136±0.120057  Delta=+1.234714
+contrast_s2          Frozen=68.954635  DN=70.455621±0.100427  Delta=+1.500986
+contrast_s3          Frozen=67.445759  DN=68.840237±0.138875  Delta=+1.394477
+pixelate_s1          Frozen=69.980276  DN=71.447732±0.060553  Delta=+1.467456
+pixelate_s2          Frozen=60.976331  DN=63.057199±0.188412  Delta=+2.080868
+pixelate_s3          Frozen=29.270217  DN=31.982249±0.143422  Delta=+2.712032
+
+Frozen mean = 65.466200
+DN mean     = 67.034158
+Mean delta  = +1.567958
+W/T/L       = 22/0/0

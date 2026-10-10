@@ -1,0 +1,110 @@
+DCEC EXPERIMENT INTEGRITY AUDIT — 2026-09-26
+========================================================================================
+
+CRITICAL ARTIFACTS
+----------------------------------------------------------------------------------------
+[OK] final_test_protocol
+     path: /root/autodl-tmp/CVIP2026_DCEC_v11_JOURNAL/configs/flickr30k_final_test_protocol.json
+     sha256: f438d8e21501658cb9839d183f92e864b88806d17b74adcc9e676258d471dca6
+[OK] final_test_evaluator
+     path: /root/autodl-tmp/CVIP2026_DCEC_v11_JOURNAL/src/eval_flickr30k_final_test.py
+     sha256: 51e1bf4edb9a35be18035b91d82cf3ff3396ae0055d0392763d0f21d2ac0738d
+[OK] final_test_conclusion
+     path: /root/autodl-tmp/CVIP2026_DCEC_v11_JOURNAL/results/flickr30k_final_test/FINAL_TEST_CONCLUSION.txt
+     sha256: 33aa5a0a16942061a37f2c34ae2c056ef8947b6ea4851bb0fd73463294ebfe5d
+[OK] a3_seed2026_checkpoint
+     path: /root/autodl-tmp/CVIP2026_DCEC_v11_JOURNAL/results/ablation_formal/no_sem/best_dcec_ablation.pt
+     sha256: c95e9f92876257d51c37853e0d6d17a50e84b9fc9fa64a65c238bbf06d640608
+[OK] a3_fullval_summary
+     path: /root/autodl-tmp/CVIP2026_DCEC_v11_JOURNAL/results/ablation_fullval/a3_vs_a5_summary.txt
+     sha256: decac372c68cc45e52892120edbe2a3a6abbe695ee24385a98980dde028c75b2
+[OK] unseen_validation_summary
+     path: /root/autodl-tmp/CVIP2026_DCEC_v11_JOURNAL/results/unseen_formal/unseen_a3_vs_frozen_summary.txt
+     sha256: ad5ed5446f1396f320207abc04aed40e3ee5fe6e0cabd27ab2b5bc66c948df19
+[OK] mscoco_cross_summary
+     path: /root/autodl-tmp/CVIP2026_DCEC_v11_JOURNAL/results/mscoco_cross_formal/summary.json
+     sha256: 8f3f38cdaee5b1b3a4d4eba9f7bc658ebbb26ae39605f1ca7a2a254182969e6c
+[OK] seen_mechanism
+     path: /root/autodl-tmp/CVIP2026_DCEC_v11_JOURNAL/results/journal_mechanism/seen_degradation_mechanism.json
+     sha256: 34ca9051951f89ef090878fa67ce99036f8263ff857198baf69004e411b69e46
+[OK] unseen_mechanism
+     path: /root/autodl-tmp/CVIP2026_DCEC_v11_JOURNAL/results/journal_mechanism/unseen_degradation_mechanism.json
+     sha256: ceeaaf915fff52932f943722b120e7223da27b4f9ed234a26b760fca146cb844
+[OK] image_level_mechanism
+     path: /root/autodl-tmp/CVIP2026_DCEC_v11_JOURNAL/results/journal_mechanism/image_level_mechanism_summary.json
+     sha256: 3d4237b72a6a5a19a44ddcecb40badcd7e3cbca2cd6c7d8e218601d2fd1b1c89
+[OK] adapter_efficiency
+     path: /root/autodl-tmp/CVIP2026_DCEC_v11_JOURNAL/results/journal_efficiency/adapter_profile.json
+     sha256: e7272bc981d1d3e7d286961749cd8f871cc570ace37c7b19d8b76aa376c868ef
+[OK] end_to_end_efficiency
+     path: /root/autodl-tmp/CVIP2026_DCEC_v11_JOURNAL/results/journal_efficiency/end_to_end_profile.json
+     sha256: 44c9fcb28e4aeb643c6b8c5780600e413d8db2fadda7cb96c40d4bcde027e401
+[OK] component_efficiency
+     path: /root/autodl-tmp/CVIP2026_DCEC_v11_JOURNAL/results/journal_efficiency/component_profile.json
+     sha256: 003db137efea3067aaf0970de586265acbe45a6049d0abd57c65926236a38287
+[OK] parallel_quality_profile
+     path: /root/autodl-tmp/CVIP2026_DCEC_v11_JOURNAL/results/journal_efficiency/quality_parallel_profile.json
+     sha256: 3a841b0b44ae7d1159dddf752f25357d3dae5421ee59455a83b2fa401dc071b6
+[OK] parallel_end_to_end_profile
+     path: /root/autodl-tmp/CVIP2026_DCEC_v11_JOURNAL/results/journal_efficiency/end_to_end_parallel4_profile.json
+     sha256: 20cb29bce1b959e4ed82a73d5f30f2b73575fb160de85ed0305d5c15fb6a27d4
+[OK] quality_internal_profile
+     path: /root/autodl-tmp/CVIP2026_DCEC_v11_JOURNAL/results/journal_efficiency/quality_internal_profile.json
+     sha256: 33a1798fea02f3630482e2f605a16f3e5bfcb5ad0e8df4516e5b3648a6196683
+[OK] flickr30k_test_parquet
+     path: /root/autodl-tmp/flickr30k/test.parquet
+     sha256: b830f55574fcd405b0f4304cd298803fc3610d62385165b9bba8283e1daae183
+[OK] flickr30k_validation_parquet
+     path: /root/autodl-tmp/flickr30k_trainval/data/validation-00000-of-00001.parquet
+     sha256: 625a7e179080a84973530ad1e818d4c8342f77c896bdca6a7df17434f61f333a
+
+A3 SEED2026 CHECKPOINT
+----------------------------------------------------------------------------------------
+exists: True
+path: /root/autodl-tmp/CVIP2026_DCEC_v11_JOURNAL/results/ablation_formal/no_sem/best_dcec_ablation.pt
+sha256: c95e9f92876257d51c37853e0d6d17a50e84b9fc9fa64a65c238bbf06d640608
+size_bytes: 3421506
+variant: no_sem
+epoch: 3
+seed: 2026
+val_primary_score: 70.16765285996055
+state_dict_tensor_count: 12
+state_dict_scalar_count: 283713
+
+FINAL TEST FREEZE MARKERS
+----------------------------------------------------------------------------------------
+FINAL TEST COMPLETED: True
+A3 IS NOW PERMANENTLY FROZEN: False
+PERMANENTLY FROZEN: True
+
+JOURNAL MECHANISM TEST-ACCESS CHECK
+----------------------------------------------------------------------------------------
+/root/autodl-tmp/CVIP2026_DCEC_v11_JOURNAL/results/journal_mechanism/seen_degradation_mechanism.json
+  parseable: True
+  dataset_split: Flickr30K validation
+  final_test_accessed: False
+/root/autodl-tmp/CVIP2026_DCEC_v11_JOURNAL/results/journal_mechanism/unseen_degradation_mechanism.json
+  parseable: True
+  dataset_split: Flickr30K validation
+  final_test_accessed: False
+/root/autodl-tmp/CVIP2026_DCEC_v11_JOURNAL/results/journal_mechanism/image_level_mechanism_summary.json
+  parseable: True
+  dataset_split: Flickr30K validation
+  final_test_accessed: False
+
+KNOWN PROVENANCE GAPS
+----------------------------------------------------------------------------------------
+* A0 frozen CLIP controlled-selection score
+  status: not yet recovered from a dedicated original source file
+  impact: Do not place it in a formal same-protocol ablation table until the exact source/protocol is recovered.
+* A5 full DCEC seed2026 checkpoint path
+  status: 13-condition A3-vs-A5 evaluation results exist, but the exact seed2026 checkpoint provenance has not yet been recovered.
+  impact: The A3-vs-A5 full-validation comparison is preserved, but checkpoint provenance should be recovered before final publication.
+
+CURRENT ASSESSMENT
+----------------------------------------------------------------------------------------
+Fatal issue detected: NO
+Known data leakage detected: NO
+Known final-test tuning detected: NO
+
+CAUTION: this is a provenance/integrity audit, not a formal proof that every implementation detail is bug-free.

@@ -1,0 +1,46 @@
+DCEC A3 — CLIP ViT-B/16 MULTI-SEED VALIDATION SUMMARY
+=====================================================
+
+Protocol:
+Backbone: OpenAI CLIP ViT-B/16
+Projection dimension: 512
+DCEC architecture: unchanged A3 no_sem
+Backbone frozen: YES
+Dataset: Flickr30K validation
+Final Test Accessed: NO
+
+Seed 2026:
+Frozen mean = 72.571992
+A3 mean     = 73.648915
+Delta       = +1.076923
+W/T/L       = 5/0/0
+Best epoch  = 2
+
+Seed 2027:
+Frozen mean = 72.445759
+A3 mean     = 73.652860
+Delta       = +1.207101
+W/T/L       = 5/0/0
+Best epoch  = 2
+
+Seed 2028:
+Frozen mean = 72.542406
+A3 mean     = 73.875740
+Delta       = +1.333333
+W/T/L       = 5/0/0
+Best epoch  = 4
+
+THREE-SEED DELTA:
+Mean = +1.205786
+Std  = 0.128210
+
+Overall W/T/L:
+15 / 0 / 0
+
+Interpretation:
+The same 512-dimensional DCEC A3 calibration architecture transfers
+from CLIP ViT-B/32 to CLIP ViT-B/16 and yields consistently positive
+validation gains across three seeds and all five evaluated conditions.
+
+This result supports cross-backbone transfer across two CLIP backbones.
+It does not by itself establish universal backbone-agnostic generality.

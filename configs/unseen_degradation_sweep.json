@@ -1,0 +1,33 @@
+{
+  "protocol": "validation-only unseen degradation generalization",
+  "training_degradations": [
+    "clean",
+    "jpeg",
+    "gaussian_blur",
+    "gaussian_noise",
+    "low_light"
+  ],
+  "unseen_degradations": {
+    "motion_blur": {
+      "parameter": "kernel_size",
+      "severity_1": 3,
+      "severity_2": 7,
+      "severity_3": 15
+    },
+    "contrast": {
+      "parameter": "contrast_factor",
+      "severity_1": 0.75,
+      "severity_2": 0.50,
+      "severity_3": 0.25
+    },
+    "pixelate": {
+      "parameter": "block_size",
+      "severity_1": 2,
+      "severity_2": 4,
+      "severity_3": 8
+    }
+  },
+  "split": "validation",
+  "model_selection": "none",
+  "test_access": "forbidden"
+}

@@ -1,0 +1,17 @@
+{
+  "variant": "no_sem",
+  "dataset_split": "validation",
+  "number_of_images": 1014,
+  "number_of_captions": 5070,
+  "degradation": "pixelate",
+  "severity": 3,
+  "seed": 2026,
+  "device": "cuda",
+  "i2t_R@1": 29.388560157790927,
+  "i2t_R@5": 51.77514792899408,
+  "i2t_R@10": 61.341222879684416,
+  "t2i_R@1": 23.88560157790927,
+  "t2i_R@5": 44.06311637080868,
+  "t2i_R@10": 54.18145956607495,
+  "checkpoint": "results/ablation_formal/no_sem/best_dcec_ablation.pt"
+}

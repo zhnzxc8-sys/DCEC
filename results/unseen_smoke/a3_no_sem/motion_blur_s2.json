@@ -1,0 +1,17 @@
+{
+  "variant": "no_sem",
+  "dataset_split": "validation",
+  "number_of_images": 32,
+  "number_of_captions": 160,
+  "degradation": "motion_blur",
+  "severity": 2,
+  "seed": 2026,
+  "device": "cuda",
+  "i2t_R@1": 100.0,
+  "i2t_R@5": 100.0,
+  "i2t_R@10": 100.0,
+  "t2i_R@1": 95.625,
+  "t2i_R@5": 100.0,
+  "t2i_R@10": 100.0,
+  "checkpoint": "results/ablation_formal/no_sem/best_dcec_ablation.pt"
+}

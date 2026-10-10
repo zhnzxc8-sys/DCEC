@@ -1,0 +1,39 @@
+DCEC ViT-L/14 Multi-Backbone Validation
+Backbone: openai/clip-vit-large-patch14
+Variant: A3 no_sem
+Projection dimension: 768
+Final Test Accessed: NO
+
+Seed 2026:
+Best epoch = 4
+Frozen mean = 76.404339
+A3 mean = 77.526627
+Mean Delta = +1.122288
+W/T/L = 5/0/0
+
+Seed 2027:
+Best epoch = 1
+Frozen mean = 76.447732
+A3 mean = 77.331361
+Mean Delta = +0.883629
+W/T/L = 5/0/0
+
+Seed 2028:
+Best epoch = 3
+Frozen mean = 76.426036
+A3 mean = 77.424063
+Mean Delta = +0.998028
+W/T/L = 5/0/0
+
+Three-seed delta summary:
+Mean Delta = +1.001315
+Sample Std Delta = 0.119363
+Overall W/T/L = 15/0/0
+
+Interpretation:
+The same DCEC A3 topology remains effective on CLIP ViT-L/14
+after adapting embedding-dependent dimensions from 512 to 768.
+This supports cross-backbone transfer across three CLIP backbones.
+Do not claim universal backbone-agnostic generality.
+
+Flickr30K Final Test was NOT accessed for this experiment.

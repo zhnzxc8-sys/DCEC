@@ -1,0 +1,15 @@
+| distributed init (rank 0, word 1): env://
+[rank0]:[W928 20:38:02.012648023 ProcessGroupNCCL.cpp:4115] [PG ID 0 PG GUID 0 Rank 0]  using GPU 0 to perform barrier as devices used by this process are currently unknown. This can potentially cause a hang if this rank to GPU mapping is incorrect.Specify device_ids in barrier() to force use of a particular device,or call init_process_group() with a device_id.
+Creating retrieval dataset
+Creating model
+only_visual
+Start training
+Computing features for evaluation...
+Test time adaptation...
+Processing:   0%|          | 0/16 [00:00<?, ?it/s]/root/autodl-tmp/external_baselines/TCR_DCEC_WORK_B32_20260928/main.py:71: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach() or sourceTensor.clone().detach().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  idx_list.append(concat_all_gather(torch.tensor(idx).to(device)))
+Processing:   6%|▋         | 1/16 [00:01<00:27,  1.83s/it]Processing:  12%|█▎        | 2/16 [00:01<00:11,  1.19it/s]Processing:  19%|█▉        | 3/16 [00:02<00:09,  1.40it/s]Processing:  25%|██▌       | 4/16 [00:03<00:07,  1.54it/s]Processing:  31%|███▏      | 5/16 [00:03<00:06,  1.64it/s]Processing:  38%|███▊      | 6/16 [00:04<00:05,  1.70it/s]Processing:  44%|████▍     | 7/16 [00:04<00:05,  1.72it/s]Processing:  50%|█████     | 8/16 [00:05<00:04,  1.75it/s]Processing:  56%|█████▋    | 9/16 [00:05<00:03,  1.76it/s]Processing:  62%|██████▎   | 10/16 [00:06<00:03,  1.78it/s]Processing:  69%|██████▉   | 11/16 [00:06<00:02,  1.80it/s]Processing:  75%|███████▌  | 12/16 [00:07<00:02,  1.80it/s]Processing:  81%|████████▏ | 13/16 [00:08<00:01,  1.82it/s]Processing:  88%|████████▊ | 14/16 [00:08<00:01,  1.82it/s]Processing:  94%|█████████▍| 15/16 [00:09<00:00,  1.84it/s]Processing: 100%|██████████| 16/16 [00:09<00:00,  1.68it/s]                                                           Averaged stats: lr: 0.0003  loss_total: 1.1121  loss_REM: 0.1770  loss_UNI: 0.9305  loss_EMG: 0.0046
+Test time adaptation time 0:00:12
+Test Result: {'txt_r1': 80.37475345167653, 'txt_r5': 95.36489151873768, 'txt_r10': 97.63313609467455, 'txt_r_mean': 91.12, 'txt_map': np.float64(64.61)}
+Training time: 0:00:12
+[rank0]:[W928 20:38:19.661094708 ProcessGroupNCCL.cpp:1250] Warning: WARNING: process group has NOT been destroyed before we destruct ProcessGroupNCCL. On normal program exit, the application should call destroy_process_group to ensure that any pending NCCL operations have finished in this process. In rare cases this process can exit before this point and block the progress of another member of the process group. This constraint has always been present,  but this warning has only been added since PyTorch 2.4 (function operator())

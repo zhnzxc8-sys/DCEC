@@ -1,0 +1,3 @@
+{ann_root: /root/autodl-tmp/tcr_controlled_flickr/annotations_val_only, backbone: clip,
+batch_size_image: 64, batch_size_text: 64, batch_size_total: 64, dataset: flickr,
+image_root: /root/autodl-tmp/tcr_controlled_flickr/pixelate_s2/images}

@@ -1,0 +1,97 @@
+{
+  "method": "Distribution Normalization",
+  "protocol": "controlled_dcec_validation",
+  "model": "openai/clip-vit-base-patch32",
+  "dataset": "noonamkha/flickr30k-karpathy",
+  "dataset_split": "validation",
+  "local_parquet": "/root/autodl-tmp/flickr30k_trainval/data/validation-00000-of-00001.parquet",
+  "number_of_images": 120,
+  "number_of_captions": 600,
+  "device": "cuda",
+  "degradation": "clean",
+  "severity": 0,
+  "degradation_parameter_name": "none",
+  "degradation_parameter_value": null,
+  "degradation_seed": 2026,
+  "dn_lambda": 0.25,
+  "stats_samples_image": 100,
+  "stats_samples_text": 100,
+  "stats_seeds": [
+    9501
+  ],
+  "statistics_source": "unlabeled samples from the same validation condition",
+  "dn_renormalize_after_correction": false,
+  "frozen_parity_pass": true,
+  "frozen_metrics": {
+    "i2t_R@1": 93.33333333333333,
+    "i2t_R@5": 100.0,
+    "i2t_R@10": 100.0,
+    "t2i_R@1": 84.83333333333333,
+    "t2i_R@5": 98.0,
+    "t2i_R@10": 99.5
+  },
+  "frozen_direct_metrics": {
+    "i2t_R@1": 93.33333333333333,
+    "i2t_R@5": 100.0,
+    "i2t_R@10": 100.0,
+    "t2i_R@1": 84.83333333333333,
+    "t2i_R@5": 98.0,
+    "t2i_R@10": 99.5
+  },
+  "frozen_primary": 89.08333333333333,
+  "dn_runs": [
+    {
+      "stats_seed": 9501,
+      "i2t_R@1": 95.0,
+      "i2t_R@5": 100.0,
+      "i2t_R@10": 100.0,
+      "t2i_R@1": 85.5,
+      "t2i_R@5": 98.83333333333333,
+      "t2i_R@10": 99.66666666666667,
+      "primary": 90.25,
+      "delta_primary_vs_frozen": 1.1666666666666714
+    }
+  ],
+  "dn_summary": {
+    "i2t_R@1": {
+      "mean": 95.0,
+      "std_population": 0.0,
+      "std_sample": 0.0
+    },
+    "i2t_R@5": {
+      "mean": 100.0,
+      "std_population": 0.0,
+      "std_sample": 0.0
+    },
+    "i2t_R@10": {
+      "mean": 100.0,
+      "std_population": 0.0,
+      "std_sample": 0.0
+    },
+    "t2i_R@1": {
+      "mean": 85.5,
+      "std_population": 0.0,
+      "std_sample": 0.0
+    },
+    "t2i_R@5": {
+      "mean": 98.83333333333333,
+      "std_population": 0.0,
+      "std_sample": 0.0
+    },
+    "t2i_R@10": {
+      "mean": 99.66666666666667,
+      "std_population": 0.0,
+      "std_sample": 0.0
+    },
+    "primary": {
+      "mean": 90.25,
+      "std_population": 0.0,
+      "std_sample": 0.0
+    },
+    "delta_primary_vs_frozen": {
+      "mean": 1.1666666666666714,
+      "std_population": 0.0,
+      "std_sample": 0.0
+    }
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "experiment_id": "clean_clip_vitb32_flickr30k_karpathy_test",
+  "dataset": "Flickr30K",
+  "dataset_id": "noonamkha/flickr30k-karpathy",
+  "split_protocol": "Karpathy",
+  "split": "test",
+  "expected_number_of_images": 1000,
+  "expected_captions_per_image": 5,
+  "expected_number_of_captions": 5000,
+  "model": "openai/clip-vit-base-patch32",
+  "task": "image-text retrieval",
+  "training": false,
+  "streaming": false,
+  "metrics": [
+    "I2T_R@1",
+    "I2T_R@5",
+    "I2T_R@10",
+    "T2I_R@1",
+    "T2I_R@5",
+    "T2I_R@10"
+  ],
+  "formal_result": "PENDING"
+}

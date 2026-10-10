@@ -1,0 +1,54 @@
+{
+  "experiment": "final frozen Flickr30K test evaluation",
+  "dataset": "Flickr30K Karpathy",
+  "split": "test",
+  "expected_images": 1000,
+  "expected_captions": 5000,
+
+  "method": "A3 no_sem",
+  "training_dataset": "Flickr30K train",
+  "model_selection_dataset": "Flickr30K validation",
+
+  "seeds": [2026, 2027, 2028],
+
+  "test_time_training": false,
+  "test_time_finetuning": false,
+  "test_time_hyperparameter_tuning": false,
+  "post_test_method_changes": false,
+
+  "primary_metric": "(I2T_R@1 + T2I_R@1) / 2",
+
+  "conditions": [
+    ["clean", 0],
+
+    ["jpeg", 1],
+    ["jpeg", 2],
+    ["jpeg", 3],
+
+    ["gaussian_blur", 1],
+    ["gaussian_blur", 2],
+    ["gaussian_blur", 3],
+
+    ["gaussian_noise", 1],
+    ["gaussian_noise", 2],
+    ["gaussian_noise", 3],
+
+    ["low_light", 1],
+    ["low_light", 2],
+    ["low_light", 3],
+
+    ["motion_blur", 1],
+    ["motion_blur", 2],
+    ["motion_blur", 3],
+
+    ["contrast", 1],
+    ["contrast", 2],
+    ["contrast", 3],
+
+    ["pixelate", 1],
+    ["pixelate", 2],
+    ["pixelate", 3]
+  ],
+
+  "note": "Final test protocol frozen before evaluating A3 on Flickr30K test. No model or hyperparameter changes are permitted after observing test results."
+}

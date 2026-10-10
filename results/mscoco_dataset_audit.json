@@ -1,0 +1,17 @@
+{
+  "dataset_id": "romrawinjp/mscoco",
+  "split": "test",
+  "number_of_images": 5000,
+  "unique_cocoids": 5000,
+  "unique_filenames": 5000,
+  "total_captions": 25010,
+  "caption_count_distribution": {
+    "5": 4990,
+    "6": 10
+  },
+  "empty_caption_groups": 0,
+  "six_caption_images": 10,
+  "six_caption_exact_duplicates": 0,
+  "policy": "retain all available captions for primary evaluation",
+  "status": "PASS"
+}

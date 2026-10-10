@@ -1,0 +1,49 @@
+DISTRIBUTION NORMALIZATION SMOKE AUDIT
+Date: 2026-09-28
+
+Model:
+openai/clip-vit-base-patch32
+
+Verified safetensors revision:
+d15b5f29721ca72dac15f8526b284be910de18be
+
+Verified model.safetensors SHA256:
+99d28a652e6ec46629ab7047a0ac82c69b1fe11e0ce672c43af65d3a9a3fc05d
+
+Smoke condition:
+Flickr30K validation
+Gaussian blur severity 1
+120 images / 600 captions
+degradation seed 2026
+DN stats seed 9501
+100 image statistics samples
+100 text statistics samples
+
+Frozen:
+Primary = 89.58333333333334
+
+DN:
+Primary = 89.66666666666667
+
+Delta DN vs Frozen:
++0.08333333333333
+
+Directional R@1:
+Frozen I2T = 95.000000
+DN     I2T = 94.166667
+
+Frozen T2I = 84.166667
+DN     T2I = 85.166667
+
+Interpretation:
+This is a smoke test only.
+No formal performance claim is made from 120 images.
+The main purpose was implementation validation and frozen parity.
+
+Frozen external parity:
+Expected PASS after automated comparison.
+
+Important:
+DN-corrected features are NOT re-normalized before retrieval.
+Final Test was NOT accessed.
+DCEC was NOT modified.

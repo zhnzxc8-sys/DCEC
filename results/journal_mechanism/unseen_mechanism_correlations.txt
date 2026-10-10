@@ -1,0 +1,12 @@
+DCEC UNSEEN-DEGRADATION MECHANISM CORRELATIONS
+Flickr30K validation
+Motion blur / contrast / pixelation
+
+Drift vs Retrieval Gain: +0.783420
+Recovery vs Retrieval Gain: +0.903364
+CorrectionNorm vs Retrieval Gain: +0.930984
+Drift vs CorrectionNorm: +0.933147
+Drift vs Recovery: +0.956961
+Gate vs Retrieval Gain: +0.156247
+
+Correlation is descriptive and does not establish causality.

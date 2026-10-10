@@ -1,0 +1,45 @@
+DCEC ViT-L/14 Multi-Backbone Validation
+Seed: 2026
+Variant: A3 no_sem
+Backbone: openai/clip-vit-large-patch14
+Projection dimension: 768
+Final Test Accessed: NO
+
+Best epoch: 4
+
+clean:
+Frozen = 77.130178
+A3     = 77.938856
+Delta  = +0.808679
+
+jpeg S2:
+Frozen = 78.205128
+A3     = 78.925049
+Delta  = +0.719921
+
+gaussian_blur S2:
+Frozen = 74.585799
+A3     = 76.084813
+Delta  = +1.499014
+
+gaussian_noise S2:
+Frozen = 76.903353
+A3     = 77.998028
+Delta  = +1.094675
+
+low_light S2:
+Frozen = 75.197239
+A3     = 76.686391
+Delta  = +1.489152
+
+Frozen mean = 76.404339
+A3 mean     = 77.526627
+Mean Delta  = +1.122288
+W/T/L       = 5/0/0
+
+Epoch means:
+epoch 0 = 77.116371
+epoch 1 = 77.088757
+epoch 2 = 77.325444
+epoch 3 = 77.313609
+epoch 4 = 77.526627

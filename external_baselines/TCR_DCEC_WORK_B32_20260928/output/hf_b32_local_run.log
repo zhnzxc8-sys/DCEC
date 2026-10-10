@@ -1,0 +1,18 @@
+Traceback (most recent call last):
+  File "/root/autodl-tmp/external_baselines/TCR_DCEC_WORK_B32_20260928/tools/eval_hf_b32_exact_tcr_loader.py", line 192, in <module>
+    main()
+  File "/root/autodl-tmp/external_baselines/TCR_DCEC_WORK_B32_20260928/tools/eval_hf_b32_exact_tcr_loader.py", line 63, in main
+    model = CLIPModel.from_pretrained(
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/site-packages/transformers/modeling_utils.py", line 4237, in from_pretrained
+    config, dtype = _get_dtype(
+                    ^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/site-packages/transformers/modeling_utils.py", line 847, in _get_dtype
+    state_dict = load_state_dict(
+                 ^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/site-packages/transformers/modeling_utils.py", line 360, in load_state_dict
+    check_torch_load_is_safe()
+  File "/root/miniconda3/lib/python3.12/site-packages/transformers/utils/import_utils.py", line 1676, in check_torch_load_is_safe
+    raise ValueError(
+ValueError: Due to a serious vulnerability issue in `torch.load`, even with `weights_only=True`, we now require users to upgrade torch to at least v2.6 in order to use the function. This version restriction does not apply when loading files with safetensors.
+See the vulnerability report here https://nvd.nist.gov/vuln/detail/CVE-2025-32434

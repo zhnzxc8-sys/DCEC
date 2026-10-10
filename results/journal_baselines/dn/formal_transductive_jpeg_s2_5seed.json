@@ -1,0 +1,145 @@
+{
+  "method": "Distribution Normalization",
+  "protocol": "controlled_dcec_validation",
+  "model": "openai/clip-vit-base-patch32",
+  "dataset": "noonamkha/flickr30k-karpathy",
+  "dataset_split": "validation",
+  "local_parquet": "/root/autodl-tmp/flickr30k_trainval/data/validation-00000-of-00001.parquet",
+  "number_of_images": 1014,
+  "number_of_captions": 5070,
+  "device": "cuda",
+  "degradation": "jpeg",
+  "severity": 2,
+  "degradation_parameter_name": "quality",
+  "degradation_parameter_value": 50,
+  "degradation_seed": 2026,
+  "dn_lambda": 0.25,
+  "stats_samples_image": 100,
+  "stats_samples_text": 100,
+  "stats_seeds": [
+    9501,
+    9502,
+    9503,
+    9504,
+    9505
+  ],
+  "statistics_source": "unlabeled samples from the same validation condition",
+  "dn_renormalize_after_correction": false,
+  "frozen_parity_pass": true,
+  "frozen_metrics": {
+    "i2t_R@1": 80.37475345167653,
+    "i2t_R@5": 95.46351084812623,
+    "i2t_R@10": 97.92899408284023,
+    "t2i_R@1": 59.447731755424066,
+    "t2i_R@5": 84.02366863905326,
+    "t2i_R@10": 90.05917159763314
+  },
+  "frozen_direct_metrics": {
+    "i2t_R@1": 80.37475345167653,
+    "i2t_R@5": 95.46351084812623,
+    "i2t_R@10": 97.92899408284023,
+    "t2i_R@1": 59.447731755424066,
+    "t2i_R@5": 84.02366863905326,
+    "t2i_R@10": 90.05917159763314
+  },
+  "frozen_primary": 69.91124260355029,
+  "dn_runs": [
+    {
+      "stats_seed": 9501,
+      "i2t_R@1": 80.37475345167653,
+      "i2t_R@5": 96.5483234714004,
+      "i2t_R@10": 98.0276134122288,
+      "t2i_R@1": 62.366863905325445,
+      "t2i_R@5": 85.56213017751479,
+      "t2i_R@10": 91.1439842209073,
+      "primary": 71.37080867850099,
+      "delta_primary_vs_frozen": 1.4595660749507005
+    },
+    {
+      "stats_seed": 9502,
+      "i2t_R@1": 80.4733727810651,
+      "i2t_R@5": 96.5483234714004,
+      "i2t_R@10": 98.0276134122288,
+      "t2i_R@1": 62.40631163708087,
+      "t2i_R@5": 85.52268244575937,
+      "t2i_R@10": 91.1439842209073,
+      "primary": 71.43984220907298,
+      "delta_primary_vs_frozen": 1.528599605522686
+    },
+    {
+      "stats_seed": 9503,
+      "i2t_R@1": 80.1775147928994,
+      "i2t_R@5": 96.44970414201184,
+      "i2t_R@10": 98.0276134122288,
+      "t2i_R@1": 62.544378698224854,
+      "t2i_R@5": 85.60157790927022,
+      "t2i_R@10": 91.10453648915187,
+      "primary": 71.36094674556213,
+      "delta_primary_vs_frozen": 1.4497041420118393
+    },
+    {
+      "stats_seed": 9504,
+      "i2t_R@1": 80.27613412228797,
+      "i2t_R@5": 96.5483234714004,
+      "i2t_R@10": 98.0276134122288,
+      "t2i_R@1": 62.44575936883629,
+      "t2i_R@5": 85.54240631163708,
+      "t2i_R@10": 91.1439842209073,
+      "primary": 71.36094674556213,
+      "delta_primary_vs_frozen": 1.4497041420118393
+    },
+    {
+      "stats_seed": 9505,
+      "i2t_R@1": 80.27613412228797,
+      "i2t_R@5": 96.35108481262327,
+      "i2t_R@10": 98.12623274161736,
+      "t2i_R@1": 62.42603550295858,
+      "t2i_R@5": 85.46351084812623,
+      "t2i_R@10": 91.10453648915187,
+      "primary": 71.35108481262327,
+      "delta_primary_vs_frozen": 1.439842209072978
+    }
+  ],
+  "dn_summary": {
+    "i2t_R@1": {
+      "mean": 80.31558185404339,
+      "std_population": 0.10057237699394352,
+      "std_sample": 0.11244333580859683
+    },
+    "i2t_R@5": {
+      "mean": 96.48915187376726,
+      "std_population": 0.07889546351084889,
+      "std_sample": 0.08820780976330617
+    },
+    "i2t_R@10": {
+      "mean": 98.04733727810651,
+      "std_population": 0.039447731755421954,
+      "std_sample": 0.0441039048816503
+    },
+    "t2i_R@1": {
+      "mean": 62.437869822485204,
+      "std_population": 0.05930294429338464,
+      "std_sample": 0.06630270735294565
+    },
+    "t2i_R@5": {
+      "mean": 85.53846153846153,
+      "std_population": 0.04566405089858035,
+      "std_sample": 0.051053960968618
+    },
+    "t2i_R@10": {
+      "mean": 91.12820512820512,
+      "std_population": 0.019325362862197843,
+      "std_sample": 0.02160641252486214
+    },
+    "primary": {
+      "mean": 71.3767258382643,
+      "std_population": 0.032168651736292186,
+      "std_sample": 0.03596564601343298
+    },
+    "delta_primary_vs_frozen": {
+      "mean": 1.4654832347140085,
+      "std_population": 0.032168651736292186,
+      "std_sample": 0.03596564601343298
+    }
+  }
+}

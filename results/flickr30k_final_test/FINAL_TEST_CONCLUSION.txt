@@ -1,0 +1,54 @@
+DCEC A3 FINAL FLICKR30K TEST
+Date: 2026-09-26
+
+Dataset:
+Flickr30K Karpathy test
+
+Size:
+1000 images
+5000 captions
+
+Method:
+A3 no_sem
+Seeds: 2026 / 2027 / 2028
+
+Protocol:
+- Architecture frozen before test
+- Checkpoints frozen before test
+- No test-time training
+- No finetuning
+- No hyperparameter tuning
+- No post-test method modification permitted
+
+Primary metric:
+(I2T R@1 + T2I R@1) / 2
+
+FINAL RESULTS
+
+Overall 22 conditions:
+Frozen CLIP = 63.5109
+A3 = 65.0241 +/- 0.0570
+Delta = +1.5132
+Wins/Ties/Losses = 22/0/0
+
+Clean:
+Frozen = 69.0500
+A3 = 69.5600 +/- 0.0638
+Delta = +0.5100
+
+Seen degradations (12 conditions):
+Frozen mean = 65.6992
+A3 mean = 67.3983
+Delta = +1.6992
+Wins/Ties/Losses = 12/0/0
+
+Unseen degradations (9 conditions):
+Frozen mean = 59.9778
+A3 mean = 61.3544
+Delta = +1.3767
+Wins/Ties/Losses = 9/0/0
+
+Status:
+FINAL TEST COMPLETED.
+A3 is permanently frozen.
+No result from this test may be used to modify the method.

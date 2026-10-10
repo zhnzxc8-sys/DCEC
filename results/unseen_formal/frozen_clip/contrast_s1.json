@@ -1,0 +1,23 @@
+{
+  "model": "openai/clip-vit-base-patch32",
+  "dataset": "noonamkha/flickr30k-karpathy",
+  "dataset_id": "noonamkha/flickr30k-karpathy",
+  "local_parquet": "/root/autodl-tmp/flickr30k_trainval/data/validation-00000-of-00001.parquet",
+  "split": "validation",
+  "number_of_images": 1014,
+  "number_of_captions": 5070,
+  "device": "cuda",
+  "run_type": "full_degradation_evaluation",
+  "degradation": "contrast",
+  "severity": 1,
+  "degradation_parameter_name": "contrast_factor",
+  "degradation_parameter_value": 0.75,
+  "seed": 2026,
+  "batch_size": 32,
+  "i2t_R@1": 79.48717948717949,
+  "i2t_R@5": 95.46351084812623,
+  "i2t_R@10": 98.0276134122288,
+  "t2i_R@1": 59.30966469428008,
+  "t2i_R@5": 84.41814595660749,
+  "t2i_R@10": 90.51282051282051
+}

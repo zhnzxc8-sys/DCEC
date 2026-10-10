@@ -1,0 +1,21 @@
+MASTER B32 SOURCE MANIFEST
+Date: 2026-09-28
+
+Protocol:
+- Backbone: CLIP ViT-B/32
+- Flickr30K validation
+- 21 degradation conditions
+- Final Test NOT accessed
+- Primary = (I2T R@1 + T2I R@1) / 2
+
+DN: /root/autodl-tmp/CVIP2026_DCEC_v11_JOURNAL/results/journal_baselines/dn/DN_TRANSDUCTIVE_22_SUMMARY.csv
+SHA256: 12df4651d269a0dac6dea9b0f36fe23b6f269a6f6a30df7c438c5de2664565ca
+
+DCEC: /root/autodl-tmp/CVIP2026_DCEC_v11_JOURNAL/results/journal_baselines/dcec_vs_dn/DCEC_A3_3SEED_VS_DN22.csv
+SHA256: 6536192d8a9b0606b62c9c654701af299b1039763d221d6a3402fe51cfc85373
+
+TCR_I2T: /root/autodl-tmp/external_baselines/TCR_DCEC_WORK_B32_20260928/results/journal_baselines/tcr_b32_20260928/TCR_B32_I2T_21_CONDITIONS_SUMMARY_20260928.csv
+SHA256: c942d18119e06d1e6b0bd3e560330c478a015172105b6f9560f3a114be9672f7
+
+TCR_T2I: /root/autodl-tmp/external_baselines/TCR_DCEC_WORK_B32_20260928/results/journal_baselines/tcr_b32_20260928/TCR_B32_T2I_21_CONDITIONS_SUMMARY_20260928.csv
+SHA256: e3d9af5b8cb8d38a52f1e81e4beb5f10b2d97ce9679265ece5339b3a0390b08d

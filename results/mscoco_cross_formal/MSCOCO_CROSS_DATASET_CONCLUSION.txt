@@ -1,0 +1,92 @@
+DCEC A3 CROSS-DATASET GENERALIZATION
+Date: 2026-09-26
+
+Source training dataset:
+Flickr30K Karpathy
+
+Target evaluation dataset:
+MSCOCO Karpathy test
+
+Target size:
+5000 images
+25010 captions
+
+Caption distribution:
+4990 images with 5 captions
+10 images with 6 captions
+All available captions retained.
+
+Transfer protocol:
+- No MSCOCO training
+- No MSCOCO finetuning
+- No MSCOCO hyperparameter tuning
+- Flickr30K-trained A3 transferred directly
+- Protocol fixed before observing formal MSCOCO retrieval results
+
+Compared methods:
+Frozen CLIP ViT-B/32
+A3 no_sem, seeds 2026 / 2027 / 2028
+
+Primary metric:
+(I2T R@1 + T2I R@1) / 2
+
+Formal results:
+
+Clean S0:
+Frozen CLIP = 40.3039
+A3 = 41.0483 +/- 0.0399
+Delta = +0.7444
+
+JPEG S2:
+Frozen CLIP = 40.3141
+A3 = 41.0656 +/- 0.0498
+Delta = +0.7515
+
+Gaussian Blur S2:
+Frozen CLIP = 36.6422
+A3 = 38.6438 +/- 0.1123
+Delta = +2.0016
+
+Gaussian Noise S2:
+Frozen CLIP = 39.9398
+A3 = 40.5216 +/- 0.1198
+Delta = +0.5817
+
+Low-light S2:
+Frozen CLIP = 40.4978
+A3 = 40.6209 +/- 0.0540
+Delta = +0.1231
+
+Synthetic Horizontal Motion Blur S2:
+Frozen CLIP = 38.1001
+A3 = 38.6472 +/- 0.0407
+Delta = +0.5471
+
+Contrast Reduction S2:
+Frozen CLIP = 39.8119
+A3 = 40.5496 +/- 0.0996
+Delta = +0.7377
+
+Pixelation S2:
+Frozen CLIP = 35.4642
+A3 = 36.7074 +/- 0.0946
+Delta = +1.2431
+
+Overall:
+Frozen CLIP 8-condition mean = 38.8843
+A3 8-condition mean = 39.7255 +/- 0.0337
+Mean delta = +0.8413
+
+Condition outcome:
+wins = 8
+ties = 0
+losses = 0
+
+Interpretation:
+The Flickr30K-trained A3 candidate produced positive gains on all
+pre-registered MSCOCO evaluation conditions without target-dataset
+training, finetuning, or hyperparameter tuning.
+
+Status:
+Cross-dataset generalization experiment completed.
+A3 architecture remains frozen.

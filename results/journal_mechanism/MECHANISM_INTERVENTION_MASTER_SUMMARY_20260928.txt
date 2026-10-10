@@ -1,0 +1,129 @@
+DCEC MECHANISM INTERVENTION MASTER SUMMARY
+Date: 2026-09-28
+Backbone: CLIP ViT-B/32
+Checkpoint: A3 no_sem seed2026
+Dataset split: validation
+Final Test Accessed: NO
+
+============================================================
+1. GAUSSIAN BLUR S1 — ALPHA SCALING
+============================================================
+
+alpha   PRIMARY
+-1.0    67.702170
+ 0.0    69.408284
+ 0.5    69.930966
+ 1.0    70.167653
+ 1.5    70.374753
+ 2.0    70.384615
+ 2.5    69.980276
+ 3.0    69.467456
+ 4.0    67.603550
+ 6.0    63.678501
+
+Observed pattern:
+reverse correction degrades retrieval;
+positive scaling improves retrieval;
+moderate scaling peaks near alpha=2;
+excessive scaling causes over-correction and substantial degradation.
+
+============================================================
+2. GAUSSIAN BLUR S1 — MATCHED-NORM RANDOM DIRECTION
+============================================================
+
+5 random seeds:
+Random direction mean : 68.554241
+Random direction std  : 0.541716
+Learned correction    : 70.167653
+No correction         : 69.408284
+Learned - Random mean : +1.613412
+Random mean - No corr : -0.854043
+
+Interpretation:
+Correction magnitude alone does not explain the gain.
+The learned correction direction carries functionally useful information.
+
+============================================================
+3. GAUSSIAN BLUR S1 — GLOBAL CORRECTION SHUFFLE
+============================================================
+
+5 shuffle seeds:
+Shuffle mean               : 68.741617
+Shuffle std                : 0.146708
+Learned matched correction : 70.167653
+No correction              : 69.408284
+Learned - Shuffle mean     : +1.426036
+Shuffle mean - No corr     : -0.666667
+
+Interpretation:
+Learned corrections lose effectiveness when assigned to the wrong images,
+supporting image-correction specificity.
+
+============================================================
+4. QUALITY DESCRIPTOR INTERVENTIONS — BOUNDARY RESULT
+============================================================
+
+Correct blur S1 quality : 70.167653
+Within-condition shuffle: 70.138067
+Clean S0 quality        : 70.226824
+Low-light S3 quality    : 70.216963
+Pixelate S3 quality     : 70.207101
+
+Interpretation:
+Exact five-dimensional quality-descriptor matching is not supported as the
+dominant source of retrieval gain for gaussian_blur S1.
+The stronger functional evidence lies in correction geometry and
+image-correction matching.
+
+This negative/boundary result is retained rather than hidden.
+
+============================================================
+5. PIXELATE S3 — ALPHA SCALING REPLICATION
+============================================================
+
+alpha   PRIMARY
+-1      23.096647
+ 0      29.270217
+ 1      32.850099
+ 2      29.181460
+ 4      21.183432
+
+Observed pattern:
+reverse correction strongly degrades retrieval;
+the learned alpha=1 correction substantially restores retrieval;
+excessive scaling again produces over-correction.
+
+Unlike gaussian_blur S1, the optimal magnitude is alpha=1 rather than alpha=2,
+suggesting condition-dependent optimal correction magnitude.
+
+============================================================
+6. PIXELATE S3 — MATCHED-NORM RANDOM DIRECTION REPLICATION
+============================================================
+
+3 random seeds:
+Random direction mean : 26.801446
+Random direction std  : 0.419374
+Learned correction    : 32.850099
+No correction         : 29.270217
+Learned - Random mean : +6.048653
+Random mean - No corr : -2.468771
+
+Interpretation:
+Direction specificity replicates on a second, qualitatively different
+degradation condition.
+
+============================================================
+CURRENT SAFE MECHANISTIC CONCLUSION
+============================================================
+
+The intervention evidence supports the functional importance of the learned
+correction geometry. Across gaussian blur and pixelation, reversing or
+randomizing correction direction degrades retrieval, while excessive scaling
+causes over-correction. Correction shuffling further indicates image-specific
+matching.
+
+The exact per-image five-dimensional quality descriptor is not supported as the
+dominant mechanism under the tested blur condition.
+
+These findings are functional intervention evidence. They should not be
+presented as universal causal claims without broader intervention coverage.

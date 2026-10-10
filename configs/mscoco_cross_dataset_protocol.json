@@ -1,0 +1,65 @@
+{
+  "experiment": "cross-dataset generalization",
+  "source_training_dataset": "Flickr30K Karpathy",
+  "target_dataset": "romrawinjp/mscoco",
+  "target_split": "test",
+  "expected_images": 5000,
+  "expected_captions_per_image": "variable: 5 for 4990 images, 6 for 10 images",
+  "training_on_mscoco": false,
+  "finetuning_on_mscoco": false,
+  "hyperparameter_tuning_on_mscoco": false,
+  "model": "A3 no_sem",
+  "seeds": [
+    2026,
+    2027,
+    2028
+  ],
+  "primary_metric": "(I2T_R@1 + T2I_R@1) / 2",
+  "conditions": [
+    [
+      "clean",
+      0
+    ],
+    [
+      "jpeg",
+      2
+    ],
+    [
+      "gaussian_blur",
+      2
+    ],
+    [
+      "gaussian_noise",
+      2
+    ],
+    [
+      "low_light",
+      2
+    ],
+    [
+      "motion_blur",
+      2
+    ],
+    [
+      "contrast",
+      2
+    ],
+    [
+      "pixelate",
+      2
+    ]
+  ],
+  "note": "Protocol frozen before observing any MSCOCO retrieval result.",
+  "caption_protocol": {
+    "primary_evaluation": "use_all_available_captions_per_image",
+    "expected_total_images": 5000,
+    "expected_total_captions": 25010,
+    "caption_count_distribution": {
+      "5": 4990,
+      "6": 10
+    },
+    "handling_of_six_caption_images": "retain_all_six_captions",
+    "deduplication": false,
+    "note": "Protocol fixed before observing any MSCOCO retrieval result."
+  }
+}

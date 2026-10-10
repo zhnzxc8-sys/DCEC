@@ -1,0 +1,49 @@
+{
+  "dataset": "romrawinjp/mscoco",
+  "split": "test",
+  "number_of_images": 32,
+  "number_of_captions": 160,
+  "degradation": "clean",
+  "severity": 0,
+  "baseline": {
+    "i2t_R@1": 93.75,
+    "i2t_R@5": 96.875,
+    "i2t_R@10": 96.875,
+    "t2i_R@1": 83.125,
+    "t2i_R@5": 99.375,
+    "t2i_R@10": 100.0,
+    "primary_component": 88.4375
+  },
+  "a3_seeds": {
+    "2026": {
+      "i2t_R@1": 93.75,
+      "i2t_R@5": 96.875,
+      "i2t_R@10": 96.875,
+      "t2i_R@1": 83.125,
+      "t2i_R@5": 100.0,
+      "t2i_R@10": 100.0,
+      "primary_component": 88.4375
+    },
+    "2027": {
+      "i2t_R@1": 93.75,
+      "i2t_R@5": 96.875,
+      "i2t_R@10": 96.875,
+      "t2i_R@1": 83.75,
+      "t2i_R@5": 99.375,
+      "t2i_R@10": 100.0,
+      "primary_component": 88.75
+    },
+    "2028": {
+      "i2t_R@1": 90.625,
+      "i2t_R@5": 96.875,
+      "i2t_R@10": 96.875,
+      "t2i_R@1": 83.75,
+      "t2i_R@5": 99.375,
+      "t2i_R@10": 100.0,
+      "primary_component": 87.1875
+    }
+  },
+  "a3_primary_mean": 88.125,
+  "a3_primary_std": 0.6750771560841521,
+  "delta_primary_mean": -0.3125
+}

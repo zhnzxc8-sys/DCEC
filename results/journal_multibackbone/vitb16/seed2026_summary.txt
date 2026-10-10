@@ -1,0 +1,24 @@
+DCEC A3 — CLIP ViT-B/16 — Flickr30K Validation
+Seed 2026
+Final Test Accessed: NO
+
+Condition               Frozen       A3          Delta
+clean S0                73.027613    73.994083   +0.966469
+jpeg S2                 73.786982    74.812623   +1.025641
+gaussian_blur S2        69.723866    71.597633   +1.873767
+gaussian_noise S2       73.510848    74.161736   +0.650888
+low_light S2            72.810651    73.678501   +0.867850
+
+5-condition mean:
+Frozen = 72.571992
+A3     = 73.648915
+Delta  = +1.076923
+
+W/T/L = 5/0/0
+
+A3 best epoch = 2
+A3 trainable parameters = 283713
+
+Interpretation:
+This is single-seed validation evidence only.
+It does not by itself establish multi-backbone generality.

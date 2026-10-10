@@ -1,0 +1,14 @@
+# Controlled DCEC validation protocol for TCR.
+# Source split: Flickr30K validation only.
+# These are NOT the official Flickr-C corruption files.
+# Images were materialized using the frozen DCEC degradation implementation.
+
+image_root: /root/autodl-tmp/tcr_controlled_flickr/gaussian_noise_s1/images
+ann_root: /root/autodl-tmp/tcr_controlled_flickr/annotations_val_only
+
+dataset: flickr
+backbone: clip
+
+batch_size_image: 64
+batch_size_text: 64
+batch_size_total: 64

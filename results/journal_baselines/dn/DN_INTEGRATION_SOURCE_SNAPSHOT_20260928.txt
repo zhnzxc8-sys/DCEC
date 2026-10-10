@@ -1,0 +1,640 @@
+===== run_degradation_baseline.py =====
+"""Evaluate frozen CLIP retrieval under deterministic image degradations."""
+
+import argparse
+import json
+from pathlib import Path
+from typing import Any
+
+import torch
+import torch.nn.functional as functional
+from transformers import CLIPModel, CLIPProcessor
+
+from flickr30k_dataset import (
+    DATASET_NAME,
+    SPLITS,
+    load_flickr30k_split,
+    prepare_retrieval_samples,
+)
+from image_degradations import apply_degradation, get_degradation_metadata
+from retrieval_metrics import compute_retrieval_metrics
+
+
+MODEL_NAME = "openai/clip-vit-base-patch32"
+DEGRADATIONS = (
+    "clean",
+    "jpeg",
+    "gaussian_blur",
+    "gaussian_noise",
+    "low_light",
+    "motion_blur",
+    "contrast",
+    "pixelate",
+)
+DEFAULT_OUTPUT = Path("results") / "degradation_baseline.json"
+
+
+def _positive_int(value: str) -> int:
+    parsed = int(value)
+    if parsed <= 0:
+        raise argparse.ArgumentTypeError("must be a positive integer")
+    return parsed
+
+
+def _batched(items: list[Any], batch_size: int):
+    for start in range(0, len(items), batch_size):
+        yield items[start : start + batch_size]
+
+
+def _normalize_embeddings(embeddings: torch.Tensor, name: str) -> torch.Tensor:
+    if embeddings.ndim != 2:
+        raise ValueError(f"{name} must be 2D, got {embeddings.shape}.")
+    if torch.any(embeddings.norm(dim=1) == 0):
+        raise ValueError(f"{name} contains a zero-norm embedding.")
+    return functional.normalize(embeddings, p=2, dim=1)
+
+
+def _encode_images(
+    model: CLIPModel,
+    processor: CLIPProcessor,
+    images: list[Any],
+    device: torch.device,
+    batch_size: int,
+) -> torch.Tensor:
+    embeddings = []
+    with torch.no_grad():
+        for image_batch in _batched(images, batch_size):
+            inputs = processor(images=image_batch, return_tensors="pt").to(device)
+            vision_outputs = model.vision_model(pixel_values=inputs["pixel_values"])
+            pooled_image = vision_outputs.pooler_output
+            if not isinstance(pooled_image, torch.Tensor) or pooled_image.ndim != 2:
+                raise ValueError("vision_model.pooler_output must be a 2D Tensor.")
+            if pooled_image.shape[-1] != model.config.vision_config.hidden_size:
+                raise ValueError("Vision pooled dimension does not match model configuration.")
+            image_embedding = model.visual_projection(pooled_image)
+            if not isinstance(image_embedding, torch.Tensor) or image_embedding.ndim != 2:
+                raise ValueError("visual_projection must return a 2D Tensor.")
+            if image_embedding.shape[-1] != model.config.projection_dim:
+                raise ValueError("Image embedding dimension does not match model configuration.")
+            embeddings.append(image_embedding.cpu())
+    return _normalize_embeddings(torch.cat(embeddings, dim=0), "image_features")
+
+
+def _encode_texts(
+    model: CLIPModel,
+    processor: CLIPProcessor,
+    captions: list[str],
+    device: torch.device,
+    batch_size: int,
+) -> torch.Tensor:
+    embeddings = []
+    with torch.no_grad():
+        for caption_batch in _batched(captions, batch_size):
+            inputs = processor(
+                text=caption_batch,
+                padding=True,
+                truncation=True,
+                return_tensors="pt",
+            ).to(device)
+            text_outputs = model.text_model(
+                input_ids=inputs["input_ids"],
+                attention_mask=inputs["attention_mask"],
+            )
+            pooled_text = text_outputs.pooler_output
+            if not isinstance(pooled_text, torch.Tensor) or pooled_text.ndim != 2:
+                raise ValueError("text_model.pooler_output must be a 2D Tensor.")
+            if pooled_text.shape[-1] != model.config.text_config.hidden_size:
+                raise ValueError("Text pooled dimension does not match model configuration.")
+            text_embedding = model.text_projection(pooled_text)
+            if not isinstance(text_embedding, torch.Tensor) or text_embedding.ndim != 2:
+                raise ValueError("text_projection must return a 2D Tensor.")
+            if text_embedding.shape[-1] != model.config.projection_dim:
+                raise ValueError("Text embedding dimension does not match model configuration.")
+            embeddings.append(text_embedding.cpu())
+    return _normalize_embeddings(torch.cat(embeddings, dim=0), "text_features")
+
+
+def parse_args() -> argparse.Namespace:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--dataset-id", default=DATASET_NAME)
+    parser.add_argument("--local-parquet", type=Path, default=None)
+    parser.add_argument("--split", choices=sorted(SPLITS), default="test")
+    parser.add_argument("--degradation", choices=DEGRADATIONS, required=True)
+    parser.add_argument("--severity", type=int, required=True, choices=(0, 1, 2, 3))
+    parser.add_argument("--seed", type=int, default=2026)
+    parser.add_argument("--limit", type=_positive_int, default=None)
+    parser.add_argument("--batch-size", type=_positive_int, default=64)
+    parser.add_argument("--cache-dir", type=Path, default=None)
+    parser.add_argument("--output", type=Path, default=DEFAULT_OUTPUT)
+    return parser.parse_args()
+
+
+def main() -> None:
+    args = parse_args()
+    metadata = get_degradation_metadata(args.degradation, args.severity)
+    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+
+    dataset = load_flickr30k_split(
+        split=args.split,
+        dataset_id=args.dataset_id,
+        local_parquet=args.local_parquet,
+        cache_dir=args.cache_dir,
+        streaming=False,
+    )
+    sample_count = args.limit if args.limit is not None else len(dataset)
+    images, captions, image_to_text, text_to_image = prepare_retrieval_samples(
+        dataset, sample_count
+    )
+
+    degraded_images = [
+        apply_degradation(
+            image,
+            degradation=args.degradation,
+            severity=args.severity,
+            seed=args.seed,
+            image_index=image_index,
+        )
+        for image_index, image in enumerate(images)
+    ]
+
+    processor = CLIPProcessor.from_pretrained(MODEL_NAME, cache_dir=args.cache_dir)
+    model = CLIPModel.from_pretrained(
+        MODEL_NAME,
+        cache_dir=args.cache_dir,
+        use_safetensors=True,
+    ).to(device)
+    model.eval()
+
+    image_features = _encode_images(
+        model, processor, degraded_images, device, args.batch_size
+    )
+    text_features = _encode_texts(model, processor, captions, device, args.batch_size)
+    if image_features.shape[-1] != text_features.shape[-1]:
+        raise ValueError("Image and text embedding dimensions must match.")
+    metrics = compute_retrieval_metrics(
+        image_features, text_features, image_to_text, text_to_image
+    )
+
+    result = {
+        "model": MODEL_NAME,
+        "dataset": args.dataset_id,
+        "dataset_id": args.dataset_id,
+        "local_parquet": str(args.local_parquet) if args.local_parquet else None,
+        "split": args.split,
+        "number_of_images": len(images),
+        "number_of_captions": len(captions),
+        "device": str(device),
+        "run_type": (
+            "degradation_smoke_test" if args.limit is not None else "full_degradation_evaluation"
+        ),
+        "degradation": metadata["degradation"],
+        "severity": metadata["severity"],
+        "degradation_parameter_name": metadata["parameter_name"],
+        "degradation_parameter_value": metadata["parameter_value"],
+        "seed": args.seed,
+        "batch_size": args.batch_size,
+        **metrics,
+    }
+    args.output.parent.mkdir(parents=True, exist_ok=True)
+    with args.output.open("w", encoding="utf-8") as output_file:
+        json.dump(result, output_file, ensure_ascii=False, indent=2)
+        output_file.write("\n")
+    print(json.dumps(result, ensure_ascii=False, indent=2))
+    print(f"Saved results to: {args.output}")
+
+
+if __name__ == "__main__":
+    main()
+
+===== retrieval_metrics.py =====
+"""Recall@K metrics for image-to-text and text-to-image retrieval."""
+
+from collections.abc import Sequence
+
+import torch
+
+
+_KS = (1, 5, 10)
+
+
+def _normalize_features(features: torch.Tensor, name: str) -> torch.Tensor:
+    """L2-normalize feature rows and reject undefined cosine similarities."""
+    norms = features.norm(dim=1, keepdim=True)
+    if torch.any(norms == 0):
+        raise ValueError(f"{name} contains a zero-norm feature vector.")
+    return features / norms
+
+
+def _validate_inputs(
+    image_features: torch.Tensor,
+    text_features: torch.Tensor,
+    image_to_text: Sequence[Sequence[int]],
+    text_to_image: Sequence[int],
+) -> None:
+    if image_features.ndim != 2 or text_features.ndim != 2:
+        raise ValueError("image_features and text_features must be 2D tensors.")
+    if image_features.shape[0] == 0 or text_features.shape[0] == 0:
+        raise ValueError("image_features and text_features must not be empty.")
+    if image_features.shape[1] != text_features.shape[1]:
+        raise ValueError("Image and text feature dimensions must match.")
+    if len(image_to_text) != image_features.shape[0]:
+        raise ValueError("image_to_text must have one entry per image.")
+    if len(text_to_image) != text_features.shape[0]:
+        raise ValueError("text_to_image must have one entry per text.")
+
+    text_count = text_features.shape[0]
+    image_count = image_features.shape[0]
+    for positives in image_to_text:
+        if not positives:
+            raise ValueError("Every image must have at least one matching text.")
+        if any(index < 0 or index >= text_count for index in positives):
+            raise ValueError("image_to_text contains an out-of-range text index.")
+    if any(index < 0 or index >= image_count for index in text_to_image):
+        raise ValueError("text_to_image contains an out-of-range image index.")
+
+
+def _recall_at_k(
+    similarity: torch.Tensor, correct_indices: Sequence[Sequence[int]], k: int
+) -> float:
+    """Return percentage of queries with any correct item in their top-k list."""
+    rankings = similarity.argsort(dim=1, descending=True)
+    hits = 0
+    for query_index, positives in enumerate(correct_indices):
+        top_k = set(rankings[query_index, :k].tolist())
+        hits += bool(top_k.intersection(positives))
+    return 100.0 * hits / len(correct_indices)
+
+
+def compute_retrieval_metrics(
+    image_features: torch.Tensor,
+    text_features: torch.Tensor,
+    image_to_text: Sequence[Sequence[int]],
+    text_to_image: Sequence[int],
+) -> dict[str, float]:
+    """Compute cosine-similarity Recall@1, @5, and @10 for both directions.
+
+    ``image_to_text[i]`` contains every relevant text index for image ``i``;
+    ``text_to_image[j]`` contains the one relevant image index for text ``j``.
+    """
+    _validate_inputs(image_features, text_features, image_to_text, text_to_image)
+
+    # Convert both feature sets to unit vectors so dot products are cosine scores.
+    image_features = _normalize_features(image_features, "image_features")
+    text_features = _normalize_features(
+        text_features.to(image_features.device, dtype=image_features.dtype),
+        "text_features",
+    )
+    similarity = image_features @ text_features.T
+
+    # Rows query texts for I2T; transposing makes each text query images for T2I.
+    text_to_image_groups = [[image_index] for image_index in text_to_image]
+    metrics = {
+        f"i2t_R@{k}": _recall_at_k(similarity, image_to_text, k) for k in _KS
+    }
+    metrics.update(
+        {
+            f"t2i_R@{k}": _recall_at_k(similarity.T, text_to_image_groups, k)
+            for k in _KS
+        }
+    )
+    return metrics
+
+===== flickr30k_dataset.py =====
+"""Flickr30K Karpathy-split loading and retrieval mapping helpers."""
+
+from collections.abc import Iterable, Mapping
+from itertools import islice
+from pathlib import Path
+from typing import Any
+
+from datasets import load_dataset
+
+
+DATASET_NAME = "noonamkha/flickr30k-karpathy"
+SPLITS = frozenset({"train", "validation", "test"})
+REQUIRED_FIELDS = frozenset({"image_id", "image", "captions"})
+CAPTIONS_PER_IMAGE = 5
+
+
+def _validate_schema(dataset: Any) -> None:
+    """Fail early when a data source does not expose the expected fields."""
+    columns = getattr(dataset, "column_names", None)
+    if columns is None:
+        features = getattr(dataset, "features", None)
+        columns = list(features) if features is not None else []
+    missing = REQUIRED_FIELDS.difference(columns)
+    if missing:
+        raise ValueError(
+            f"Dataset schema is missing required fields: {sorted(missing)}. "
+            f"Available fields: {list(columns)}"
+        )
+
+
+def load_flickr30k_split(
+    split: str = "test",
+    dataset_id: str = DATASET_NAME,
+    local_parquet: str | Path | None = None,
+    cache_dir: str | Path | None = None,
+    streaming: bool = False,
+):
+    """Load exactly one Flickr30K Karpathy split while retaining all fields.
+
+    ``local_parquet`` takes priority and restricts loading to that one Parquet
+    file. Otherwise, ``split`` is passed directly to the Hugging Face loader,
+    so requesting ``test`` does not prepare train or validation splits.
+    """
+    if split not in SPLITS:
+        raise ValueError(f"split must be one of {sorted(SPLITS)}, got {split!r}.")
+
+    if local_parquet is not None:
+        parquet_path = Path(local_parquet)
+        if not parquet_path.is_file():
+            raise FileNotFoundError(f"Local Parquet file not found: {parquet_path}")
+        dataset = load_dataset(
+            "parquet",
+            data_files={split: str(parquet_path)},
+            split=split,
+            cache_dir=cache_dir,
+            streaming=streaming,
+        )
+    else:
+        dataset = load_dataset(
+            dataset_id,
+            split=split,
+            cache_dir=cache_dir,
+            streaming=streaming,
+        )
+    _validate_schema(dataset)
+    return dataset
+
+
+def _validate_sample(sample: Mapping[str, Any], sample_index: int) -> list[str]:
+    missing = REQUIRED_FIELDS.difference(sample)
+    if missing:
+        raise ValueError(
+            f"Sample {sample_index} is missing required fields: {sorted(missing)}."
+        )
+    if sample["image_id"] is None or sample["image"] is None:
+        raise ValueError(f"Sample {sample_index} has an empty image_id or image.")
+
+    captions = sample["captions"]
+    if not isinstance(captions, (list, tuple)):
+        raise ValueError(f"Sample {sample_index} captions must be a list or tuple.")
+    if len(captions) != CAPTIONS_PER_IMAGE:
+        raise ValueError(
+            f"Sample {sample_index} must have exactly {CAPTIONS_PER_IMAGE} captions; "
+            f"got {len(captions)}."
+        )
+    if not all(isinstance(caption, str) and caption for caption in captions):
+        raise ValueError(f"Sample {sample_index} contains an invalid caption.")
+    return list(captions)
+
+
+def prepare_retrieval_samples(
+    dataset: Iterable[Mapping[str, Any]], num_samples: int
+) -> tuple[list[Any], list[str], list[list[int]], list[int]]:
+    """Flatten the first ``num_samples`` images and all captions for retrieval.
+
+    The returned ``image_to_text`` and ``text_to_image`` mappings are directly
+    compatible with ``compute_retrieval_metrics`` in ``retrieval_metrics.py``.
+    """
+    if num_samples <= 0:
+        raise ValueError("num_samples must be positive.")
+
+    images: list[Any] = []
+    captions_flat: list[str] = []
+    image_to_text: list[list[int]] = []
+    text_to_image: list[int] = []
+
+    # islice limits streaming datasets to the requested small inspection subset.
+    for image_index, sample in enumerate(islice(dataset, num_samples)):
+        captions = _validate_sample(sample, image_index)
+        text_indices = list(range(len(captions_flat), len(captions_flat) + len(captions)))
+
+        images.append(sample["image"])
+        captions_flat.extend(captions)  # Keep every one of the five captions.
+        image_to_text.append(text_indices)
+        text_to_image.extend([image_index] * len(captions))
+
+    if len(images) != num_samples:
+        raise ValueError(
+            f"Requested {num_samples} samples, but the dataset yielded only {len(images)}."
+        )
+    return images, captions_flat, image_to_text, text_to_image
+
+===== eval_dcec_validation.py =====
+"""Validation-only evaluation for a trained DCEC checkpoint."""
+
+import argparse
+import json
+from pathlib import Path
+from typing import Any
+
+import torch
+import torch.nn.functional as functional
+from torch.utils.data import DataLoader
+from transformers import CLIPModel, CLIPProcessor
+
+from dcec_dataset import DCECDataset, dcec_collate
+from dcec_model import DCEC
+from dcec_quality import extract_quality_descriptor
+from flickr30k_dataset import DATASET_NAME
+from image_degradations import get_degradation_metadata
+from retrieval_metrics import compute_retrieval_metrics
+
+
+MODEL_NAME = "openai/clip-vit-base-patch32"
+DEGRADATIONS = ("clean", "jpeg", "gaussian_blur", "gaussian_noise", "low_light")
+
+
+def _positive_int(value: str) -> int:
+    parsed = int(value)
+    if parsed <= 0:
+        raise argparse.ArgumentTypeError("must be a positive integer")
+    return parsed
+
+
+def freeze_clip(model: CLIPModel) -> None:
+    """Freeze every CLIP parameter for DCEC-only optimization/evaluation."""
+    for parameter in model.parameters():
+        parameter.requires_grad_(False)
+    model.eval()
+
+
+def _frozen_image_embeddings(
+    model: CLIPModel, processor: CLIPProcessor, images: list[Any], device: torch.device
+) -> torch.Tensor:
+    with torch.no_grad():
+        inputs = processor(images=images, return_tensors="pt").to(device)
+        vision_outputs = model.vision_model(pixel_values=inputs["pixel_values"])
+        pooled = vision_outputs.pooler_output
+        if not isinstance(pooled, torch.Tensor) or pooled.ndim != 2:
+            raise ValueError("vision_model.pooler_output must be a 2D Tensor.")
+        if pooled.shape[-1] != model.config.vision_config.hidden_size:
+            raise ValueError("Unexpected frozen CLIP vision hidden size.")
+        features = model.visual_projection(pooled)
+        if not isinstance(features, torch.Tensor) or features.ndim != 2:
+            raise ValueError("visual_projection must return a 2D Tensor.")
+        if features.shape[-1] != model.config.projection_dim:
+            raise ValueError("Unexpected frozen CLIP image projection size.")
+        return functional.normalize(features, p=2, dim=1)
+
+
+def _frozen_text_embeddings(
+    model: CLIPModel, processor: CLIPProcessor, captions: list[str], device: torch.device
+) -> torch.Tensor:
+    with torch.no_grad():
+        inputs = processor(
+            text=captions, padding=True, truncation=True, return_tensors="pt"
+        ).to(device)
+        text_outputs = model.text_model(
+            input_ids=inputs["input_ids"], attention_mask=inputs["attention_mask"]
+        )
+        pooled = text_outputs.pooler_output
+        if not isinstance(pooled, torch.Tensor) or pooled.ndim != 2:
+            raise ValueError("text_model.pooler_output must be a 2D Tensor.")
+        if pooled.shape[-1] != model.config.text_config.hidden_size:
+            raise ValueError("Unexpected frozen CLIP text hidden size.")
+        features = model.text_projection(pooled)
+        if not isinstance(features, torch.Tensor) or features.ndim != 2:
+            raise ValueError("text_projection must return a 2D Tensor.")
+        if features.shape[-1] != model.config.projection_dim:
+            raise ValueError("Unexpected frozen CLIP text projection size.")
+        return functional.normalize(features, p=2, dim=1)
+
+
+def evaluate_validation_condition(
+    dcec: DCEC,
+    clip_model: CLIPModel,
+    processor: CLIPProcessor,
+    val_file: str | Path,
+    degradation: str,
+    severity: int,
+    seed: int,
+    batch_size: int,
+    cache_dir: str | Path | None = None,
+    limit: int | None = None,
+    device: torch.device | None = None,
+) -> dict[str, Any]:
+    """Evaluate one fixed condition on validation only and return Recall@K metrics."""
+    metadata = get_degradation_metadata(degradation, severity)
+    if device is None:
+        device = next(dcec.parameters()).device
+
+    validation_dataset = DCECDataset(
+        split="validation",
+        path=val_file,
+        seed=seed,
+        cache_dir=cache_dir,
+        degradation=degradation,
+        severity=severity,
+        limit=limit,
+    )
+    loader = DataLoader(
+        validation_dataset,
+        batch_size=batch_size,
+        shuffle=False,
+        num_workers=0,
+        collate_fn=dcec_collate,
+    )
+    dcec.eval()
+    corrected_embeddings: list[torch.Tensor] = []
+    text_embeddings: list[torch.Tensor] = []
+    image_to_text: list[list[int]] = []
+    text_to_image: list[int] = []
+    image_offset = 0
+    text_offset = 0
+
+    with torch.no_grad():
+        for batch in loader:
+            captions_by_image = batch["captions"]
+            if any(len(captions) != 5 for captions in captions_by_image):
+                raise ValueError("Validation requires exactly five captions per image.")
+            captions = [caption for group in captions_by_image for caption in group]
+            z_degraded = _frozen_image_embeddings(
+                clip_model, processor, batch["degraded_image"], device
+            )
+            text_features = _frozen_text_embeddings(clip_model, processor, captions, device)
+            quality = torch.stack(
+                [extract_quality_descriptor(image) for image in batch["degraded_image"]]
+            ).to(device)
+            outputs = dcec(z_degraded, quality)
+            corrected_embeddings.append(outputs["z_corrected"].cpu())
+            text_embeddings.append(text_features.cpu())
+
+            for local_index in range(len(batch["degraded_image"])):
+                indices = list(range(text_offset, text_offset + 5))
+                image_to_text.append(indices)
+                text_to_image.extend([image_offset + local_index] * 5)
+                text_offset += 5
+            image_offset += len(batch["degraded_image"])
+
+    image_features = torch.cat(corrected_embeddings, dim=0)
+    text_features = torch.cat(text_embeddings, dim=0)
+    metrics = compute_retrieval_metrics(
+        image_features, text_features, image_to_text, text_to_image
+    )
+    return {
+        "dataset": DATASET_NAME,
+        "dataset_split": "validation",
+        "number_of_images": image_features.shape[0],
+        "number_of_captions": text_features.shape[0],
+        "degradation": metadata["degradation"],
+        "severity": metadata["severity"],
+        "seed": seed,
+        "device": str(device),
+        **metrics,
+    }
+
+
+def parse_args() -> argparse.Namespace:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--checkpoint", type=Path, required=True)
+    parser.add_argument("--val-file", type=Path, required=True)
+    parser.add_argument("--cache-dir", type=Path, default=None)
+    parser.add_argument("--degradation", choices=DEGRADATIONS, required=True)
+    parser.add_argument("--severity", type=int, choices=(0, 1, 2, 3), required=True)
+    parser.add_argument("--seed", type=int, default=2026)
+    parser.add_argument("--batch-size", type=_positive_int, default=64)
+    parser.add_argument("--limit", type=_positive_int, default=None)
+    parser.add_argument("--output", type=Path, default=None)
+    return parser.parse_args()
+
+
+def main() -> None:
+    args = parse_args()
+    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    checkpoint = torch.load(args.checkpoint, map_location=device, weights_only=False)
+    if "dcec_state_dict" not in checkpoint:
+        raise ValueError("Checkpoint does not contain dcec_state_dict.")
+
+    dcec = DCEC().to(device)
+    dcec.load_state_dict(checkpoint["dcec_state_dict"])
+    clip_model = CLIPModel.from_pretrained(
+        MODEL_NAME, cache_dir=args.cache_dir, use_safetensors=True
+    ).to(device)
+    freeze_clip(clip_model)
+    processor = CLIPProcessor.from_pretrained(MODEL_NAME, cache_dir=args.cache_dir)
+
+    result = evaluate_validation_condition(
+        dcec=dcec,
+        clip_model=clip_model,
+        processor=processor,
+        val_file=args.val_file,
+        degradation=args.degradation,
+        severity=args.severity,
+        seed=args.seed,
+        batch_size=args.batch_size,
+        cache_dir=args.cache_dir,
+        limit=args.limit,
+        device=device,
+    )
+    result["checkpoint"] = str(args.checkpoint)
+    print(json.dumps(result, ensure_ascii=False, indent=2))
+    if args.output is not None:
+        args.output.parent.mkdir(parents=True, exist_ok=True)
+        args.output.write_text(json.dumps(result, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+
+
+if __name__ == "__main__":
+    main()

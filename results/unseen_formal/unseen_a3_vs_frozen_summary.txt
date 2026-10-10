@@ -1,0 +1,15 @@
+UNSEEN DEGRADATION GENERALIZATION
+Frozen CLIP vs A3 no_sem | Flickr30K Validation
+
+motion_blur S1         Frozen=68.9546 A3=69.5365 Delta=+0.5819
+motion_blur S2         Frozen=67.4063 A3=68.0473 Delta=+0.6410
+motion_blur S3         Frozen=57.8205 A3=58.4517 Delta=+0.6312
+contrast S1            Frozen=69.3984 A3=70.3846 Delta=+0.9862
+contrast S2            Frozen=68.9546 A3=70.7298 Delta=+1.7751
+contrast S3            Frozen=67.4458 A3=69.6351 Delta=+2.1893
+pixelate S1            Frozen=69.9803 A3=70.8284 Delta=+0.8481
+pixelate S2            Frozen=60.9763 A3=62.1302 Delta=+1.1538
+pixelate S3            Frozen=29.2702 A3=32.8501 Delta=+3.5799
+
+9-condition mean: Frozen=62.2452 A3=63.6215 Delta=+1.3763
+wins=9, ties=0, losses=0

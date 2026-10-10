@@ -1,0 +1,83 @@
+{
+  "seed": 2026,
+  "conditions": [
+    {
+      "degradation": "clean",
+      "severity": 0,
+      "parameter_name": "none",
+      "parameter_value": null
+    },
+    {
+      "degradation": "jpeg",
+      "severity": 1,
+      "parameter_name": "quality",
+      "parameter_value": 75
+    },
+    {
+      "degradation": "jpeg",
+      "severity": 2,
+      "parameter_name": "quality",
+      "parameter_value": 50
+    },
+    {
+      "degradation": "jpeg",
+      "severity": 3,
+      "parameter_name": "quality",
+      "parameter_value": 25
+    },
+    {
+      "degradation": "gaussian_blur",
+      "severity": 1,
+      "parameter_name": "radius",
+      "parameter_value": 1.0
+    },
+    {
+      "degradation": "gaussian_blur",
+      "severity": 2,
+      "parameter_name": "radius",
+      "parameter_value": 2.0
+    },
+    {
+      "degradation": "gaussian_blur",
+      "severity": 3,
+      "parameter_name": "radius",
+      "parameter_value": 4.0
+    },
+    {
+      "degradation": "gaussian_noise",
+      "severity": 1,
+      "parameter_name": "sigma",
+      "parameter_value": 0.02
+    },
+    {
+      "degradation": "gaussian_noise",
+      "severity": 2,
+      "parameter_name": "sigma",
+      "parameter_value": 0.05
+    },
+    {
+      "degradation": "gaussian_noise",
+      "severity": 3,
+      "parameter_name": "sigma",
+      "parameter_value": 0.1
+    },
+    {
+      "degradation": "low_light",
+      "severity": 1,
+      "parameter_name": "brightness_factor",
+      "parameter_value": 0.75
+    },
+    {
+      "degradation": "low_light",
+      "severity": 2,
+      "parameter_name": "brightness_factor",
+      "parameter_value": 0.5
+    },
+    {
+      "degradation": "low_light",
+      "severity": 3,
+      "parameter_name": "brightness_factor",
+      "parameter_value": 0.25
+    }
+  ]
+}

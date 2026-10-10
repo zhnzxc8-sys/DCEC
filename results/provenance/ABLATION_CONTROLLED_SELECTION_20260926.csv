@@ -1,0 +1,5 @@
+label,variant,params,best_epoch,seed,val_primary_score,delta_vs_best_controlled,checkpoint
+A1,residual_only,262912,3,2026,69.70019723865877,-0.46745562130178087,/root/autodl-tmp/CVIP2026_DCEC_v11_JOURNAL/results/ablation_formal/residual_only/best_dcec_ablation.pt
+A2,quality_no_gate,281600,3,2026,69.71400394477318,-0.4536489151873724,/root/autodl-tmp/CVIP2026_DCEC_v11_JOURNAL/results/ablation_formal/quality_no_gate/best_dcec_ablation.pt
+A3,no_sem,283713,3,2026,70.16765285996055,0.0,/root/autodl-tmp/CVIP2026_DCEC_v11_JOURNAL/results/ablation_formal/no_sem/best_dcec_ablation.pt
+A4,no_rank,283713,1,2026,69.46351084812623,-0.7041420118343211,/root/autodl-tmp/CVIP2026_DCEC_v11_JOURNAL/results/ablation_formal/no_rank/best_dcec_ablation.pt

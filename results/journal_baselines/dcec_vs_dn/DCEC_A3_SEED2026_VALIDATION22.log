@@ -1,0 +1,449 @@
+===== DCEC A3 SEED2026 VALIDATION22 START =====
+Mon Sep 28 13:36:41 CST 2026
+
+===== clean =====
+Loading weights:   0%|          | 0/398 [00:00<?, ?it/s]Loading weights: 100%|██████████| 398/398 [00:00<00:00, 4021.22it/s]
+{
+  "variant": "no_sem",
+  "dataset_split": "validation",
+  "number_of_images": 1014,
+  "number_of_captions": 5070,
+  "degradation": "clean",
+  "severity": 0,
+  "seed": 2026,
+  "device": "cuda",
+  "i2t_R@1": 78.69822485207101,
+  "i2t_R@5": 95.75936883629191,
+  "i2t_R@10": 97.83037475345168,
+  "t2i_R@1": 61.59763313609467,
+  "t2i_R@5": 86.09467455621302,
+  "t2i_R@10": 91.57790927021696,
+  "checkpoint": "results/ablation_formal/no_sem/best_dcec_ablation.pt"
+}
+[DONE] clean
+
+===== jpeg_s1 =====
+Loading weights:   0%|          | 0/398 [00:00<?, ?it/s]Loading weights:  92%|█████████▏| 365/398 [00:00<00:00, 3646.16it/s]Loading weights: 100%|██████████| 398/398 [00:00<00:00, 3489.88it/s]
+{
+  "variant": "no_sem",
+  "dataset_split": "validation",
+  "number_of_images": 1014,
+  "number_of_captions": 5070,
+  "degradation": "jpeg",
+  "severity": 1,
+  "seed": 2026,
+  "device": "cuda",
+  "i2t_R@1": 79.98027613412229,
+  "i2t_R@5": 95.85798816568047,
+  "i2t_R@10": 97.73175542406311,
+  "t2i_R@1": 61.972386587771204,
+  "t2i_R@5": 85.81854043392505,
+  "t2i_R@10": 91.28205128205128,
+  "checkpoint": "results/ablation_formal/no_sem/best_dcec_ablation.pt"
+}
+[DONE] jpeg_s1
+
+===== jpeg_s2 =====
+Loading weights:   0%|          | 0/398 [00:00<?, ?it/s]Loading weights:  51%|█████     | 203/398 [00:00<00:00, 2027.75it/s]Loading weights: 100%|██████████| 398/398 [00:00<00:00, 1990.91it/s]
+{
+  "variant": "no_sem",
+  "dataset_split": "validation",
+  "number_of_images": 1014,
+  "number_of_captions": 5070,
+  "degradation": "jpeg",
+  "severity": 2,
+  "seed": 2026,
+  "device": "cuda",
+  "i2t_R@1": 79.78303747534517,
+  "i2t_R@5": 95.06903353057199,
+  "i2t_R@10": 98.0276134122288,
+  "t2i_R@1": 62.998027613412226,
+  "t2i_R@5": 85.97633136094674,
+  "t2i_R@10": 91.51873767258382,
+  "checkpoint": "results/ablation_formal/no_sem/best_dcec_ablation.pt"
+}
+[DONE] jpeg_s2
+
+===== jpeg_s3 =====
+Loading weights:   0%|          | 0/398 [00:00<?, ?it/s]Loading weights:  76%|███████▌  | 302/398 [00:00<00:00, 3018.31it/s]Loading weights: 100%|██████████| 398/398 [00:00<00:00, 2862.54it/s]
+{
+  "variant": "no_sem",
+  "dataset_split": "validation",
+  "number_of_images": 1014,
+  "number_of_captions": 5070,
+  "degradation": "jpeg",
+  "severity": 3,
+  "seed": 2026,
+  "device": "cuda",
+  "i2t_R@1": 80.4733727810651,
+  "i2t_R@5": 94.37869822485207,
+  "i2t_R@10": 97.33727810650888,
+  "t2i_R@1": 62.366863905325445,
+  "t2i_R@5": 85.56213017751479,
+  "t2i_R@10": 91.1439842209073,
+  "checkpoint": "results/ablation_formal/no_sem/best_dcec_ablation.pt"
+}
+[DONE] jpeg_s3
+
+===== gaussian_blur_s1 =====
+[SKIP EXISTING] results/journal_baselines/dcec_vs_dn/a3_seed2026_gaussian_blur_s1.json
+
+===== gaussian_blur_s2 =====
+Loading weights:   0%|          | 0/398 [00:00<?, ?it/s]Loading weights:  76%|███████▌  | 301/398 [00:00<00:00, 2999.93it/s]Loading weights: 100%|██████████| 398/398 [00:00<00:00, 2936.21it/s]
+{
+  "variant": "no_sem",
+  "dataset_split": "validation",
+  "number_of_images": 1014,
+  "number_of_captions": 5070,
+  "degradation": "gaussian_blur",
+  "severity": 2,
+  "seed": 2026,
+  "device": "cuda",
+  "i2t_R@1": 76.03550295857988,
+  "i2t_R@5": 93.98422090729782,
+  "i2t_R@10": 96.5483234714004,
+  "t2i_R@1": 60.27613412228797,
+  "t2i_R@5": 83.58974358974359,
+  "t2i_R@10": 90.29585798816568,
+  "checkpoint": "results/ablation_formal/no_sem/best_dcec_ablation.pt"
+}
+[DONE] gaussian_blur_s2
+
+===== gaussian_blur_s3 =====
+Loading weights:   0%|          | 0/398 [00:00<?, ?it/s]Loading weights:  85%|████████▌ | 339/398 [00:00<00:00, 3382.96it/s]Loading weights: 100%|██████████| 398/398 [00:00<00:00, 3260.48it/s]
+{
+  "variant": "no_sem",
+  "dataset_split": "validation",
+  "number_of_images": 1014,
+  "number_of_captions": 5070,
+  "degradation": "gaussian_blur",
+  "severity": 3,
+  "seed": 2026,
+  "device": "cuda",
+  "i2t_R@1": 62.52465483234714,
+  "i2t_R@5": 85.8974358974359,
+  "i2t_R@10": 91.8145956607495,
+  "t2i_R@1": 49.21104536489152,
+  "t2i_R@5": 74.89151873767258,
+  "t2i_R@10": 82.99802761341223,
+  "checkpoint": "results/ablation_formal/no_sem/best_dcec_ablation.pt"
+}
+[DONE] gaussian_blur_s3
+
+===== gaussian_noise_s1 =====
+Loading weights:   0%|          | 0/398 [00:00<?, ?it/s]Loading weights:  74%|███████▍  | 296/398 [00:00<00:00, 2951.29it/s]Loading weights: 100%|██████████| 398/398 [00:00<00:00, 2816.92it/s]
+{
+  "variant": "no_sem",
+  "dataset_split": "validation",
+  "number_of_images": 1014,
+  "number_of_captions": 5070,
+  "degradation": "gaussian_noise",
+  "severity": 1,
+  "seed": 2026,
+  "device": "cuda",
+  "i2t_R@1": 79.38856015779093,
+  "i2t_R@5": 95.46351084812623,
+  "i2t_R@10": 97.43589743589743,
+  "t2i_R@1": 62.91913214990138,
+  "t2i_R@5": 86.27218934911242,
+  "t2i_R@10": 91.55818540433926,
+  "checkpoint": "results/ablation_formal/no_sem/best_dcec_ablation.pt"
+}
+[DONE] gaussian_noise_s1
+
+===== gaussian_noise_s2 =====
+Loading weights:   0%|          | 0/398 [00:00<?, ?it/s]Loading weights: 100%|██████████| 398/398 [00:00<00:00, 4901.51it/s]
+{
+  "variant": "no_sem",
+  "dataset_split": "validation",
+  "number_of_images": 1014,
+  "number_of_captions": 5070,
+  "degradation": "gaussian_noise",
+  "severity": 2,
+  "seed": 2026,
+  "device": "cuda",
+  "i2t_R@1": 79.19132149901381,
+  "i2t_R@5": 95.16765285996055,
+  "i2t_R@10": 97.23865877712032,
+  "t2i_R@1": 62.6232741617357,
+  "t2i_R@5": 85.66074950690336,
+  "t2i_R@10": 90.90729783037476,
+  "checkpoint": "results/ablation_formal/no_sem/best_dcec_ablation.pt"
+}
+[DONE] gaussian_noise_s2
+
+===== gaussian_noise_s3 =====
+Loading weights:   0%|          | 0/398 [00:00<?, ?it/s]Loading weights:  93%|█████████▎| 371/398 [00:00<00:00, 3662.04it/s]Loading weights: 100%|██████████| 398/398 [00:00<00:00, 3591.48it/s]
+{
+  "variant": "no_sem",
+  "dataset_split": "validation",
+  "number_of_images": 1014,
+  "number_of_captions": 5070,
+  "degradation": "gaussian_noise",
+  "severity": 3,
+  "seed": 2026,
+  "device": "cuda",
+  "i2t_R@1": 77.81065088757397,
+  "i2t_R@5": 94.7731755424063,
+  "i2t_R@10": 97.33727810650888,
+  "t2i_R@1": 60.828402366863905,
+  "t2i_R@5": 84.02366863905326,
+  "t2i_R@10": 90.41420118343196,
+  "checkpoint": "results/ablation_formal/no_sem/best_dcec_ablation.pt"
+}
+[DONE] gaussian_noise_s3
+
+===== low_light_s1 =====
+Loading weights:   0%|          | 0/398 [00:00<?, ?it/s]Loading weights:  73%|███████▎  | 289/398 [00:00<00:00, 2878.33it/s]Loading weights: 100%|██████████| 398/398 [00:00<00:00, 2923.26it/s]
+{
+  "variant": "no_sem",
+  "dataset_split": "validation",
+  "number_of_images": 1014,
+  "number_of_captions": 5070,
+  "degradation": "low_light",
+  "severity": 1,
+  "seed": 2026,
+  "device": "cuda",
+  "i2t_R@1": 79.09270216962524,
+  "i2t_R@5": 95.46351084812623,
+  "i2t_R@10": 97.63313609467455,
+  "t2i_R@1": 61.676528599605525,
+  "t2i_R@5": 85.70019723865877,
+  "t2i_R@10": 91.24260355029585,
+  "checkpoint": "results/ablation_formal/no_sem/best_dcec_ablation.pt"
+}
+[DONE] low_light_s1
+
+===== low_light_s2 =====
+Loading weights:   0%|          | 0/398 [00:00<?, ?it/s]Loading weights:  76%|███████▌  | 302/398 [00:00<00:00, 3009.07it/s]Loading weights: 100%|██████████| 398/398 [00:00<00:00, 2795.02it/s]
+{
+  "variant": "no_sem",
+  "dataset_split": "validation",
+  "number_of_images": 1014,
+  "number_of_captions": 5070,
+  "degradation": "low_light",
+  "severity": 2,
+  "seed": 2026,
+  "device": "cuda",
+  "i2t_R@1": 78.79684418145956,
+  "i2t_R@5": 94.97041420118343,
+  "i2t_R@10": 97.83037475345168,
+  "t2i_R@1": 61.676528599605525,
+  "t2i_R@5": 86.09467455621302,
+  "t2i_R@10": 91.38067061143984,
+  "checkpoint": "results/ablation_formal/no_sem/best_dcec_ablation.pt"
+}
+[DONE] low_light_s2
+
+===== low_light_s3 =====
+Loading weights:   0%|          | 0/398 [00:00<?, ?it/s]Loading weights:  70%|██████▉   | 278/398 [00:00<00:00, 2766.32it/s]Loading weights: 100%|██████████| 398/398 [00:00<00:00, 2647.40it/s]
+{
+  "variant": "no_sem",
+  "dataset_split": "validation",
+  "number_of_images": 1014,
+  "number_of_captions": 5070,
+  "degradation": "low_light",
+  "severity": 3,
+  "seed": 2026,
+  "device": "cuda",
+  "i2t_R@1": 77.02169625246549,
+  "i2t_R@5": 94.2800788954635,
+  "i2t_R@10": 97.23865877712032,
+  "t2i_R@1": 61.20315581854043,
+  "t2i_R@5": 84.97041420118343,
+  "t2i_R@10": 91.00591715976331,
+  "checkpoint": "results/ablation_formal/no_sem/best_dcec_ablation.pt"
+}
+[DONE] low_light_s3
+
+===== motion_blur_s1 =====
+Loading weights:   0%|          | 0/398 [00:00<?, ?it/s]Loading weights:  77%|███████▋  | 306/398 [00:00<00:00, 3042.07it/s]Loading weights: 100%|██████████| 398/398 [00:00<00:00, 3131.23it/s]
+{
+  "variant": "no_sem",
+  "dataset_split": "validation",
+  "number_of_images": 1014,
+  "number_of_captions": 5070,
+  "degradation": "motion_blur",
+  "severity": 1,
+  "seed": 2026,
+  "device": "cuda",
+  "i2t_R@1": 77.90927021696253,
+  "i2t_R@5": 95.56213017751479,
+  "i2t_R@10": 97.33727810650888,
+  "t2i_R@1": 61.16370808678501,
+  "t2i_R@5": 85.06903353057199,
+  "t2i_R@10": 90.90729783037476,
+  "checkpoint": "results/ablation_formal/no_sem/best_dcec_ablation.pt"
+}
+[DONE] motion_blur_s1
+
+===== motion_blur_s2 =====
+Loading weights:   0%|          | 0/398 [00:00<?, ?it/s]Loading weights:  69%|██████▉   | 276/398 [00:00<00:00, 2746.80it/s]Loading weights: 100%|██████████| 398/398 [00:00<00:00, 2583.33it/s]
+{
+  "variant": "no_sem",
+  "dataset_split": "validation",
+  "number_of_images": 1014,
+  "number_of_captions": 5070,
+  "degradation": "motion_blur",
+  "severity": 2,
+  "seed": 2026,
+  "device": "cuda",
+  "i2t_R@1": 76.82445759368836,
+  "i2t_R@5": 93.39250493096647,
+  "i2t_R@10": 96.25246548323472,
+  "t2i_R@1": 59.27021696252466,
+  "t2i_R@5": 83.2741617357002,
+  "t2i_R@10": 89.8224852071006,
+  "checkpoint": "results/ablation_formal/no_sem/best_dcec_ablation.pt"
+}
+[DONE] motion_blur_s2
+
+===== motion_blur_s3 =====
+Loading weights:   0%|          | 0/398 [00:00<?, ?it/s]Loading weights:  85%|████████▍ | 338/398 [00:00<00:00, 3353.99it/s]Loading weights: 100%|██████████| 398/398 [00:00<00:00, 3207.07it/s]
+{
+  "variant": "no_sem",
+  "dataset_split": "validation",
+  "number_of_images": 1014,
+  "number_of_captions": 5070,
+  "degradation": "motion_blur",
+  "severity": 3,
+  "seed": 2026,
+  "device": "cuda",
+  "i2t_R@1": 65.28599605522682,
+  "i2t_R@5": 86.58777120315582,
+  "i2t_R@10": 91.91321499013807,
+  "t2i_R@1": 51.61735700197239,
+  "t2i_R@5": 76.60749506903353,
+  "t2i_R@10": 85.12820512820512,
+  "checkpoint": "results/ablation_formal/no_sem/best_dcec_ablation.pt"
+}
+[DONE] motion_blur_s3
+
+===== contrast_s1 =====
+Loading weights:   0%|          | 0/398 [00:00<?, ?it/s]Loading weights:  77%|███████▋  | 306/398 [00:00<00:00, 3034.22it/s]Loading weights: 100%|██████████| 398/398 [00:00<00:00, 3061.45it/s]
+{
+  "variant": "no_sem",
+  "dataset_split": "validation",
+  "number_of_images": 1014,
+  "number_of_captions": 5070,
+  "degradation": "contrast",
+  "severity": 1,
+  "seed": 2026,
+  "device": "cuda",
+  "i2t_R@1": 79.48717948717949,
+  "i2t_R@5": 95.16765285996055,
+  "i2t_R@10": 98.0276134122288,
+  "t2i_R@1": 61.282051282051285,
+  "t2i_R@5": 85.83826429980276,
+  "t2i_R@10": 91.49901380670612,
+  "checkpoint": "results/ablation_formal/no_sem/best_dcec_ablation.pt"
+}
+[DONE] contrast_s1
+
+===== contrast_s2 =====
+Loading weights:   0%|          | 0/398 [00:00<?, ?it/s]Loading weights:  87%|████████▋ | 346/398 [00:00<00:00, 3450.26it/s]Loading weights: 100%|██████████| 398/398 [00:00<00:00, 3660.01it/s]
+{
+  "variant": "no_sem",
+  "dataset_split": "validation",
+  "number_of_images": 1014,
+  "number_of_captions": 5070,
+  "degradation": "contrast",
+  "severity": 2,
+  "seed": 2026,
+  "device": "cuda",
+  "i2t_R@1": 79.68441814595661,
+  "i2t_R@5": 94.87179487179488,
+  "i2t_R@10": 98.0276134122288,
+  "t2i_R@1": 61.77514792899408,
+  "t2i_R@5": 85.56213017751479,
+  "t2i_R@10": 91.04536489151874,
+  "checkpoint": "results/ablation_formal/no_sem/best_dcec_ablation.pt"
+}
+[DONE] contrast_s2
+
+===== contrast_s3 =====
+Loading weights:   0%|          | 0/398 [00:00<?, ?it/s]Loading weights: 100%|██████████| 398/398 [00:00<00:00, 4586.97it/s]
+{
+  "variant": "no_sem",
+  "dataset_split": "validation",
+  "number_of_images": 1014,
+  "number_of_captions": 5070,
+  "degradation": "contrast",
+  "severity": 3,
+  "seed": 2026,
+  "device": "cuda",
+  "i2t_R@1": 78.69822485207101,
+  "i2t_R@5": 94.7731755424063,
+  "i2t_R@10": 97.0414201183432,
+  "t2i_R@1": 60.57199211045365,
+  "t2i_R@5": 84.2603550295858,
+  "t2i_R@10": 90.71005917159763,
+  "checkpoint": "results/ablation_formal/no_sem/best_dcec_ablation.pt"
+}
+[DONE] contrast_s3
+
+===== pixelate_s1 =====
+Loading weights:   0%|          | 0/398 [00:00<?, ?it/s]Loading weights:  59%|█████▊    | 233/398 [00:00<00:00, 2325.35it/s]Loading weights: 100%|██████████| 398/398 [00:00<00:00, 2169.55it/s]
+{
+  "variant": "no_sem",
+  "dataset_split": "validation",
+  "number_of_images": 1014,
+  "number_of_captions": 5070,
+  "degradation": "pixelate",
+  "severity": 1,
+  "seed": 2026,
+  "device": "cuda",
+  "i2t_R@1": 79.48717948717949,
+  "i2t_R@5": 95.26627218934911,
+  "i2t_R@10": 97.33727810650888,
+  "t2i_R@1": 62.16962524654832,
+  "t2i_R@5": 85.56213017751479,
+  "t2i_R@10": 91.04536489151874,
+  "checkpoint": "results/ablation_formal/no_sem/best_dcec_ablation.pt"
+}
+[DONE] pixelate_s1
+
+===== pixelate_s2 =====
+Loading weights:   0%|          | 0/398 [00:00<?, ?it/s]Loading weights:  74%|███████▎  | 293/398 [00:00<00:00, 2917.48it/s]Loading weights: 100%|██████████| 398/398 [00:00<00:00, 2702.39it/s]
+{
+  "variant": "no_sem",
+  "dataset_split": "validation",
+  "number_of_images": 1014,
+  "number_of_captions": 5070,
+  "degradation": "pixelate",
+  "severity": 2,
+  "seed": 2026,
+  "device": "cuda",
+  "i2t_R@1": 69.03353057199212,
+  "i2t_R@5": 88.26429980276134,
+  "i2t_R@10": 93.88560157790927,
+  "t2i_R@1": 55.226824457593686,
+  "t2i_R@5": 80.59171597633136,
+  "t2i_R@10": 87.39644970414201,
+  "checkpoint": "results/ablation_formal/no_sem/best_dcec_ablation.pt"
+}
+[DONE] pixelate_s2
+
+===== pixelate_s3 =====
+Loading weights:   0%|          | 0/398 [00:00<?, ?it/s]Loading weights:  80%|███████▉  | 317/398 [00:00<00:00, 3123.31it/s]Loading weights: 100%|██████████| 398/398 [00:00<00:00, 2831.74it/s]
+{
+  "variant": "no_sem",
+  "dataset_split": "validation",
+  "number_of_images": 1014,
+  "number_of_captions": 5070,
+  "degradation": "pixelate",
+  "severity": 3,
+  "seed": 2026,
+  "device": "cuda",
+  "i2t_R@1": 35.700197238658774,
+  "i2t_R@5": 56.31163708086785,
+  "i2t_R@10": 67.94871794871794,
+  "t2i_R@1": 30.0,
+  "t2i_R@5": 53.767258382643,
+  "t2i_R@10": 63.333333333333336,
+  "checkpoint": "results/ablation_formal/no_sem/best_dcec_ablation.pt"
+}
+[DONE] pixelate_s3
+
+===== DCEC A3 SEED2026 VALIDATION22 COMPLETE =====
+Mon Sep 28 13:46:27 CST 2026

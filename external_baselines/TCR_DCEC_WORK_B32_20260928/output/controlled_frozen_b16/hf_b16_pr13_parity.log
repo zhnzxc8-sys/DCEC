@@ -1,0 +1,39 @@
+===== LOAD HF CLIP-B16 =====
+Loading weights:   0%|          | 0/398 [00:00<?, ?it/s]Loading weights:  71%|███████▏  | 284/398 [00:00<00:00, 2836.14it/s]Loading weights: 100%|██████████| 398/398 [00:00<00:00, 2601.98it/s]
+
+===== TEXT FEATURES =====
+text shape = (5070, 512)
+
+===== IMAGE FEATURES =====
+images 64/1014
+images 128/1014
+images 192/1014
+images 256/1014
+images 320/1014
+images 384/1014
+images 448/1014
+images 512/1014
+images 576/1014
+images 640/1014
+images 704/1014
+images 768/1014
+images 832/1014
+images 896/1014
+images 960/1014
+images 1014/1014
+image shape = (1014, 512)
+
+===== HF CLIP-B16 SAME-INPUT RESULT =====
+i2t_R@1                        = 82.248521
+t2i_R@1                        = 64.457594
+i2t_R@5                        = 96.646943
+t2i_R@5                        = 86.706114
+i2t_R@10                       = 98.520710
+t2i_R@10                       = 92.426036
+primary                        = 73.353057
+delta_vs_tcr_openai_frozen     = 1.479290
+
+TCR OpenAI Frozen primary    = 71.873767
+HF - OpenAI primary delta   = +1.479290
+
+Saved: /root/autodl-tmp/external_baselines/TCR_DCEC_WORK_20260928/output/controlled_frozen_b16/hf_clip_b16_same_tcr_input_gaussian_blur_s1.json

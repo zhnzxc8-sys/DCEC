@@ -1,0 +1,11 @@
+DCEC MECHANISM CORRELATIONS
+Flickr30K validation; non-clean seen degradations only
+
+Drift vs Retrieval Gain: +0.944500
+Recovery vs Retrieval Gain: +0.947667
+CorrectionNorm vs Retrieval Gain: +0.927396
+Drift vs CorrectionNorm: +0.991414
+Drift vs Recovery: +0.988345
+Gate vs Retrieval Gain: -0.404046
+
+Caution: correlation is descriptive and does not establish causality.

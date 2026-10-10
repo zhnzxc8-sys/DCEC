@@ -1,0 +1,465 @@
+===== MODEL SEED 2028 START =====
+Mon Sep 28 13:59:27 CST 2026
+
+===== 2028 / clean =====
+Loading weights:   0%|          | 0/398 [00:00<?, ?it/s]Loading weights:  69%|██████▊   | 273/398 [00:00<00:00, 2728.19it/s]Loading weights: 100%|██████████| 398/398 [00:00<00:00, 2493.53it/s]
+{
+  "variant": "no_sem",
+  "dataset_split": "validation",
+  "number_of_images": 1014,
+  "number_of_captions": 5070,
+  "degradation": "clean",
+  "severity": 0,
+  "seed": 2026,
+  "device": "cuda",
+  "i2t_R@1": 78.10650887573965,
+  "i2t_R@5": 95.46351084812623,
+  "i2t_R@10": 97.92899408284023,
+  "t2i_R@1": 61.104536489151876,
+  "t2i_R@5": 85.93688362919133,
+  "t2i_R@10": 91.47928994082841,
+  "checkpoint": "results/multiseed/a3_no_sem_seed2028/best_dcec_ablation.pt"
+}
+[DONE] 2028 / clean
+
+===== 2028 / jpeg_s1 =====
+Loading weights:   0%|          | 0/398 [00:00<?, ?it/s]Loading weights:  70%|██████▉   | 278/398 [00:00<00:00, 2771.10it/s]Loading weights: 100%|██████████| 398/398 [00:00<00:00, 2930.04it/s]
+{
+  "variant": "no_sem",
+  "dataset_split": "validation",
+  "number_of_images": 1014,
+  "number_of_captions": 5070,
+  "degradation": "jpeg",
+  "severity": 1,
+  "seed": 2026,
+  "device": "cuda",
+  "i2t_R@1": 79.28994082840237,
+  "i2t_R@5": 95.66074950690336,
+  "i2t_R@10": 97.73175542406311,
+  "t2i_R@1": 61.99211045364891,
+  "t2i_R@5": 85.85798816568047,
+  "t2i_R@10": 91.42011834319527,
+  "checkpoint": "results/multiseed/a3_no_sem_seed2028/best_dcec_ablation.pt"
+}
+[DONE] 2028 / jpeg_s1
+
+===== 2028 / jpeg_s2 =====
+Loading weights:   0%|          | 0/398 [00:00<?, ?it/s]Loading weights: 100%|██████████| 398/398 [00:00<00:00, 4020.22it/s]
+{
+  "variant": "no_sem",
+  "dataset_split": "validation",
+  "number_of_images": 1014,
+  "number_of_captions": 5070,
+  "degradation": "jpeg",
+  "severity": 2,
+  "seed": 2026,
+  "device": "cuda",
+  "i2t_R@1": 79.88165680473372,
+  "i2t_R@5": 95.06903353057199,
+  "i2t_R@10": 97.83037475345168,
+  "t2i_R@1": 62.80078895463511,
+  "t2i_R@5": 85.93688362919133,
+  "t2i_R@10": 91.42011834319527,
+  "checkpoint": "results/multiseed/a3_no_sem_seed2028/best_dcec_ablation.pt"
+}
+[DONE] 2028 / jpeg_s2
+
+===== 2028 / jpeg_s3 =====
+Loading weights:   0%|          | 0/398 [00:00<?, ?it/s]Loading weights:  96%|█████████▌| 381/398 [00:00<00:00, 3807.96it/s]Loading weights: 100%|██████████| 398/398 [00:00<00:00, 3763.70it/s]
+{
+  "variant": "no_sem",
+  "dataset_split": "validation",
+  "number_of_images": 1014,
+  "number_of_captions": 5070,
+  "degradation": "jpeg",
+  "severity": 3,
+  "seed": 2026,
+  "device": "cuda",
+  "i2t_R@1": 79.58579881656804,
+  "i2t_R@5": 94.5759368836292,
+  "i2t_R@10": 97.33727810650888,
+  "t2i_R@1": 62.031558185404336,
+  "t2i_R@5": 85.99605522682445,
+  "t2i_R@10": 91.18343195266272,
+  "checkpoint": "results/multiseed/a3_no_sem_seed2028/best_dcec_ablation.pt"
+}
+[DONE] 2028 / jpeg_s3
+
+===== 2028 / gaussian_blur_s1 =====
+Loading weights:   0%|          | 0/398 [00:00<?, ?it/s]Loading weights: 100%|██████████| 398/398 [00:00<00:00, 4135.67it/s]
+{
+  "variant": "no_sem",
+  "dataset_split": "validation",
+  "number_of_images": 1014,
+  "number_of_captions": 5070,
+  "degradation": "gaussian_blur",
+  "severity": 1,
+  "seed": 2026,
+  "device": "cuda",
+  "i2t_R@1": 77.81065088757397,
+  "i2t_R@5": 95.06903353057199,
+  "i2t_R@10": 97.14003944773175,
+  "t2i_R@1": 61.854043392504934,
+  "t2i_R@5": 85.32544378698225,
+  "t2i_R@10": 91.22287968441815,
+  "checkpoint": "results/multiseed/a3_no_sem_seed2028/best_dcec_ablation.pt"
+}
+[DONE] 2028 / gaussian_blur_s1
+
+===== 2028 / gaussian_blur_s2 =====
+Loading weights:   0%|          | 0/398 [00:00<?, ?it/s]Loading weights:  57%|█████▋    | 226/398 [00:00<00:00, 2251.04it/s]Loading weights: 100%|██████████| 398/398 [00:00<00:00, 2032.63it/s]
+{
+  "variant": "no_sem",
+  "dataset_split": "validation",
+  "number_of_images": 1014,
+  "number_of_captions": 5070,
+  "degradation": "gaussian_blur",
+  "severity": 2,
+  "seed": 2026,
+  "device": "cuda",
+  "i2t_R@1": 76.03550295857988,
+  "i2t_R@5": 94.0828402366864,
+  "i2t_R@10": 96.5483234714004,
+  "t2i_R@1": 60.374753451676526,
+  "t2i_R@5": 83.70808678500987,
+  "t2i_R@10": 90.43392504930966,
+  "checkpoint": "results/multiseed/a3_no_sem_seed2028/best_dcec_ablation.pt"
+}
+[DONE] 2028 / gaussian_blur_s2
+
+===== 2028 / gaussian_blur_s3 =====
+Loading weights:   0%|          | 0/398 [00:00<?, ?it/s]Loading weights:  80%|████████  | 319/398 [00:00<00:00, 3180.43it/s]Loading weights: 100%|██████████| 398/398 [00:00<00:00, 3141.64it/s]
+{
+  "variant": "no_sem",
+  "dataset_split": "validation",
+  "number_of_images": 1014,
+  "number_of_captions": 5070,
+  "degradation": "gaussian_blur",
+  "severity": 3,
+  "seed": 2026,
+  "device": "cuda",
+  "i2t_R@1": 64.00394477317555,
+  "i2t_R@5": 86.09467455621302,
+  "i2t_R@10": 91.3214990138067,
+  "t2i_R@1": 49.349112426035504,
+  "t2i_R@5": 75.08875739644971,
+  "t2i_R@10": 83.19526627218934,
+  "checkpoint": "results/multiseed/a3_no_sem_seed2028/best_dcec_ablation.pt"
+}
+[DONE] 2028 / gaussian_blur_s3
+
+===== 2028 / gaussian_noise_s1 =====
+Loading weights:   0%|          | 0/398 [00:00<?, ?it/s]Loading weights: 100%|██████████| 398/398 [00:00<00:00, 4536.10it/s]
+{
+  "variant": "no_sem",
+  "dataset_split": "validation",
+  "number_of_images": 1014,
+  "number_of_captions": 5070,
+  "degradation": "gaussian_noise",
+  "severity": 1,
+  "seed": 2026,
+  "device": "cuda",
+  "i2t_R@1": 79.38856015779093,
+  "i2t_R@5": 95.06903353057199,
+  "i2t_R@10": 97.43589743589743,
+  "t2i_R@1": 62.72189349112426,
+  "t2i_R@5": 86.31163708086785,
+  "t2i_R@10": 91.47928994082841,
+  "checkpoint": "results/multiseed/a3_no_sem_seed2028/best_dcec_ablation.pt"
+}
+[DONE] 2028 / gaussian_noise_s1
+
+===== 2028 / gaussian_noise_s2 =====
+Loading weights:   0%|          | 0/398 [00:00<?, ?it/s]Loading weights:  69%|██████▉   | 274/398 [00:00<00:00, 2707.96it/s]Loading weights: 100%|██████████| 398/398 [00:00<00:00, 2947.27it/s]
+{
+  "variant": "no_sem",
+  "dataset_split": "validation",
+  "number_of_images": 1014,
+  "number_of_captions": 5070,
+  "degradation": "gaussian_noise",
+  "severity": 2,
+  "seed": 2026,
+  "device": "cuda",
+  "i2t_R@1": 79.78303747534517,
+  "i2t_R@5": 95.06903353057199,
+  "i2t_R@10": 97.33727810650888,
+  "t2i_R@1": 62.1301775147929,
+  "t2i_R@5": 85.81854043392505,
+  "t2i_R@10": 90.94674556213018,
+  "checkpoint": "results/multiseed/a3_no_sem_seed2028/best_dcec_ablation.pt"
+}
+[DONE] 2028 / gaussian_noise_s2
+
+===== 2028 / gaussian_noise_s3 =====
+Loading weights:   0%|          | 0/398 [00:00<?, ?it/s]Loading weights:  61%|██████    | 242/398 [00:00<00:00, 2408.03it/s]Loading weights: 100%|██████████| 398/398 [00:00<00:00, 2200.20it/s]
+{
+  "variant": "no_sem",
+  "dataset_split": "validation",
+  "number_of_images": 1014,
+  "number_of_captions": 5070,
+  "degradation": "gaussian_noise",
+  "severity": 3,
+  "seed": 2026,
+  "device": "cuda",
+  "i2t_R@1": 78.2051282051282,
+  "i2t_R@5": 94.37869822485207,
+  "i2t_R@10": 96.94280078895464,
+  "t2i_R@1": 60.63116370808679,
+  "t2i_R@5": 84.41814595660749,
+  "t2i_R@10": 90.39447731755423,
+  "checkpoint": "results/multiseed/a3_no_sem_seed2028/best_dcec_ablation.pt"
+}
+[DONE] 2028 / gaussian_noise_s3
+
+===== 2028 / low_light_s1 =====
+Loading weights:   0%|          | 0/398 [00:00<?, ?it/s]Loading weights:  95%|█████████▌| 379/398 [00:00<00:00, 3764.91it/s]Loading weights: 100%|██████████| 398/398 [00:00<00:00, 3760.36it/s]
+{
+  "variant": "no_sem",
+  "dataset_split": "validation",
+  "number_of_images": 1014,
+  "number_of_captions": 5070,
+  "degradation": "low_light",
+  "severity": 1,
+  "seed": 2026,
+  "device": "cuda",
+  "i2t_R@1": 78.79684418145956,
+  "i2t_R@5": 95.06903353057199,
+  "i2t_R@10": 97.534516765286,
+  "t2i_R@1": 61.814595660749504,
+  "t2i_R@5": 85.54240631163708,
+  "t2i_R@10": 91.12426035502959,
+  "checkpoint": "results/multiseed/a3_no_sem_seed2028/best_dcec_ablation.pt"
+}
+[DONE] 2028 / low_light_s1
+
+===== 2028 / low_light_s2 =====
+Loading weights:   0%|          | 0/398 [00:00<?, ?it/s]Loading weights:  66%|██████▌   | 262/398 [00:00<00:00, 2617.76it/s]Loading weights: 100%|██████████| 398/398 [00:00<00:00, 2354.77it/s]
+{
+  "variant": "no_sem",
+  "dataset_split": "validation",
+  "number_of_images": 1014,
+  "number_of_captions": 5070,
+  "degradation": "low_light",
+  "severity": 2,
+  "seed": 2026,
+  "device": "cuda",
+  "i2t_R@1": 78.79684418145956,
+  "i2t_R@5": 95.06903353057199,
+  "i2t_R@10": 98.0276134122288,
+  "t2i_R@1": 61.83431952662722,
+  "t2i_R@5": 85.56213017751479,
+  "t2i_R@10": 91.40039447731755,
+  "checkpoint": "results/multiseed/a3_no_sem_seed2028/best_dcec_ablation.pt"
+}
+[DONE] 2028 / low_light_s2
+
+===== 2028 / low_light_s3 =====
+Loading weights:   0%|          | 0/398 [00:00<?, ?it/s]Loading weights:  65%|██████▌   | 259/398 [00:00<00:00, 2567.17it/s]Loading weights: 100%|██████████| 398/398 [00:00<00:00, 2541.85it/s]
+{
+  "variant": "no_sem",
+  "dataset_split": "validation",
+  "number_of_images": 1014,
+  "number_of_captions": 5070,
+  "degradation": "low_light",
+  "severity": 3,
+  "seed": 2026,
+  "device": "cuda",
+  "i2t_R@1": 77.2189349112426,
+  "i2t_R@5": 94.0828402366864,
+  "i2t_R@10": 97.23865877712032,
+  "t2i_R@1": 61.30177514792899,
+  "t2i_R@5": 84.95069033530572,
+  "t2i_R@10": 91.00591715976331,
+  "checkpoint": "results/multiseed/a3_no_sem_seed2028/best_dcec_ablation.pt"
+}
+[DONE] 2028 / low_light_s3
+
+===== 2028 / motion_blur_s1 =====
+Loading weights:   0%|          | 0/398 [00:00<?, ?it/s]Loading weights:  67%|██████▋   | 268/398 [00:00<00:00, 2679.62it/s]Loading weights: 100%|██████████| 398/398 [00:00<00:00, 2370.51it/s]
+{
+  "variant": "no_sem",
+  "dataset_split": "validation",
+  "number_of_images": 1014,
+  "number_of_captions": 5070,
+  "degradation": "motion_blur",
+  "severity": 1,
+  "seed": 2026,
+  "device": "cuda",
+  "i2t_R@1": 77.7120315581854,
+  "i2t_R@5": 95.26627218934911,
+  "i2t_R@10": 97.23865877712032,
+  "t2i_R@1": 61.282051282051285,
+  "t2i_R@5": 85.14792899408285,
+  "t2i_R@10": 91.04536489151874,
+  "checkpoint": "results/multiseed/a3_no_sem_seed2028/best_dcec_ablation.pt"
+}
+[DONE] 2028 / motion_blur_s1
+
+===== 2028 / motion_blur_s2 =====
+Loading weights:   0%|          | 0/398 [00:00<?, ?it/s]Loading weights:  55%|█████▍    | 217/398 [00:00<00:00, 2161.45it/s]Loading weights: 100%|██████████| 398/398 [00:00<00:00, 2218.06it/s]
+{
+  "variant": "no_sem",
+  "dataset_split": "validation",
+  "number_of_images": 1014,
+  "number_of_captions": 5070,
+  "degradation": "motion_blur",
+  "severity": 2,
+  "seed": 2026,
+  "device": "cuda",
+  "i2t_R@1": 76.42998027613412,
+  "i2t_R@5": 93.49112426035504,
+  "i2t_R@10": 96.25246548323472,
+  "t2i_R@1": 59.13214990138067,
+  "t2i_R@5": 83.31360946745562,
+  "t2i_R@10": 89.80276134122288,
+  "checkpoint": "results/multiseed/a3_no_sem_seed2028/best_dcec_ablation.pt"
+}
+[DONE] 2028 / motion_blur_s2
+
+===== 2028 / motion_blur_s3 =====
+Loading weights:   0%|          | 0/398 [00:00<?, ?it/s]Loading weights:  69%|██████▉   | 275/398 [00:00<00:00, 2749.17it/s]Loading weights: 100%|██████████| 398/398 [00:00<00:00, 2703.96it/s]
+{
+  "variant": "no_sem",
+  "dataset_split": "validation",
+  "number_of_images": 1014,
+  "number_of_captions": 5070,
+  "degradation": "motion_blur",
+  "severity": 3,
+  "seed": 2026,
+  "device": "cuda",
+  "i2t_R@1": 65.58185404339251,
+  "i2t_R@5": 86.58777120315582,
+  "i2t_R@10": 91.91321499013807,
+  "t2i_R@1": 50.9861932938856,
+  "t2i_R@5": 76.48915187376726,
+  "t2i_R@10": 84.7731755424063,
+  "checkpoint": "results/multiseed/a3_no_sem_seed2028/best_dcec_ablation.pt"
+}
+[DONE] 2028 / motion_blur_s3
+
+===== 2028 / contrast_s1 =====
+Loading weights:   0%|          | 0/398 [00:00<?, ?it/s]Loading weights: 100%|██████████| 398/398 [00:00<00:00, 4696.58it/s]
+{
+  "variant": "no_sem",
+  "dataset_split": "validation",
+  "number_of_images": 1014,
+  "number_of_captions": 5070,
+  "degradation": "contrast",
+  "severity": 1,
+  "seed": 2026,
+  "device": "cuda",
+  "i2t_R@1": 79.38856015779093,
+  "i2t_R@5": 94.5759368836292,
+  "i2t_R@10": 97.92899408284023,
+  "t2i_R@1": 61.341222879684416,
+  "t2i_R@5": 85.4240631163708,
+  "t2i_R@10": 91.34122287968442,
+  "checkpoint": "results/multiseed/a3_no_sem_seed2028/best_dcec_ablation.pt"
+}
+[DONE] 2028 / contrast_s1
+
+===== 2028 / contrast_s2 =====
+Loading weights:   0%|          | 0/398 [00:00<?, ?it/s]Loading weights: 100%|██████████| 398/398 [00:00<00:00, 4273.59it/s]
+{
+  "variant": "no_sem",
+  "dataset_split": "validation",
+  "number_of_images": 1014,
+  "number_of_captions": 5070,
+  "degradation": "contrast",
+  "severity": 2,
+  "seed": 2026,
+  "device": "cuda",
+  "i2t_R@1": 79.28994082840237,
+  "i2t_R@5": 95.16765285996055,
+  "i2t_R@10": 98.12623274161736,
+  "t2i_R@1": 61.913214990138066,
+  "t2i_R@5": 85.30571992110454,
+  "t2i_R@10": 91.12426035502959,
+  "checkpoint": "results/multiseed/a3_no_sem_seed2028/best_dcec_ablation.pt"
+}
+[DONE] 2028 / contrast_s2
+
+===== 2028 / contrast_s3 =====
+Loading weights:   0%|          | 0/398 [00:00<?, ?it/s]Loading weights:  42%|████▏     | 169/398 [00:00<00:00, 1680.46it/s]Loading weights:  93%|█████████▎| 372/398 [00:00<00:00, 1874.26it/s]Loading weights: 100%|██████████| 398/398 [00:00<00:00, 1888.63it/s]
+{
+  "variant": "no_sem",
+  "dataset_split": "validation",
+  "number_of_images": 1014,
+  "number_of_captions": 5070,
+  "degradation": "contrast",
+  "severity": 3,
+  "seed": 2026,
+  "device": "cuda",
+  "i2t_R@1": 78.99408284023669,
+  "i2t_R@5": 94.37869822485207,
+  "i2t_R@10": 96.94280078895464,
+  "t2i_R@1": 60.61143984220907,
+  "t2i_R@5": 83.98422090729782,
+  "t2i_R@10": 90.39447731755423,
+  "checkpoint": "results/multiseed/a3_no_sem_seed2028/best_dcec_ablation.pt"
+}
+[DONE] 2028 / contrast_s3
+
+===== 2028 / pixelate_s1 =====
+Loading weights:   0%|          | 0/398 [00:00<?, ?it/s]Loading weights:  90%|█████████ | 360/398 [00:00<00:00, 3595.21it/s]Loading weights: 100%|██████████| 398/398 [00:00<00:00, 3573.11it/s]
+{
+  "variant": "no_sem",
+  "dataset_split": "validation",
+  "number_of_images": 1014,
+  "number_of_captions": 5070,
+  "degradation": "pixelate",
+  "severity": 1,
+  "seed": 2026,
+  "device": "cuda",
+  "i2t_R@1": 78.89546351084813,
+  "i2t_R@5": 94.97041420118343,
+  "i2t_R@10": 97.534516765286,
+  "t2i_R@1": 62.071005917159766,
+  "t2i_R@5": 85.56213017751479,
+  "t2i_R@10": 91.10453648915187,
+  "checkpoint": "results/multiseed/a3_no_sem_seed2028/best_dcec_ablation.pt"
+}
+[DONE] 2028 / pixelate_s1
+
+===== 2028 / pixelate_s2 =====
+Loading weights:   0%|          | 0/398 [00:00<?, ?it/s]Loading weights:  93%|█████████▎| 370/398 [00:00<00:00, 3695.48it/s]Loading weights: 100%|██████████| 398/398 [00:00<00:00, 3697.27it/s]
+{
+  "variant": "no_sem",
+  "dataset_split": "validation",
+  "number_of_images": 1014,
+  "number_of_captions": 5070,
+  "degradation": "pixelate",
+  "severity": 2,
+  "seed": 2026,
+  "device": "cuda",
+  "i2t_R@1": 69.72386587771203,
+  "i2t_R@5": 89.3491124260355,
+  "i2t_R@10": 94.67455621301775,
+  "t2i_R@1": 55.66074950690335,
+  "t2i_R@5": 80.39447731755423,
+  "t2i_R@10": 87.41617357001972,
+  "checkpoint": "results/multiseed/a3_no_sem_seed2028/best_dcec_ablation.pt"
+}
+[DONE] 2028 / pixelate_s2
+
+===== 2028 / pixelate_s3 =====
+Loading weights:   0%|          | 0/398 [00:00<?, ?it/s]Loading weights:  45%|████▌     | 180/398 [00:00<00:00, 1787.63it/s]Loading weights:  91%|█████████ | 361/398 [00:00<00:00, 1799.61it/s]Loading weights: 100%|██████████| 398/398 [00:00<00:00, 1932.94it/s]
+{
+  "variant": "no_sem",
+  "dataset_split": "validation",
+  "number_of_images": 1014,
+  "number_of_captions": 5070,
+  "degradation": "pixelate",
+  "severity": 3,
+  "seed": 2026,
+  "device": "cuda",
+  "i2t_R@1": 36.29191321499014,
+  "i2t_R@5": 59.27021696252466,
+  "i2t_R@10": 68.83629191321499,
+  "t2i_R@1": 29.82248520710059,
+  "t2i_R@5": 53.333333333333336,
+  "t2i_R@10": 63.2741617357002,
+  "checkpoint": "results/multiseed/a3_no_sem_seed2028/best_dcec_ablation.pt"
+}
+[DONE] 2028 / pixelate_s3
+===== MODEL SEED 2028 COMPLETE =====

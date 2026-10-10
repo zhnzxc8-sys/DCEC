@@ -1,0 +1,52 @@
+{
+  "experiment": "final frozen Flickr30K test",
+  "dataset": "Flickr30K Karpathy",
+  "split": "test",
+  "number_of_images": 1000,
+  "number_of_captions": 5000,
+  "degradation": "contrast",
+  "severity": 1,
+  "degradation_parameter_name": "contrast_factor",
+  "degradation_parameter_value": 0.75,
+  "baseline": {
+    "i2t_R@1": 79.1,
+    "i2t_R@5": 95.1,
+    "i2t_R@10": 98.2,
+    "t2i_R@1": 57.96,
+    "t2i_R@5": 82.98,
+    "t2i_R@10": 89.7,
+    "primary_component": 68.53
+  },
+  "a3_seeds": {
+    "2026": {
+      "i2t_R@1": 79.4,
+      "i2t_R@5": 95.1,
+      "i2t_R@10": 98.4,
+      "t2i_R@1": 59.3,
+      "t2i_R@5": 84.5,
+      "t2i_R@10": 90.9,
+      "primary_component": 69.35
+    },
+    "2027": {
+      "i2t_R@1": 78.9,
+      "i2t_R@5": 94.8,
+      "i2t_R@10": 98.4,
+      "t2i_R@1": 59.44,
+      "t2i_R@5": 84.64,
+      "t2i_R@10": 90.76,
+      "primary_component": 69.17
+    },
+    "2028": {
+      "i2t_R@1": 78.4,
+      "i2t_R@5": 94.4,
+      "i2t_R@10": 98.2,
+      "t2i_R@1": 59.56,
+      "t2i_R@5": 84.64,
+      "t2i_R@10": 90.82,
+      "primary_component": 68.98
+    }
+  },
+  "a3_primary_mean": 69.16666666666667,
+  "a3_primary_std": 0.15107025591499154,
+  "delta_primary_mean": 0.6366666666666703
+}

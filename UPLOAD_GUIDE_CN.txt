@@ -1,0 +1,11 @@
+﻿1. 安装 GitHub Desktop：https://desktop.github.com/ ，登录 zhnzxc8-sys。
+2. File > Clone repository > URL，填写 https://github.com/zhnzxc8-sys/DCEC.git。
+3. Local path 填 D:\GitHub\DCEC，点击 Clone。
+4. 解压本包，将 DCEC 文件夹内部的所有文件和文件夹复制到 D:\GitHub\DCEC。不要把外层 DCEC 文件夹再次套进去。
+5. 回到 GitHub Desktop，确认 Changes 中包含 src、results、configs、paper 等文件。
+6. Summary 填 Import DCEC final research backup。点击 Commit to main；如当前分支不是 main，先确认分支状态。
+7. 点击 Push origin（部分版本或空仓库状态可能显示 Publish branch）。上传期间保持程序打开。
+8. 在网页仓库确认文件出现，再把仓库链接发给同学。
+9. 三份原始大型备份后续通过 Releases 附件上传，不能直接拖进普通仓库文件页面。
+
+本包包含最终备份中的代码、结果、日志、配置和38个权重文件，未包含早期和历史备份的全部内容。原备份保留不动。

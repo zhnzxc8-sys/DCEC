@@ -1,0 +1,23 @@
+MASTER B32 21-CONDITION SUMMARY
+Date: 2026-09-28
+
+Primary metric = (I2T R@1 + T2I R@1) / 2
+
+Frozen   mean = 65.286466
+DN       mean = 66.848878
+TCR      mean = 66.552550
+DCEC     mean = 66.721299
+
+DCEC > Frozen = 21/21
+DCEC > DN     = 6/21
+DCEC > TCR    = 16/21
+
+Frozen   condition wins = 0
+DN       condition wins = 12
+TCR      condition wins = 4
+DCEC     condition wins = 5
+
+Mean deltas:
+DCEC - Frozen = +1.434833
+DCEC - DN     = -0.127579
+DCEC - TCR    = +0.168749

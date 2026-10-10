@@ -1,0 +1,77 @@
+{
+  "experiment": "Exact parallel DCEC quality descriptor profiling",
+  "dataset_split": "Flickr30K validation",
+  "final_test_accessed": false,
+  "batch_size": 32,
+  "warmup_repeats": 3,
+  "measurement_repeats": 30,
+  "descriptor_implementation": "original extract_quality_descriptor unchanged",
+  "results": [
+    {
+      "workers": 1,
+      "latency_ms_mean": 227.5795767394205,
+      "latency_ms_std": 62.01306268360048,
+      "latency_ms_min": 185.1846408098936,
+      "latency_ms_max": 357.54077043384314,
+      "speedup_vs_serial": 1.0,
+      "max_abs_error": 0.0,
+      "mean_abs_error": 0.0,
+      "exact_equal": true
+    },
+    {
+      "workers": 2,
+      "latency_ms_mean": 136.18121535206834,
+      "latency_ms_std": 27.685913578123756,
+      "latency_ms_min": 99.29034393280745,
+      "latency_ms_max": 168.8036760315299,
+      "speedup_vs_serial": 1.671152487155153,
+      "max_abs_error": 0.0,
+      "mean_abs_error": 0.0,
+      "exact_equal": true
+    },
+    {
+      "workers": 4,
+      "latency_ms_mean": 82.61814288174112,
+      "latency_ms_std": 3.3841123534991913,
+      "latency_ms_min": 73.44959117472172,
+      "latency_ms_max": 89.61285091936588,
+      "speedup_vs_serial": 2.754595646929221,
+      "max_abs_error": 0.0,
+      "mean_abs_error": 0.0,
+      "exact_equal": true
+    },
+    {
+      "workers": 8,
+      "latency_ms_mean": 233.1140355207026,
+      "latency_ms_std": 20.739974963919405,
+      "latency_ms_min": 176.95038858801126,
+      "latency_ms_max": 267.7562804892659,
+      "speedup_vs_serial": 0.9762585776145144,
+      "max_abs_error": 0.0,
+      "mean_abs_error": 0.0,
+      "exact_equal": true
+    },
+    {
+      "workers": 16,
+      "latency_ms_mean": 253.21830917770663,
+      "latency_ms_std": 4.524994937559722,
+      "latency_ms_min": 243.96186415106058,
+      "latency_ms_max": 264.64492082595825,
+      "speedup_vs_serial": 0.89874850471301,
+      "max_abs_error": 0.0,
+      "mean_abs_error": 0.0,
+      "exact_equal": true
+    }
+  ],
+  "fastest": {
+    "workers": 4,
+    "latency_ms_mean": 82.61814288174112,
+    "latency_ms_std": 3.3841123534991913,
+    "latency_ms_min": 73.44959117472172,
+    "latency_ms_max": 89.61285091936588,
+    "speedup_vs_serial": 2.754595646929221,
+    "max_abs_error": 0.0,
+    "mean_abs_error": 0.0,
+    "exact_equal": true
+  }
+}

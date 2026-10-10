@@ -1,0 +1,17 @@
+{
+  "method": "Frozen OpenAI CLIP ViT-B/32 via official TCR code",
+  "condition": "gaussian_blur_s1",
+  "source_split": "Flickr30K validation",
+  "number_of_images": 1014,
+  "number_of_captions": 5070,
+  "final_test_accessed": false,
+  "metrics": {
+    "i2t_R@1": 78.10650887573965,
+    "t2i_R@1": 58.8560157790927,
+    "i2t_R@5": 93.78698224852072,
+    "t2i_R@5": 83.01775147928994,
+    "i2t_R@10": 96.35108481262327,
+    "t2i_R@10": 89.3491124260355,
+    "primary": 68.48126232741618
+  }
+}

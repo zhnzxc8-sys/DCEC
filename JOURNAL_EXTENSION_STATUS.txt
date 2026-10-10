@@ -1,0 +1,22 @@
+DCEC JOURNAL EXTENSION
+Created: 2026-09-26
+
+Base:
+CVIP2026_DCEC_v10
+
+Frozen evidence:
+- Flickr30K final test has already been opened and completed.
+- A3 architecture is permanently frozen.
+- A3 checkpoints are permanently frozen.
+- No journal-extension experiment may be used to modify A3 based on final-test performance.
+
+Journal-extension goals:
+1. efficiency profiling
+2. mechanism analysis on validation data
+3. multi-backbone validation
+4. external baselines
+5. real-world degradation evaluation
+6. statistical analysis
+7. stronger cross-dataset evidence
+
+Final-test results are evidence only, never tuning data.

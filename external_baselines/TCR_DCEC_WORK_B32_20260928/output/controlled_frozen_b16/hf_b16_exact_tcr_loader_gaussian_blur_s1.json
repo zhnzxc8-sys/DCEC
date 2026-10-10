@@ -1,0 +1,16 @@
+{
+  "method": "HF CLIP B16 with exact TCR loader tensors/tokens",
+  "condition": "gaussian_blur_s1",
+  "images": 1014,
+  "captions": 5070,
+  "final_test_accessed": false,
+  "metrics": {
+    "i2t_R@1": 79.68441814595661,
+    "t2i_R@1": 64.14201183431953,
+    "i2t_R@5": 96.44970414201184,
+    "t2i_R@5": 86.27218934911242,
+    "i2t_R@10": 98.61932938856016,
+    "t2i_R@10": 91.53846153846153,
+    "primary": 71.91321499013807
+  }
+}

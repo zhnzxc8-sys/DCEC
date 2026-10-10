@@ -1,0 +1,20 @@
+A3 NO_SEM vs A5 FULL DCEC
+13-CONDITION VALIDATION COMPARISON
+
+clean_S0                 70.1479 69.9507 +0.1972
+jpeg_S1                  70.9763 71.1045 -0.1282
+jpeg_S2                  71.3905 71.0059 +0.3846
+jpeg_S3                  71.4201 71.0651 +0.3550
+gaussian_blur_S1         70.1677 70.1282 +0.0395
+gaussian_blur_S2         68.1558 68.3235 -0.1677
+gaussian_blur_S3         55.8679 56.1341 -0.2662
+gaussian_noise_S1        71.1538 70.9961 +0.1577
+gaussian_noise_S2        70.9073 70.6509 +0.2564
+gaussian_noise_S3        69.3195 69.3787 -0.0592
+low_light_S1             70.3846 70.0000 +0.3846
+low_light_S2             70.2367 70.4832 -0.2465
+low_light_S3             69.1124 69.4379 -0.3255
+
+13-condition mean: A3=69.1724 A5=69.1276 Delta=+0.0448
+12-corruption mean: A3=69.0911 A5=69.0590 Delta=+0.0321
+wins=7, ties=0, losses=6

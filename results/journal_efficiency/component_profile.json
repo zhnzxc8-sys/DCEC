@@ -1,0 +1,38 @@
+{
+  "experiment": "DCEC component latency decomposition",
+  "dataset_split": "Flickr30K validation",
+  "final_test_accessed": false,
+  "device": "cuda",
+  "gpu_name": "NVIDIA GeForce RTX 4090 D",
+  "batch_size": 32,
+  "measurement_batches": 25,
+  "frozen_clip": {
+    "batch_ms_mean": 69.89805415272713,
+    "batch_ms_median": 68.5252919793129,
+    "batch_ms_std": 6.106065994263192,
+    "per_image_ms_mean": 2.1843141922727227
+  },
+  "quality_descriptor_original": {
+    "batch_ms_mean": 200.34975826740265,
+    "batch_ms_median": 192.0805498957634,
+    "batch_ms_std": 28.405615534840695,
+    "per_image_ms_mean": 6.260929945856333
+  },
+  "a3_adapter": {
+    "batch_ms_mean": 0.6780850142240524,
+    "batch_ms_median": 0.6474638357758522,
+    "batch_ms_std": 0.11613189704586409,
+    "per_image_ms_mean": 0.02119015669450164
+  },
+  "full_pipeline": {
+    "batch_ms_mean": 259.2108378559351,
+    "batch_ms_median": 248.93314484506845,
+    "batch_ms_std": 35.47329125396031,
+    "per_image_ms_mean": 8.100338682997972
+  },
+  "time_share_percent": {
+    "frozen_clip": 26.96571437015888,
+    "quality_descriptor": 77.29219963354834,
+    "a3_adapter": 0.2615959347351519
+  }
+}

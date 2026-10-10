@@ -1,0 +1,69 @@
+﻿
+ARCHIVE: DCEC_FINAL_RESEARCH_BACKUP_20260929.tar.gz
+Scan status: completed
+File count: 1678
+Results-path files: 530
+CSV/JSON/JSONL files: 334
+Python files: 107
+Weight files: 38
+LOG files: 125
+Uncompressed GiB: 0.141
+Result examples:
+CVIP2026_DCEC_v11_JOURNAL/results/ablation_fullval/a3_vs_a5_summary.txt
+CVIP2026_DCEC_v11_JOURNAL/results/ablation_fullval/no_sem/clean_s0.json
+CVIP2026_DCEC_v11_JOURNAL/results/ablation_fullval/no_sem/jpeg_s1.json
+CVIP2026_DCEC_v11_JOURNAL/results/ablation_fullval/no_sem/jpeg_s2.json
+CVIP2026_DCEC_v11_JOURNAL/results/ablation_fullval/no_sem/jpeg_s3.json
+CVIP2026_DCEC_v11_JOURNAL/results/ablation_fullval/no_sem/gaussian_blur_s1.json
+CVIP2026_DCEC_v11_JOURNAL/results/ablation_fullval/no_sem/gaussian_blur_s2.json
+CVIP2026_DCEC_v11_JOURNAL/results/ablation_fullval/no_sem/gaussian_noise_s1.json
+CVIP2026_DCEC_v11_JOURNAL/results/ablation_fullval/no_sem/gaussian_noise_s2.json
+CVIP2026_DCEC_v11_JOURNAL/results/ablation_fullval/no_sem/gaussian_blur_s3.json
+CVIP2026_DCEC_v11_JOURNAL/results/ablation_fullval/no_sem/gaussian_noise_s3.json
+CVIP2026_DCEC_v11_JOURNAL/results/ablation_fullval/no_sem/low_light_s1.json
+
+ARCHIVE: DCEC_LEGACY_EXPERIMENTS_BACKUP_20260929.tar.gz
+Scan status: completed
+File count: 881
+Results-path files: 602
+CSV/JSON/JSONL files: 381
+Python files: 136
+Weight files: 100
+LOG files: 53
+Uncompressed GiB: 0.316
+Result examples:
+CVIP2026_DCEC_v10/results/ablation_formal/no_rank/COMPLETED
+CVIP2026_DCEC_v10/results/ablation_formal/no_rank/best_dcec_ablation.pt
+CVIP2026_DCEC_v10/results/ablation_formal/no_rank/formal_training.log
+CVIP2026_DCEC_v10/results/ablation_formal/no_rank/last_dcec_ablation.pt
+CVIP2026_DCEC_v10/results/ablation_formal/no_rank/train_metrics.jsonl
+CVIP2026_DCEC_v10/results/ablation_formal/no_rank/validation_metrics.jsonl
+CVIP2026_DCEC_v10/results/ablation_formal/no_sem/COMPLETED
+CVIP2026_DCEC_v10/results/ablation_formal/no_sem/best_dcec_ablation.pt
+CVIP2026_DCEC_v10/results/ablation_formal/no_sem/formal_training.log
+CVIP2026_DCEC_v10/results/ablation_formal/no_sem/last_dcec_ablation.pt
+CVIP2026_DCEC_v10/results/ablation_formal/no_sem/train_metrics.jsonl
+CVIP2026_DCEC_v10/results/ablation_formal/no_sem/validation_metrics.jsonl
+
+ARCHIVE: DCEC_RESIDUAL_HISTORY_BACKUP_20260929.tar.gz
+Scan status: completed
+File count: 2829
+Results-path files: 155
+CSV/JSON/JSONL files: 25
+Python files: 165
+Weight files: 0
+LOG files: 158
+Uncompressed GiB: 1.711
+Result examples:
+external_baselines/TCR_DCEC_WORK_20260928/results/journal_baselines/tcr_20260928/TCR_I2T_21_CONDITIONS_SUMMARY_20260928.csv
+external_baselines/TCR_DCEC_WORK_20260928/results/journal_baselines/tcr_20260928/TCR_RESULTS_SHA256_20260928.txt
+external_baselines/TCR_DCEC_WORK_20260928/results/journal_baselines/tcr_20260928/configs_i2t/flickr_contrast_s1_clip_b16.yaml
+external_baselines/TCR_DCEC_WORK_20260928/results/journal_baselines/tcr_20260928/configs_i2t/flickr_contrast_s2_clip_b16.yaml
+external_baselines/TCR_DCEC_WORK_20260928/results/journal_baselines/tcr_20260928/configs_i2t/flickr_contrast_s3_clip_b16.yaml
+external_baselines/TCR_DCEC_WORK_20260928/results/journal_baselines/tcr_20260928/configs_i2t/flickr_gaussian_blur_s1_clip_b16.yaml
+external_baselines/TCR_DCEC_WORK_20260928/results/journal_baselines/tcr_20260928/configs_i2t/flickr_gaussian_blur_s2_clip_b16.yaml
+external_baselines/TCR_DCEC_WORK_20260928/results/journal_baselines/tcr_20260928/configs_i2t/flickr_gaussian_blur_s3_clip_b16.yaml
+external_baselines/TCR_DCEC_WORK_20260928/results/journal_baselines/tcr_20260928/configs_i2t/flickr_gaussian_noise_s1_clip_b16.yaml
+external_baselines/TCR_DCEC_WORK_20260928/results/journal_baselines/tcr_20260928/configs_i2t/flickr_gaussian_noise_s2_clip_b16.yaml
+external_baselines/TCR_DCEC_WORK_20260928/results/journal_baselines/tcr_20260928/configs_i2t/flickr_gaussian_noise_s3_clip_b16.yaml
+external_baselines/TCR_DCEC_WORK_20260928/results/journal_baselines/tcr_20260928/configs_i2t/flickr_jpeg_s1_clip_b16.yaml

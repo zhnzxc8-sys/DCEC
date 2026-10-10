@@ -1,0 +1,5 @@
+{"variant": "no_sem", "epoch": 0, "mean_total_loss": 0.0918551945736449, "mean_sem_loss": 0.05216618683990071, "mean_rank_loss": 0.09185487529942653, "mean_res_loss": 0.00031934190708195035, "learning_rate": 0.001}
+{"variant": "no_sem", "epoch": 1, "mean_total_loss": 0.08594373402071762, "mean_sem_loss": 0.04990800253044744, "mean_rank_loss": 0.08594265786362063, "mean_res_loss": 0.0010761268370294002, "learning_rate": 0.001}
+{"variant": "no_sem", "epoch": 2, "mean_total_loss": 0.08498169713609471, "mean_sem_loss": 0.049536785745403863, "mean_rank_loss": 0.08497973615478194, "mean_res_loss": 0.0019609733229136463, "learning_rate": 0.001}
+{"variant": "no_sem", "epoch": 3, "mean_total_loss": 0.0817567043544472, "mean_sem_loss": 0.04837415444170758, "mean_rank_loss": 0.08175392858807282, "mean_res_loss": 0.002775730166015397, "learning_rate": 0.001}
+{"variant": "no_sem", "epoch": 4, "mean_total_loss": 0.08233526316004196, "mean_sem_loss": 0.04839712839733805, "mean_rank_loss": 0.08233106712366084, "mean_res_loss": 0.004196051082059396, "learning_rate": 0.001}

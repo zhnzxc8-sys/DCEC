@@ -1,0 +1,23 @@
+{
+  "parsed_file_counts": {
+    "python": 107,
+    "json": 278,
+    "csv": 18,
+    "jsonl": 38
+  },
+  "issues": [],
+  "credential_pattern_flagged_paths": [],
+  "final_test_summary_checks": {
+    "condition_count": true,
+    "frozen_mean": true,
+    "dcec_mean": true,
+    "std_population": true,
+    "wins": true
+  },
+  "recomputed_final_test": {
+    "frozen": 63.51090909090909,
+    "dcec": 65.02409090909092,
+    "std_population": 0.05697009993410074,
+    "wins": 22
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "experiment": "DCEC exact-parallel end-to-end inference overhead",
+  "dataset_split": "Flickr30K validation",
+  "final_test_accessed": false,
+  "device": "cuda",
+  "gpu_name": "NVIDIA GeForce RTX 4090 D",
+  "batch_size": 32,
+  "quality_workers": 4,
+  "descriptor_definition_changed": false,
+  "descriptor_parallel_exact": true,
+  "measurement_batches": 25,
+  "frozen_clip": {
+    "batch_latency_ms_mean": 82.4821325019002,
+    "batch_latency_ms_median": 81.3570749014616,
+    "batch_latency_ms_std": 3.225388272705671,
+    "per_image_latency_ms_mean": 2.577566640684381,
+    "throughput_images_per_second": 387.96281120960094,
+    "peak_memory_mb": 679.66357421875
+  },
+  "frozen_clip_plus_dcec": {
+    "batch_latency_ms_mean": 199.27481308579445,
+    "batch_latency_ms_median": 200.15661418437958,
+    "batch_latency_ms_std": 6.843454966343024,
+    "per_image_latency_ms_mean": 6.2273379089310765,
+    "throughput_images_per_second": 160.58226077082273,
+    "peak_memory_mb": 679.66357421875
+  },
+  "latency_overhead_percent": 141.59755215010188,
+  "throughput_drop_percent": 58.60885215514471,
+  "peak_memory_overhead_mb": 0.0,
+  "note": "Original per-image quality descriptor is used unchanged; only extraction across images is parallelized with four CPU threads."
+}

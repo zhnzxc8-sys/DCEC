@@ -1,0 +1,13 @@
+[A3_no_sem]
+seed 2026: best_epoch=3, best_score=70.1677
+seed 2027: best_epoch=3, best_score=70.1578
+seed 2028: best_epoch=4, best_score=70.0848
+mean±std=70.1368±0.0370
+
+[A5_full_dcec]
+seed 2026: best_epoch=3, best_score=70.0828
+seed 2027: best_epoch=2, best_score=69.9191
+seed 2028: best_epoch=3, best_score=69.9704
+mean±std=69.9908±0.0684
+
+A3-A5 mean delta=+0.1460

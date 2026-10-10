@@ -1,0 +1,241 @@
+{
+  "experiment": "DCEC image-level mechanism analysis",
+  "dataset_split": "Flickr30K validation",
+  "final_test_accessed": false,
+  "checkpoint": "results/ablation_formal/no_sem/best_dcec_ablation.pt",
+  "number_of_images": 1014,
+  "seen_conditions": [
+    "jpeg_s1",
+    "jpeg_s2",
+    "jpeg_s3",
+    "gaussian_blur_s1",
+    "gaussian_blur_s2",
+    "gaussian_blur_s3",
+    "gaussian_noise_s1",
+    "gaussian_noise_s2",
+    "gaussian_noise_s3",
+    "low_light_s1",
+    "low_light_s2",
+    "low_light_s3"
+  ],
+  "unseen_conditions": [
+    "motion_blur_s1",
+    "motion_blur_s2",
+    "motion_blur_s3",
+    "contrast_s1",
+    "contrast_s2",
+    "contrast_s3",
+    "pixelate_s1",
+    "pixelate_s2",
+    "pixelate_s3"
+  ],
+  "number_of_seen_conditions": 12,
+  "number_of_unseen_conditions": 9,
+  "number_of_total_conditions": 21,
+  "retrieval_margin_definition": "per-image average of bidirectional retrieval margins; I2T uses best positive minus hardest negative caption; T2I uses correct image minus hardest negative image for each caption, averaged over captions",
+  "statistics_note": "condition-demeaned correlations remove each degradation/severity condition mean before pooling. 95% confidence intervals use image-cluster bootstrap. Associations are descriptive and do not establish causality.",
+  "seen": {
+    "drift_vs_margin_gain": {
+      "pooled_raw_pearson": 0.27221837204590055,
+      "condition_demeaned_pearson": 0.18555360782503968,
+      "mean_within_condition_pearson": 0.14166716330109122,
+      "median_within_condition_pearson": 0.14150935706025902,
+      "condition_demeaned_cluster_bootstrap_ci95": {
+        "bootstrap_repeats": 500,
+        "ci95_low": 0.15324479871395133,
+        "ci95_high": 0.2173745663412333
+      }
+    },
+    "recovery_vs_margin_gain": {
+      "pooled_raw_pearson": 0.312123130151599,
+      "condition_demeaned_pearson": 0.269588335873665,
+      "mean_within_condition_pearson": 0.25704533950070935,
+      "median_within_condition_pearson": 0.27780543302383753,
+      "condition_demeaned_cluster_bootstrap_ci95": {
+        "bootstrap_repeats": 500,
+        "ci95_low": 0.23892766549817657,
+        "ci95_high": 0.2995900430107622
+      }
+    },
+    "correction_norm_vs_margin_gain": {
+      "pooled_raw_pearson": 0.33143637766372624,
+      "condition_demeaned_pearson": 0.35961630315051146,
+      "mean_within_condition_pearson": 0.29251938703832797,
+      "median_within_condition_pearson": 0.40854210388797574,
+      "condition_demeaned_cluster_bootstrap_ci95": {
+        "bootstrap_repeats": 500,
+        "ci95_low": 0.33341345785912047,
+        "ci95_high": 0.3874156703140195
+      }
+    },
+    "gate_vs_margin_gain": {
+      "pooled_raw_pearson": -0.04374365905052738,
+      "condition_demeaned_pearson": 0.0007317420986416375,
+      "mean_within_condition_pearson": 0.0037899579375604564,
+      "median_within_condition_pearson": 0.01282587772872739,
+      "condition_demeaned_cluster_bootstrap_ci95": {
+        "bootstrap_repeats": 500,
+        "ci95_low": -0.026247487180844967,
+        "ci95_high": 0.029174511138399667
+      }
+    },
+    "drift_vs_correction_norm": {
+      "pooled_raw_pearson": 0.8930045184948204,
+      "condition_demeaned_pearson": 0.4163298620034339,
+      "mean_within_condition_pearson": 0.35792148748085845,
+      "median_within_condition_pearson": 0.3463346970416342,
+      "condition_demeaned_cluster_bootstrap_ci95": {
+        "bootstrap_repeats": 500,
+        "ci95_low": 0.3873975252515439,
+        "ci95_high": 0.4439571303114911
+      }
+    },
+    "drift_vs_recovery": {
+      "pooled_raw_pearson": 0.9123579064524254,
+      "condition_demeaned_pearson": 0.5847863889510874,
+      "mean_within_condition_pearson": 0.5504921026963218,
+      "median_within_condition_pearson": 0.567455812088506,
+      "condition_demeaned_cluster_bootstrap_ci95": {
+        "bootstrap_repeats": 500,
+        "ci95_low": 0.5338167030077089,
+        "ci95_high": 0.6285104124744577
+      }
+    }
+  },
+  "unseen": {
+    "drift_vs_margin_gain": {
+      "pooled_raw_pearson": 0.30268480336559267,
+      "condition_demeaned_pearson": 0.2269194090385912,
+      "mean_within_condition_pearson": 0.14292317078035943,
+      "median_within_condition_pearson": 0.12369908829741047,
+      "condition_demeaned_cluster_bootstrap_ci95": {
+        "bootstrap_repeats": 500,
+        "ci95_low": 0.19787084869737281,
+        "ci95_high": 0.2572948898411289
+      }
+    },
+    "recovery_vs_margin_gain": {
+      "pooled_raw_pearson": 0.3572701223520328,
+      "condition_demeaned_pearson": 0.3190988872163207,
+      "mean_within_condition_pearson": 0.2805786905345015,
+      "median_within_condition_pearson": 0.2586021721451048,
+      "condition_demeaned_cluster_bootstrap_ci95": {
+        "bootstrap_repeats": 500,
+        "ci95_low": 0.28507347530170796,
+        "ci95_high": 0.3509357008029738
+      }
+    },
+    "correction_norm_vs_margin_gain": {
+      "pooled_raw_pearson": 0.37837009802214544,
+      "condition_demeaned_pearson": 0.3710427102600156,
+      "mean_within_condition_pearson": 0.30066200646803015,
+      "median_within_condition_pearson": 0.2827122195832341,
+      "condition_demeaned_cluster_bootstrap_ci95": {
+        "bootstrap_repeats": 500,
+        "ci95_low": 0.3323572101780798,
+        "ci95_high": 0.3995368221824896
+      }
+    },
+    "gate_vs_margin_gain": {
+      "pooled_raw_pearson": -0.008145081845658436,
+      "condition_demeaned_pearson": 0.025997519722198516,
+      "mean_within_condition_pearson": 0.03311714752151549,
+      "median_within_condition_pearson": 0.03677397617469977,
+      "condition_demeaned_cluster_bootstrap_ci95": {
+        "bootstrap_repeats": 500,
+        "ci95_low": -0.011792465829628264,
+        "ci95_high": 0.06737065549669435
+      }
+    },
+    "drift_vs_correction_norm": {
+      "pooled_raw_pearson": 0.8446224916024023,
+      "condition_demeaned_pearson": 0.463976247242779,
+      "mean_within_condition_pearson": 0.34724554281586845,
+      "median_within_condition_pearson": 0.3050264740348757,
+      "condition_demeaned_cluster_bootstrap_ci95": {
+        "bootstrap_repeats": 500,
+        "ci95_low": 0.43272096638437535,
+        "ci95_high": 0.49509670484498014
+      }
+    },
+    "drift_vs_recovery": {
+      "pooled_raw_pearson": 0.8698529182870889,
+      "condition_demeaned_pearson": 0.5191393326043721,
+      "mean_within_condition_pearson": 0.4057019478827708,
+      "median_within_condition_pearson": 0.45665850178291767,
+      "condition_demeaned_cluster_bootstrap_ci95": {
+        "bootstrap_repeats": 500,
+        "ci95_low": 0.47076390524649026,
+        "ci95_high": 0.5686433518654893
+      }
+    }
+  },
+  "all_nonclean": {
+    "drift_vs_margin_gain": {
+      "pooled_raw_pearson": 0.2725239843616195,
+      "condition_demeaned_pearson": 0.19664398925732413,
+      "mean_within_condition_pearson": 0.14220545222077763,
+      "median_within_condition_pearson": 0.12369908829741047,
+      "condition_demeaned_cluster_bootstrap_ci95": {
+        "bootstrap_repeats": 500,
+        "ci95_low": 0.1732716283098562,
+        "ci95_high": 0.22121843206168276
+      }
+    },
+    "recovery_vs_margin_gain": {
+      "pooled_raw_pearson": 0.32169050116149867,
+      "condition_demeaned_pearson": 0.2861181775278102,
+      "mean_within_condition_pearson": 0.26713106137233456,
+      "median_within_condition_pearson": 0.2586021721451048,
+      "condition_demeaned_cluster_bootstrap_ci95": {
+        "bootstrap_repeats": 500,
+        "ci95_low": 0.25614335585588577,
+        "ci95_high": 0.3134202885805949
+      }
+    },
+    "correction_norm_vs_margin_gain": {
+      "pooled_raw_pearson": 0.3303000807496035,
+      "condition_demeaned_pearson": 0.3633678151909171,
+      "mean_within_condition_pearson": 0.29600908107962887,
+      "median_within_condition_pearson": 0.4084349433205942,
+      "condition_demeaned_cluster_bootstrap_ci95": {
+        "bootstrap_repeats": 500,
+        "ci95_low": 0.34128752808373286,
+        "ci95_high": 0.39032102596666934
+      }
+    },
+    "gate_vs_margin_gain": {
+      "pooled_raw_pearson": -0.03192537200089199,
+      "condition_demeaned_pearson": 0.009310200748353752,
+      "mean_within_condition_pearson": 0.01635875347354119,
+      "median_within_condition_pearson": 0.02447756219411806,
+      "condition_demeaned_cluster_bootstrap_ci95": {
+        "bootstrap_repeats": 500,
+        "ci95_low": -0.025877941775052992,
+        "ci95_high": 0.03861474266923623
+      }
+    },
+    "drift_vs_correction_norm": {
+      "pooled_raw_pearson": 0.737192771525602,
+      "condition_demeaned_pearson": 0.4250435980868927,
+      "mean_within_condition_pearson": 0.3533460826244341,
+      "median_within_condition_pearson": 0.31558381255824247,
+      "condition_demeaned_cluster_bootstrap_ci95": {
+        "bootstrap_repeats": 500,
+        "ci95_low": 0.3998621622351343,
+        "ci95_high": 0.4490681533762315
+      }
+    },
+    "drift_vs_recovery": {
+      "pooled_raw_pearson": 0.801414816723486,
+      "condition_demeaned_pearson": 0.5341211919707872,
+      "mean_within_condition_pearson": 0.48843917920479984,
+      "median_within_condition_pearson": 0.5431153238117675,
+      "condition_demeaned_cluster_bootstrap_ci95": {
+        "bootstrap_repeats": 500,
+        "ci95_low": 0.49178512434888166,
+        "ci95_high": 0.5712056888759831
+      }
+    }
+  }
+}

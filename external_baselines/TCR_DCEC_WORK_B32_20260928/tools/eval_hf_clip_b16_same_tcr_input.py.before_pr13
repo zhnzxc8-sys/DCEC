@@ -1,0 +1,257 @@
+import json
+import sys
+from pathlib import Path
+
+import torch
+import torch.nn.functional as F
+import ruamel.yaml as yaml
+from PIL import Image
+from transformers import CLIPModel, CLIPProcessor
+
+PROJECT_ROOT = Path(__file__).resolve().parents[1]
+
+if str(PROJECT_ROOT) not in sys.path:
+    sys.path.insert(0, str(PROJECT_ROOT))
+
+from data import create_dataset
+
+MODEL_NAME = "openai/clip-vit-base-patch16"
+
+CONFIG = (
+    PROJECT_ROOT
+    / "configs/controlled/i2t/flickr_gaussian_blur_s1_clip_b16.yaml"
+)
+
+OUTPUT = (
+    PROJECT_ROOT
+    / "output/controlled_frozen_b16/"
+    / "hf_clip_b16_same_tcr_input_gaussian_blur_s1.json"
+)
+
+
+def batched(items, batch_size):
+    for start in range(0, len(items), batch_size):
+        yield items[start:start + batch_size]
+
+
+def recall_at_k(similarity, positives, k):
+    ranking = similarity.argsort(dim=1, descending=True)
+
+    hit = 0
+
+    for q, pos in enumerate(positives):
+        topk = set(ranking[q, :k].tolist())
+
+        if topk.intersection(set(pos)):
+            hit += 1
+
+    return 100.0 * hit / len(positives)
+
+
+def main():
+    config = yaml.load(
+        open(CONFIG, "r", encoding="utf-8"),
+        Loader=yaml.Loader,
+    )
+
+    ds_text, ds_image = create_dataset(
+        f'retrieval_{config["dataset"]}',
+        config,
+        resize=224,
+    )
+
+    assert len(ds_image.image) == 1014
+    assert len(ds_image.text) == 5070
+
+    device = torch.device("cuda")
+
+    print("===== LOAD HF CLIP-B16 =====")
+
+    processor = CLIPProcessor.from_pretrained(
+        MODEL_NAME,
+        cache_dir="/root/autodl-tmp/hf_cache",
+    )
+
+    model = CLIPModel.from_pretrained(
+        MODEL_NAME,
+        cache_dir="/root/autodl-tmp/hf_cache",
+        use_safetensors=True,
+    ).to(device)
+
+    model.eval()
+
+    print()
+    print("===== TEXT FEATURES =====")
+
+    text_features = []
+
+    with torch.no_grad():
+        for batch in batched(ds_image.text, 128):
+            inputs = processor(
+                text=batch,
+                padding=True,
+                truncation=True,
+                return_tensors="pt",
+            ).to(device)
+
+            text_outputs = model.text_model(
+                input_ids=inputs["input_ids"],
+                attention_mask=inputs["attention_mask"],
+            )
+            feat = model.text_projection(text_outputs.pooler_output)
+            feat = F.normalize(feat, p=2, dim=1)
+
+            text_features.append(feat.cpu())
+
+    text_features = torch.cat(text_features, dim=0)
+
+    print("text shape =", tuple(text_features.shape))
+
+    print()
+    print("===== IMAGE FEATURES =====")
+
+    image_features = []
+
+    image_paths = [
+        Path(config["image_root"]) / rel
+        for rel in ds_image.image
+    ]
+
+    with torch.no_grad():
+        for start in range(0, len(image_paths), 64):
+            paths = image_paths[start:start + 64]
+
+            images = []
+
+            for p in paths:
+                with Image.open(p) as im:
+                    images.append(im.convert("RGB").copy())
+
+            inputs = processor(
+                images=images,
+                return_tensors="pt",
+            ).to(device)
+
+            image_outputs = model.vision_model(
+                pixel_values=inputs["pixel_values"]
+            )
+            feat = model.visual_projection(image_outputs.pooler_output)
+            feat = F.normalize(feat, p=2, dim=1)
+
+            image_features.append(feat.cpu())
+
+            done = min(
+                start + 64,
+                len(image_paths),
+            )
+
+            print(
+                f"images {done}/{len(image_paths)}"
+            )
+
+    image_features = torch.cat(
+        image_features,
+        dim=0,
+    )
+
+    print("image shape =", tuple(image_features.shape))
+
+    assert image_features.shape == (1014, 512)
+    assert text_features.shape == (5070, 512)
+
+    similarity = (
+        image_features
+        @ text_features.T
+    )
+
+    image_to_text = [
+        list(ds_image.img2txt[i])
+        for i in range(1014)
+    ]
+
+    text_to_image = []
+
+    for j in range(5070):
+        value = ds_image.txt2img[j]
+
+        if isinstance(value, int):
+            text_to_image.append([value])
+        else:
+            text_to_image.append(list(value))
+
+    metrics = {}
+
+    for k in (1, 5, 10):
+        metrics[f"i2t_R@{k}"] = recall_at_k(
+            similarity,
+            image_to_text,
+            k,
+        )
+
+        metrics[f"t2i_R@{k}"] = recall_at_k(
+            similarity.T,
+            text_to_image,
+            k,
+        )
+
+    metrics["primary"] = 0.5 * (
+        metrics["i2t_R@1"]
+        + metrics["t2i_R@1"]
+    )
+
+    openai_primary = 71.873767
+
+    metrics["delta_vs_tcr_openai_frozen"] = (
+        metrics["primary"]
+        - openai_primary
+    )
+
+    result = {
+        "model": MODEL_NAME,
+        "condition": "gaussian_blur_s1",
+        "images": 1014,
+        "captions": 5070,
+        "input_protocol": (
+            "exact same materialized images "
+            "and TCR loader captions"
+        ),
+        "final_test_accessed": False,
+        "metrics": metrics,
+    }
+
+    OUTPUT.parent.mkdir(
+        parents=True,
+        exist_ok=True,
+    )
+
+    OUTPUT.write_text(
+        json.dumps(
+            result,
+            indent=2,
+            ensure_ascii=False,
+        ) + "\n",
+        encoding="utf-8",
+    )
+
+    print()
+    print("===== HF CLIP-B16 SAME-INPUT RESULT =====")
+
+    for k, v in metrics.items():
+        print(f"{k:30s} = {v:.6f}")
+
+    print()
+    print(
+        "TCR OpenAI Frozen primary    = 71.873767"
+    )
+
+    print(
+        "HF - OpenAI primary delta   = "
+        f"{metrics['delta_vs_tcr_openai_frozen']:+.6f}"
+    )
+
+    print()
+    print("Saved:", OUTPUT)
+
+
+if __name__ == "__main__":
+    main()

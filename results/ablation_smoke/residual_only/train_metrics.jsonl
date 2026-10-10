@@ -1,0 +1,1 @@
+{"variant": "residual_only", "epoch": 0, "mean_total_loss": 0.22233873512595892, "mean_sem_loss": 0.07919574901461601, "mean_rank_loss": 0.1431429535150528, "mean_res_loss": 3.3245053828068194e-05, "learning_rate": 0.001}

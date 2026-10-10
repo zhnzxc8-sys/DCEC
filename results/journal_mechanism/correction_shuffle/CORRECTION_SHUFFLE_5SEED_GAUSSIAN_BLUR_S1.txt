@@ -1,0 +1,20 @@
+GLOBAL CORRECTION SHUFFLE INTERVENTION
+Backbone: ViT-B/32
+A3 checkpoint seed: 2026
+Condition: gaussian_blur S1
+
+seed	I2T_R1	T2I_R1	PRIMARY
+9201	78.007890	59.684418	68.846154
+9202	78.106509	59.566075	68.836292
+9203	77.909270	59.447732	68.678501
+9204	77.810651	59.211045	68.510848
+9205	77.810651	59.861933	68.836292
+
+Shuffle mean: 68.741617
+Shuffle std: 0.146708
+Learned matched correction: 70.167653
+No correction: 69.408284
+Random direction mean: 68.554241
+Learned - Shuffle mean: +1.426036
+Shuffle mean - No correction: -0.666667
+Shuffle - Random mean: +0.187376

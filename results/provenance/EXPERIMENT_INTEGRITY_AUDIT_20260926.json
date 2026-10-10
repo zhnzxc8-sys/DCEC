@@ -1,0 +1,291 @@
+{
+  "audit_name": "DCEC Experiment Integrity Audit",
+  "audit_date": "2026-09-26T20:40:12",
+  "project_root": "/root/autodl-tmp/CVIP2026_DCEC_v11_JOURNAL",
+  "purpose": "Record machine-verifiable experiment artifacts, frozen-test protocol evidence, checkpoint provenance, and currently known provenance gaps.",
+  "important_scope_note": "This audit checks recorded artifacts and provenance. It does not mathematically prove the absence of every possible data leak or implementation bug.",
+  "critical_files": {
+    "final_test_protocol": {
+      "path": "/root/autodl-tmp/CVIP2026_DCEC_v11_JOURNAL/configs/flickr30k_final_test_protocol.json",
+      "exists": true,
+      "size_bytes": 1199,
+      "sha256": "f438d8e21501658cb9839d183f92e864b88806d17b74adcc9e676258d471dca6"
+    },
+    "final_test_evaluator": {
+      "path": "/root/autodl-tmp/CVIP2026_DCEC_v11_JOURNAL/src/eval_flickr30k_final_test.py",
+      "exists": true,
+      "size_bytes": 17588,
+      "sha256": "51e1bf4edb9a35be18035b91d82cf3ff3396ae0055d0392763d0f21d2ac0738d"
+    },
+    "final_test_conclusion": {
+      "path": "/root/autodl-tmp/CVIP2026_DCEC_v11_JOURNAL/results/flickr30k_final_test/FINAL_TEST_CONCLUSION.txt",
+      "exists": true,
+      "size_bytes": 933,
+      "sha256": "33aa5a0a16942061a37f2c34ae2c056ef8947b6ea4851bb0fd73463294ebfe5d"
+    },
+    "a3_seed2026_checkpoint": {
+      "path": "/root/autodl-tmp/CVIP2026_DCEC_v11_JOURNAL/results/ablation_formal/no_sem/best_dcec_ablation.pt",
+      "exists": true,
+      "size_bytes": 3421506,
+      "sha256": "c95e9f92876257d51c37853e0d6d17a50e84b9fc9fa64a65c238bbf06d640608"
+    },
+    "a3_fullval_summary": {
+      "path": "/root/autodl-tmp/CVIP2026_DCEC_v11_JOURNAL/results/ablation_fullval/a3_vs_a5_summary.txt",
+      "exists": true,
+      "size_bytes": 836,
+      "sha256": "decac372c68cc45e52892120edbe2a3a6abbe695ee24385a98980dde028c75b2"
+    },
+    "unseen_validation_summary": {
+      "path": "/root/autodl-tmp/CVIP2026_DCEC_v11_JOURNAL/results/unseen_formal/unseen_a3_vs_frozen_summary.txt",
+      "exists": true,
+      "size_bytes": 734,
+      "sha256": "ad5ed5446f1396f320207abc04aed40e3ee5fe6e0cabd27ab2b5bc66c948df19"
+    },
+    "mscoco_cross_summary": {
+      "path": "/root/autodl-tmp/CVIP2026_DCEC_v11_JOURNAL/results/mscoco_cross_formal/summary.json",
+      "exists": true,
+      "size_bytes": 453,
+      "sha256": "8f3f38cdaee5b1b3a4d4eba9f7bc658ebbb26ae39605f1ca7a2a254182969e6c"
+    },
+    "seen_mechanism": {
+      "path": "/root/autodl-tmp/CVIP2026_DCEC_v11_JOURNAL/results/journal_mechanism/seen_degradation_mechanism.json",
+      "exists": true,
+      "size_bytes": 9303,
+      "sha256": "34ca9051951f89ef090878fa67ce99036f8263ff857198baf69004e411b69e46"
+    },
+    "unseen_mechanism": {
+      "path": "/root/autodl-tmp/CVIP2026_DCEC_v11_JOURNAL/results/journal_mechanism/unseen_degradation_mechanism.json",
+      "exists": true,
+      "size_bytes": 6522,
+      "sha256": "ceeaaf915fff52932f943722b120e7223da27b4f9ed234a26b760fca146cb844"
+    },
+    "image_level_mechanism": {
+      "path": "/root/autodl-tmp/CVIP2026_DCEC_v11_JOURNAL/results/journal_mechanism/image_level_mechanism_summary.json",
+      "exists": true,
+      "size_bytes": 9314,
+      "sha256": "3d4237b72a6a5a19a44ddcecb40badcd7e3cbca2cd6c7d8e218601d2fd1b1c89"
+    },
+    "adapter_efficiency": {
+      "path": "/root/autodl-tmp/CVIP2026_DCEC_v11_JOURNAL/results/journal_efficiency/adapter_profile.json",
+      "exists": true,
+      "size_bytes": 1744,
+      "sha256": "e7272bc981d1d3e7d286961749cd8f871cc570ace37c7b19d8b76aa376c868ef"
+    },
+    "end_to_end_efficiency": {
+      "path": "/root/autodl-tmp/CVIP2026_DCEC_v11_JOURNAL/results/journal_efficiency/end_to_end_profile.json",
+      "exists": true,
+      "size_bytes": 1103,
+      "sha256": "44c9fcb28e4aeb643c6b8c5780600e413d8db2fadda7cb96c40d4bcde027e401"
+    },
+    "component_efficiency": {
+      "path": "/root/autodl-tmp/CVIP2026_DCEC_v11_JOURNAL/results/journal_efficiency/component_profile.json",
+      "exists": true,
+      "size_bytes": 1175,
+      "sha256": "003db137efea3067aaf0970de586265acbe45a6049d0abd57c65926236a38287"
+    },
+    "parallel_quality_profile": {
+      "path": "/root/autodl-tmp/CVIP2026_DCEC_v11_JOURNAL/results/journal_efficiency/quality_parallel_profile.json",
+      "exists": true,
+      "size_bytes": 2313,
+      "sha256": "3a841b0b44ae7d1159dddf752f25357d3dae5421ee59455a83b2fa401dc071b6"
+    },
+    "parallel_end_to_end_profile": {
+      "path": "/root/autodl-tmp/CVIP2026_DCEC_v11_JOURNAL/results/journal_efficiency/end_to_end_parallel4_profile.json",
+      "exists": true,
+      "size_bytes": 1274,
+      "sha256": "20cb29bce1b959e4ed82a73d5f30f2b73575fb160de85ed0305d5c15fb6a27d4"
+    },
+    "quality_internal_profile": {
+      "path": "/root/autodl-tmp/CVIP2026_DCEC_v11_JOURNAL/results/journal_efficiency/quality_internal_profile.json",
+      "exists": true,
+      "size_bytes": 1419,
+      "sha256": "33a1798fea02f3630482e2f605a16f3e5bfcb5ad0e8df4516e5b3648a6196683"
+    },
+    "flickr30k_test_parquet": {
+      "path": "/root/autodl-tmp/flickr30k/test.parquet",
+      "exists": true,
+      "size_bytes": 141418509,
+      "sha256": "b830f55574fcd405b0f4304cd298803fc3610d62385165b9bba8283e1daae183"
+    },
+    "flickr30k_validation_parquet": {
+      "path": "/root/autodl-tmp/flickr30k_trainval/data/validation-00000-of-00001.parquet",
+      "exists": true,
+      "size_bytes": 139882893,
+      "sha256": "625a7e179080a84973530ad1e818d4c8342f77c896bdca6a7df17434f61f333a"
+    }
+  },
+  "a3_seed2026_checkpoint": {
+    "exists": true,
+    "path": "/root/autodl-tmp/CVIP2026_DCEC_v11_JOURNAL/results/ablation_formal/no_sem/best_dcec_ablation.pt",
+    "sha256": "c95e9f92876257d51c37853e0d6d17a50e84b9fc9fa64a65c238bbf06d640608",
+    "size_bytes": 3421506,
+    "variant": "no_sem",
+    "epoch": 3,
+    "seed": 2026,
+    "val_primary_score": 70.16765285996055,
+    "state_dict_tensor_count": 12,
+    "state_dict_scalar_count": 283713
+  },
+  "final_test_protocol_parseable": true,
+  "final_test_protocol": {
+    "experiment": "final frozen Flickr30K test evaluation",
+    "dataset": "Flickr30K Karpathy",
+    "split": "test",
+    "expected_images": 1000,
+    "expected_captions": 5000,
+    "method": "A3 no_sem",
+    "training_dataset": "Flickr30K train",
+    "model_selection_dataset": "Flickr30K validation",
+    "seeds": [
+      2026,
+      2027,
+      2028
+    ],
+    "test_time_training": false,
+    "test_time_finetuning": false,
+    "test_time_hyperparameter_tuning": false,
+    "post_test_method_changes": false,
+    "primary_metric": "(I2T_R@1 + T2I_R@1) / 2",
+    "conditions": [
+      [
+        "clean",
+        0
+      ],
+      [
+        "jpeg",
+        1
+      ],
+      [
+        "jpeg",
+        2
+      ],
+      [
+        "jpeg",
+        3
+      ],
+      [
+        "gaussian_blur",
+        1
+      ],
+      [
+        "gaussian_blur",
+        2
+      ],
+      [
+        "gaussian_blur",
+        3
+      ],
+      [
+        "gaussian_noise",
+        1
+      ],
+      [
+        "gaussian_noise",
+        2
+      ],
+      [
+        "gaussian_noise",
+        3
+      ],
+      [
+        "low_light",
+        1
+      ],
+      [
+        "low_light",
+        2
+      ],
+      [
+        "low_light",
+        3
+      ],
+      [
+        "motion_blur",
+        1
+      ],
+      [
+        "motion_blur",
+        2
+      ],
+      [
+        "motion_blur",
+        3
+      ],
+      [
+        "contrast",
+        1
+      ],
+      [
+        "contrast",
+        2
+      ],
+      [
+        "contrast",
+        3
+      ],
+      [
+        "pixelate",
+        1
+      ],
+      [
+        "pixelate",
+        2
+      ],
+      [
+        "pixelate",
+        3
+      ]
+    ],
+    "note": "Final test protocol frozen before evaluating A3 on Flickr30K test. No model or hyperparameter changes are permitted after observing test results."
+  },
+  "final_test_markers": {
+    "FINAL TEST COMPLETED": true,
+    "A3 IS NOW PERMANENTLY FROZEN": false,
+    "PERMANENTLY FROZEN": true
+  },
+  "journal_mechanism_validation_only_checks": {
+    "/root/autodl-tmp/CVIP2026_DCEC_v11_JOURNAL/results/journal_mechanism/seen_degradation_mechanism.json": {
+      "parseable": true,
+      "dataset_split": "Flickr30K validation",
+      "final_test_accessed": false
+    },
+    "/root/autodl-tmp/CVIP2026_DCEC_v11_JOURNAL/results/journal_mechanism/unseen_degradation_mechanism.json": {
+      "parseable": true,
+      "dataset_split": "Flickr30K validation",
+      "final_test_accessed": false
+    },
+    "/root/autodl-tmp/CVIP2026_DCEC_v11_JOURNAL/results/journal_mechanism/image_level_mechanism_summary.json": {
+      "parseable": true,
+      "dataset_split": "Flickr30K validation",
+      "final_test_accessed": false
+    }
+  },
+  "documented_protocol_state": {
+    "flickr30k_final_test": "A3 architecture/checkpoint/hyperparameters were frozen before formal final-test evaluation. The final test must not be used for further tuning.",
+    "journal_extension": "Mechanism and efficiency analyses are post-freeze journal-extension experiments and must not modify the frozen A3 method based on final-test outcomes.",
+    "mscoco": "Cross-dataset evaluation uses Flickr30K-trained A3 without MSCOCO finetuning or target-domain tuning."
+  },
+  "known_provenance_gaps": [
+    {
+      "item": "A0 frozen CLIP controlled-selection score",
+      "status": "not yet recovered from a dedicated original source file",
+      "impact": "Do not place it in a formal same-protocol ablation table until the exact source/protocol is recovered."
+    },
+    {
+      "item": "A5 full DCEC seed2026 checkpoint path",
+      "status": "13-condition A3-vs-A5 evaluation results exist, but the exact seed2026 checkpoint provenance has not yet been recovered.",
+      "impact": "The A3-vs-A5 full-validation comparison is preserved, but checkpoint provenance should be recovered before final publication."
+    }
+  ],
+  "current_integrity_assessment": {
+    "fatal_issue_detected": false,
+    "data_leakage_detected": false,
+    "test_tuning_detected": false,
+    "major_open_items": [
+      "Recover A0 same-protocol baseline provenance.",
+      "Recover A5 seed2026 checkpoint provenance.",
+      "Keep future extensions isolated from the already-opened final test.",
+      "Do not interpret mechanism correlations as causal proof."
+    ]
+  }
+}

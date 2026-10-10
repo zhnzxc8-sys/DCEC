@@ -1,0 +1,67 @@
+DCEC A5 SEED2026 PROVENANCE ADDENDUM — 2026-09-26
+======================================================================
+
+RECOVERED INFORMATION
+
+Variant:
+A5 full DCEC
+
+Seed:
+2026
+
+Best epoch:
+3
+
+Controlled-validation best score:
+70.0828
+
+Score provenance:
+RECOVERED
+
+Independent preserved copies of the three-seed summary were found in:
+- CVIP2026_DCEC_v7/results/multiseed/three_seed_summary.txt
+- CVIP2026_DCEC_v10/results/multiseed/three_seed_summary.txt
+- CVIP2026_DCEC_v11_JOURNAL/results/multiseed/three_seed_summary.txt
+- CVIP2026_BACKUP_20260926/three_seed_summary.txt
+
+All copies consistently report:
+
+[A5_full_dcec]
+seed 2026: best_epoch=3, best_score=70.0828
+seed 2027: best_epoch=2, best_score=69.9191
+seed 2028: best_epoch=3, best_score=69.9704
+mean±std=69.9908±0.0684
+
+[A3_no_sem]
+seed 2026: best_epoch=3, best_score=70.1677
+seed 2027: best_epoch=3, best_score=70.1578
+seed 2028: best_epoch=4, best_score=70.0848
+mean±std=70.1368±0.0370
+
+A3-A5 mean delta:
++0.1460
+
+CHECKPOINT PROVENANCE
+
+A targeted search across v7, v10, v11 and the preserved backup found:
+
+TOTAL POSSIBLE FULL-DCEC SEED2026 CHECKPOINTS: 0
+
+The multiseed script explicitly runs A5 seeds 2027 and 2028 but does not
+run A5 seed2026. This is consistent with, but does not prove, reuse of an
+earlier pre-existing seed2026 full-DCEC checkpoint.
+
+Therefore:
+
+A5 seed2026 score provenance:
+RECOVERED
+
+A5 seed2026 exact checkpoint provenance:
+UNRESOLVED
+
+IMPORTANT:
+The controlled-validation score 70.0828 must not be confused with the
+13-condition full-validation mean 69.1276. They are different evaluation
+scopes.
+
+No checkpoint path should be invented or inferred without an artifact.

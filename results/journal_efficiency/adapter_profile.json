@@ -1,0 +1,51 @@
+{
+  "experiment": "DCEC A3 adapter efficiency profile",
+  "variant": "no_sem",
+  "architecture": "full",
+  "device": "cuda",
+  "gpu_name": "NVIDIA GeForce RTX 4090 D",
+  "checkpoint": "results/ablation_formal/no_sem/best_dcec_ablation.pt",
+  "checkpoint_size_mb": 3.263002395629883,
+  "total_parameters": 283713,
+  "trainable_parameters": 283713,
+  "parameter_size_fp32_mb": 1.0822792053222656,
+  "linear_macs_per_image": 282816,
+  "linear_mmacs_per_image": 0.282816,
+  "warmup_iterations": 100,
+  "measurement_repeats": 500,
+  "profiles": [
+    {
+      "batch_size": 1,
+      "latency_ms_mean": 0.43705478399991987,
+      "latency_ms_std": 0.0058620247918084786,
+      "latency_ms_per_image": 0.43705478399991987,
+      "throughput_images_per_second": 2288.0426816245154,
+      "peak_memory_mb": 13.47998046875
+    },
+    {
+      "batch_size": 16,
+      "latency_ms_mean": 0.5082557474970818,
+      "latency_ms_std": 0.007793507173573206,
+      "latency_ms_per_image": 0.03176598421856761,
+      "throughput_images_per_second": 31480.21459431084,
+      "peak_memory_mb": 13.58935546875
+    },
+    {
+      "batch_size": 32,
+      "latency_ms_mean": 0.4673422713279724,
+      "latency_ms_std": 0.0266142924765067,
+      "latency_ms_per_image": 0.014604445978999138,
+      "throughput_images_per_second": 68472.29956124166,
+      "peak_memory_mb": 13.70703125
+    },
+    {
+      "batch_size": 64,
+      "latency_ms_mean": 0.34248646354675294,
+      "latency_ms_std": 0.026478964403395578,
+      "latency_ms_per_image": 0.005351350992918015,
+      "throughput_images_per_second": 186868.69938514617,
+      "peak_memory_mb": 13.94189453125
+    }
+  ],
+  "scope": "adapter-only; excludes frozen CLIP encoding and PIL quality-descriptor extraction"
+}

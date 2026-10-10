@@ -1,0 +1,38 @@
+{
+  "method_name": "DCEC v1 controlled ablations",
+  "model_name": "openai/clip-vit-base-patch32",
+  "ablations": [
+    {"name": "frozen_clip", "status": "existing_result"},
+    {"name": "A1", "variant": "residual_only", "status": "UNTRAINED"},
+    {"name": "A2", "variant": "quality_no_gate", "status": "UNTRAINED"},
+    {"name": "A3", "variant": "no_sem", "status": "UNTRAINED"},
+    {"name": "A4", "variant": "no_rank", "status": "UNTRAINED"},
+    {"name": "full_dcec_v1", "status": "existing_result"}
+  ],
+  "default_training": {
+    "epochs": 5,
+    "batch_size": 32,
+    "lr": 0.001,
+    "weight_decay": 0.0001,
+    "seed": 2026
+  },
+  "losses": {
+    "residual_only": {"lambda_sem": 1.0, "lambda_rank": 1.0, "lambda_res": 0.001},
+    "quality_no_gate": {"lambda_sem": 1.0, "lambda_rank": 1.0, "lambda_res": 0.001},
+    "no_sem": {"lambda_sem": 0.0, "lambda_rank": 1.0, "lambda_res": 0.001},
+    "no_rank": {"lambda_sem": 1.0, "lambda_rank": 0.0, "lambda_res": 0.001}
+  },
+  "validation_selection": {
+    "seed": 2026,
+    "conditions": [
+      {"degradation": "clean", "severity": 0},
+      {"degradation": "jpeg", "severity": 2},
+      {"degradation": "gaussian_blur", "severity": 2},
+      {"degradation": "gaussian_noise", "severity": 2},
+      {"degradation": "low_light", "severity": 2}
+    ],
+    "primary_score": "mean over five conditions of (I2T_R@1 + T2I_R@1) / 2"
+  },
+  "data_protocol": {"test_frozen": true},
+  "status": "UNTRAINED"
+}

@@ -1,0 +1,49 @@
+{
+  "dataset": "romrawinjp/mscoco",
+  "split": "test",
+  "number_of_images": 32,
+  "number_of_captions": 160,
+  "degradation": "jpeg",
+  "severity": 2,
+  "baseline": {
+    "i2t_R@1": 93.75,
+    "i2t_R@5": 96.875,
+    "i2t_R@10": 96.875,
+    "t2i_R@1": 81.25,
+    "t2i_R@5": 100.0,
+    "t2i_R@10": 100.0,
+    "primary_component": 87.5
+  },
+  "a3_seeds": {
+    "2026": {
+      "i2t_R@1": 90.625,
+      "i2t_R@5": 96.875,
+      "i2t_R@10": 100.0,
+      "t2i_R@1": 82.5,
+      "t2i_R@5": 100.0,
+      "t2i_R@10": 100.0,
+      "primary_component": 86.5625
+    },
+    "2027": {
+      "i2t_R@1": 90.625,
+      "i2t_R@5": 96.875,
+      "i2t_R@10": 100.0,
+      "t2i_R@1": 83.125,
+      "t2i_R@5": 100.0,
+      "t2i_R@10": 100.0,
+      "primary_component": 86.875
+    },
+    "2028": {
+      "i2t_R@1": 87.5,
+      "i2t_R@5": 96.875,
+      "i2t_R@10": 100.0,
+      "t2i_R@1": 81.875,
+      "t2i_R@5": 100.0,
+      "t2i_R@10": 100.0,
+      "primary_component": 84.6875
+    }
+  },
+  "a3_primary_mean": 86.04166666666667,
+  "a3_primary_std": 0.9660019266141358,
+  "delta_primary_mean": -1.4583333333333286
+}

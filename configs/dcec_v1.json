@@ -1,0 +1,52 @@
+{
+  "method_name": "DCEC v1",
+  "model_name": "openai/clip-vit-base-patch32",
+  "embedding_dim": 512,
+  "quality_descriptor": {
+    "dimensions": 5,
+    "components": [
+      "mean_luminance",
+      "luminance_standard_deviation",
+      "laplacian_absolute_response_mean",
+      "high_frequency_residual_mean",
+      "jpeg_style_block_boundary_response"
+    ]
+  },
+  "quality_mlp": [5, 32, 64],
+  "residual_corrector": [576, 256, 512],
+  "gate": [64, 32, 1],
+  "loss": {
+    "lambda_sem": 1.0,
+    "lambda_rank": 1.0,
+    "lambda_res": 0.001
+  },
+  "default_training": {
+    "epochs": 5,
+    "batch_size": 32,
+    "lr": 0.001,
+    "weight_decay": 0.0001,
+    "seed": 2026
+  },
+  "training_degradations": [
+    "clean",
+    "jpeg",
+    "gaussian_blur",
+    "gaussian_noise",
+    "low_light"
+  ],
+  "validation_conditions": [
+    {"degradation": "clean", "severity": 0},
+    {"degradation": "jpeg", "severity": 2},
+    {"degradation": "gaussian_blur", "severity": 2},
+    {"degradation": "gaussian_noise", "severity": 2},
+    {"degradation": "low_light", "severity": 2}
+  ],
+  "validation_primary_score": "mean over five fixed validation conditions of (I2T_R@1 + T2I_R@1) / 2",
+  "data_protocol": {
+    "train_images": 29000,
+    "validation_images": 1014,
+    "test_images": 1000,
+    "test_frozen": true
+  },
+  "status": "UNTRAINED"
+}

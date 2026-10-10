@@ -1,0 +1,56 @@
+DCEC A3 UNSEEN DEGRADATION VALIDATION
+Date: 2026-09-26
+
+Dataset:
+Flickr30K Karpathy validation
+1014 images / 5070 captions
+
+Training degradations:
+- JPEG
+- Gaussian Blur
+- Gaussian Noise
+- Low-light
+
+Unseen validation degradations:
+- Synthetic horizontal Motion Blur
+- Contrast Reduction
+- Pixelation
+
+Severity protocol was fixed before formal evaluation.
+
+Main candidate:
+A3 no_sem, seed 2026 checkpoint
+No retraining or tuning on unseen degradations.
+
+Primary metric:
+(I2T R@1 + T2I R@1) / 2
+
+Formal unseen results:
+9-condition Frozen CLIP mean: 62.2452
+9-condition A3 mean:          63.6215
+Mean delta:                   +1.3763
+
+Condition outcome:
+A3 wins = 9
+ties    = 0
+losses  = 0
+
+By degradation:
+Motion Blur: +0.6180
+Contrast:    +1.6502
+Pixelate:    +1.8606
+
+By severity:
+S1: +0.8054
+S2: +1.1900
+S3: +2.1335
+
+Direction-specific:
+I2T R@1 mean delta: +0.5588
+T2I R@1 mean delta: +2.1937
+
+Status:
+A3 shows positive validation gains on all 9 degradation conditions
+that were absent from DCEC training.
+
+No test split was accessed for this experiment.

@@ -1,0 +1,5 @@
+Loading weights:   0%|          | 0/398 [00:00<?, ?it/s]Loading weights:  62%|██████▏   | 248/398 [00:00<00:00, 2428.31it/s]Loading weights: 100%|██████████| 398/398 [00:00<00:00, 2390.05it/s]
+===== EXACT TCR-LOADER RESULT =====
+HF_EXACT_TCR_INPUT_PRIMARY = 71.91321499013807
+TCR_OPENAI_PRIMARY = 71.873767
+DELTA = 0.03944799013807199

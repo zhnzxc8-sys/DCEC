@@ -1,0 +1,45 @@
+{
+  "experiment": "final frozen Flickr30K test",
+  "dataset": "Flickr30K Karpathy",
+  "split": "test",
+  "number_of_conditions": 22,
+  "overall": {
+    "frozen_condition_mean": 63.51090909090909,
+    "a3_per_seed_condition_means": {
+      "2026": 64.95409090909091,
+      "2027": 65.09363636363636,
+      "2028": 65.02454545454546
+    },
+    "a3_condition_mean": 65.02409090909092,
+    "a3_condition_std_across_seeds": 0.05697009993410074,
+    "delta_condition_mean": 1.5131818181818275,
+    "wins": 22,
+    "ties": 0,
+    "losses": 0
+  },
+  "clean": {
+    "frozen_primary": 69.05000000000001,
+    "a3_primary_mean": 69.56,
+    "a3_primary_std": 0.06377042156570252,
+    "delta": 0.5099999999999909
+  },
+  "seen_degradations": {
+    "number_of_conditions": 12,
+    "frozen_mean": 65.69916666666667,
+    "a3_mean": 67.39833333333334,
+    "delta": 1.6991666666666703,
+    "wins": 12,
+    "ties": 0,
+    "losses": 0
+  },
+  "unseen_degradations": {
+    "number_of_conditions": 9,
+    "frozen_mean": 59.97777777777778,
+    "a3_mean": 61.35444444444445,
+    "delta": 1.3766666666666652,
+    "wins": 9,
+    "ties": 0,
+    "losses": 0
+  },
+  "post_test_method_changes_permitted": false
+}

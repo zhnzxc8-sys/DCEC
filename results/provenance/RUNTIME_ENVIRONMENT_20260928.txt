@@ -1,0 +1,18 @@
+RUNTIME ENVIRONMENT SNAPSHOT
+Date: 2026-09-28
+
+Python       : 3.12.3 | packaged by Anaconda, Inc. | (main, May  6 2024, 19:46:43) [GCC 11.2.0]
+PyTorch      : 2.5.1+cu124
+Transformers : 5.17.0
+Safetensors  : 0.8.0
+CUDA version : 12.4
+CUDA usable  : True
+GPU          : NVIDIA GeForce RTX 4090 D
+
+B32 safetensors revision:
+d15b5f29721ca72dac15f8526b284be910de18be
+B32 safetensors expected SHA256:
+99d28a652e6ec46629ab7047a0ac82c69b1fe11e0ce672c43af65d3a9a3fc05d
+
+===== ACTUAL B32 SAFETENSORS =====
+B32 safetensors not found

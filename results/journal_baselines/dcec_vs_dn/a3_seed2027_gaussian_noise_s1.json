@@ -1,0 +1,17 @@
+{
+  "variant": "no_sem",
+  "dataset_split": "validation",
+  "number_of_images": 1014,
+  "number_of_captions": 5070,
+  "degradation": "gaussian_noise",
+  "severity": 1,
+  "seed": 2026,
+  "device": "cuda",
+  "i2t_R@1": 79.68441814595661,
+  "i2t_R@5": 95.46351084812623,
+  "i2t_R@10": 98.0276134122288,
+  "t2i_R@1": 62.82051282051282,
+  "t2i_R@5": 86.35108481262327,
+  "t2i_R@10": 91.57790927021696,
+  "checkpoint": "results/multiseed/a3_no_sem_seed2027/best_dcec_ablation.pt"
+}

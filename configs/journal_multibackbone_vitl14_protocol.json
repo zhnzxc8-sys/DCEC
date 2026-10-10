@@ -1,0 +1,56 @@
+{
+  "experiment": "DCEC Journal Extension - CLIP ViT-L/14 Multi-Backbone Validation",
+  "date_frozen": "2026-09-27",
+  "status": "PROTOCOL_FROZEN_BEFORE_RESULTS",
+
+  "backbone": "openai/clip-vit-large-patch14",
+  "projection_dim": 768,
+
+  "purpose": "Test whether DCEC A3 generalizes to a larger CLIP backbone with a different embedding dimensionality.",
+
+  "method": {
+    "variant": "A3_no_sem",
+    "architecture_policy": "Preserve the DCEC A3 topology and quality-conditioning mechanism while adapting embedding-dependent linear dimensions from 512 to 768.",
+    "quality_descriptor": "Original 5-dimensional DCEC quality descriptor.",
+    "backbone_frozen": true,
+    "lambda_sem": 0.0,
+    "lambda_rank": 1.0,
+    "lambda_res": 0.001
+  },
+
+  "training_policy": {
+    "dataset": "Flickr30K train split",
+    "epochs": 5,
+    "batch_size_initial": 32,
+    "learning_rate": 0.001,
+    "weight_decay": 0.0001,
+    "pilot_seed": 2026,
+    "additional_seeds_if_pilot_supports_continuation": [2027, 2028],
+    "degradations": [
+      "jpeg",
+      "gaussian_blur",
+      "gaussian_noise",
+      "low_light"
+    ],
+    "selection": "Flickr30K validation only"
+  },
+
+  "evaluation_policy": {
+    "primary_metric": "(I2T_R@1 + T2I_R@1) / 2",
+    "validation_conditions": [
+      "clean S0",
+      "jpeg S2",
+      "gaussian_blur S2",
+      "gaussian_noise S2",
+      "low_light S2"
+    ],
+    "flickr30k_final_test_access": false
+  },
+
+  "guardrails": [
+    "Do not modify ViT-B/32 or ViT-B/16 checkpoints, code, or results.",
+    "Do not use the previously opened Flickr30K final test for tuning or iterative development.",
+    "If batch size must be reduced solely because of GPU memory limits, document the change before interpreting results.",
+    "Do not claim universal backbone-agnostic generality from this experiment alone."
+  ]
+}

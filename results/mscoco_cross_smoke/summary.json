@@ -1,0 +1,17 @@
+{
+  "dataset": "romrawinjp/mscoco",
+  "split": "test",
+  "number_of_conditions": 3,
+  "baseline_condition_mean": 87.91666666666667,
+  "a3_per_seed_condition_means": {
+    "2026": 87.08333333333333,
+    "2027": 86.97916666666667,
+    "2028": 86.04166666666667
+  },
+  "a3_condition_mean": 86.70138888888889,
+  "a3_condition_std_across_seeds": 0.4684283876122211,
+  "delta_condition_mean": -1.2152777777777857,
+  "wins": 0,
+  "ties": 0,
+  "losses": 3
+}

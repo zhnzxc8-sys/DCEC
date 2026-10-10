@@ -1,0 +1,48 @@
+DCEC RESULTS EVIDENCE FREEZE
+Date: 2026-09-28
+
+Evaluation scope:
+- Flickr30K validation only
+- 21 degraded conditions
+- CLIP ViT-B/32 comparison backbone
+- Primary = mean of I2T R@1 and T2I R@1
+- Final Test NOT accessed
+
+Overall 21-condition primary means:
+- Frozen: 65.286466
+- DN:     66.848878
+- TCR:    66.552550
+- DCEC:   66.721299
+
+Pairwise condition counts:
+- DCEC > Frozen: 21/21
+- DCEC > DN:     6/21
+- DCEC > TCR:    16/21
+
+Overall mean deltas:
+- DCEC - Frozen: +1.434833
+- DCEC - DN:     -0.127579
+- DCEC - TCR:    +0.168749
+
+Severity trend:
+- S1: DCEC-DN=-0.494036, DCEC-TCR=+0.261106, DCEC>DN=0/7, DCEC>TCR=5/7
+- S2: DCEC-DN=-0.258570, DCEC-TCR=+0.372875, DCEC>DN=2/7, DCEC>TCR=6/7
+- S3: DCEC-DN=+0.369869, DCEC-TCR=-0.127736, DCEC>DN=4/7, DCEC>TCR=5/7
+
+Conditions where DCEC exceeds DN:
+- gaussian_blur_s3: +2.585141
+- contrast_s3: +0.738988
+- pixelate_s3: +0.634451
+- low_light_s3: +0.473373
+- low_light_s2: +0.335306
+- contrast_s2: +0.126233
+
+Interpretation constraints:
+- Do not claim DCEC universally outperforms DN.
+- Do not claim universal superiority over all baselines.
+- DCEC consistently exceeds Frozen across the 21 degraded conditions.
+- Relative gains over DN are concentrated in medium/severe conditions.
+- TCR results currently represent one controlled run per condition.
+- DN reports five statistics runs; DCEC reports three training seeds.
+- Cross-method uncertainty must therefore be described carefully.
+- Existing DCEC checkpoints/results remain frozen.

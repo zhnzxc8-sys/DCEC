@@ -1,0 +1,493 @@
+"""Cross-dataset MSCOCO evaluation for frozen CLIP and Flickr30K-trained A3."""
+
+import argparse
+import json
+from pathlib import Path
+from statistics import mean, pstdev
+
+import torch
+import torch.nn.functional as F
+from datasets import load_dataset
+from transformers import CLIPModel, CLIPProcessor
+
+from dcec_ablation_model import DCECAblation, ablation_spec
+from dcec_quality import extract_quality_descriptor
+from image_degradations import apply_degradation
+from retrieval_metrics import compute_retrieval_metrics
+
+
+MODEL_NAME = "openai/clip-vit-base-patch32"
+
+DEFAULT_PARQUETS = [
+    "/root/autodl-tmp/mscoco_karpathy_test_parquet/default/test/0000.parquet",
+    "/root/autodl-tmp/mscoco_karpathy_test_parquet/default/test/0001.parquet",
+]
+
+DEFAULT_CHECKPOINTS = {
+    "2026": "results/ablation_formal/no_sem/best_dcec_ablation.pt",
+    "2027": "results/multiseed/a3_no_sem_seed2027/best_dcec_ablation.pt",
+    "2028": "results/multiseed/a3_no_sem_seed2028/best_dcec_ablation.pt",
+}
+
+
+def parse_args():
+    parser = argparse.ArgumentParser(
+        description="Evaluate Flickr30K-trained A3 directly on MSCOCO Karpathy test."
+    )
+    parser.add_argument(
+        "--protocol",
+        type=Path,
+        default=Path("configs/mscoco_cross_dataset_protocol.json"),
+    )
+    parser.add_argument(
+        "--cache-dir",
+        type=Path,
+        default=Path("/root/autodl-tmp/hf_cache"),
+    )
+    parser.add_argument("--image-batch-size", type=int, default=32)
+    parser.add_argument("--text-batch-size", type=int, default=256)
+    parser.add_argument("--limit", type=int, default=None)
+    parser.add_argument("--max-conditions", type=int, default=None)
+    parser.add_argument(
+        "--output-dir",
+        type=Path,
+        default=Path("results/mscoco_cross_dataset"),
+    )
+    parser.add_argument("--resume", action="store_true")
+    return parser.parse_args()
+
+
+def normalize_embeddings(x):
+    if x.ndim != 2:
+        raise ValueError(f"Expected 2D embeddings, got shape={tuple(x.shape)}")
+    return F.normalize(x, p=2, dim=1)
+
+
+def encode_images(model, processor, images, device):
+    inputs = processor(
+        images=images,
+        return_tensors="pt",
+    ).to(device)
+
+    with torch.no_grad():
+        features = model.get_image_features(
+            pixel_values=inputs["pixel_values"]
+        )
+
+    return normalize_embeddings(features).cpu()
+
+
+def encode_texts(model, processor, captions, device, batch_size):
+    outputs = []
+
+    for start in range(0, len(captions), batch_size):
+        batch = captions[start:start + batch_size]
+
+        inputs = processor(
+            text=batch,
+            padding=True,
+            truncation=True,
+            return_tensors="pt",
+        ).to(device)
+
+        with torch.no_grad():
+            features = model.get_text_features(
+                input_ids=inputs["input_ids"],
+                attention_mask=inputs["attention_mask"],
+            )
+
+        outputs.append(normalize_embeddings(features).cpu())
+
+    return torch.cat(outputs, dim=0)
+
+
+def load_a3(checkpoint_path, device):
+    checkpoint = torch.load(
+        checkpoint_path,
+        map_location=device,
+        weights_only=False,
+    )
+
+    if checkpoint.get("variant") != "no_sem":
+        raise ValueError(
+            f"Expected no_sem checkpoint, got {checkpoint.get('variant')!r}"
+        )
+
+    architecture = str(ablation_spec("no_sem")["architecture"])
+    model = DCECAblation(architecture).to(device)
+    model.load_state_dict(checkpoint["model_state_dict"])
+    model.eval()
+
+    return model
+
+
+def prepare_dataset(limit=None):
+    parquet_paths = [Path(x) for x in DEFAULT_PARQUETS]
+
+    for path in parquet_paths:
+        if not path.exists():
+            raise FileNotFoundError(path)
+
+    ds = load_dataset(
+        "parquet",
+        data_files={"test": [str(x) for x in parquet_paths]},
+        split="test",
+    )
+
+    if len(ds) != 5000:
+        raise ValueError(f"Expected 5000 MSCOCO test images, got {len(ds)}")
+
+    if limit is not None:
+        if limit <= 0:
+            raise ValueError("--limit must be positive")
+        ds = ds.select(range(min(limit, len(ds))))
+
+    return ds
+
+
+def build_caption_mappings(ds):
+    captions = []
+    image_to_text = []
+    text_to_image = []
+
+    text_offset = 0
+
+    for image_index, row in enumerate(ds):
+        row_captions = row["en"]
+
+        if not isinstance(row_captions, list):
+            raise TypeError(
+                f"Image {image_index} captions must be a list."
+            )
+
+        if len(row_captions) not in (5, 6):
+            raise ValueError(
+                f"Image {image_index} has {len(row_captions)} captions."
+            )
+
+        clean_captions = []
+
+        for caption in row_captions:
+            if not isinstance(caption, str) or not caption.strip():
+                raise ValueError(
+                    f"Image {image_index} contains an invalid caption."
+                )
+            clean_captions.append(caption.strip())
+
+        indices = list(
+            range(text_offset, text_offset + len(clean_captions))
+        )
+
+        image_to_text.append(indices)
+        text_to_image.extend(
+            [image_index] * len(clean_captions)
+        )
+        captions.extend(clean_captions)
+
+        text_offset += len(clean_captions)
+
+    return captions, image_to_text, text_to_image
+
+
+def primary(metrics):
+    return (
+        float(metrics["i2t_R@1"])
+        + float(metrics["t2i_R@1"])
+    ) / 2.0
+
+
+def main():
+    args = parse_args()
+
+    protocol = json.loads(
+        args.protocol.read_text(encoding="utf-8")
+    )
+
+    conditions = [
+        (str(item[0]), int(item[1]))
+        for item in protocol["conditions"]
+    ]
+
+    if args.max_conditions is not None:
+        conditions = conditions[:args.max_conditions]
+
+    device = torch.device(
+        "cuda" if torch.cuda.is_available() else "cpu"
+    )
+
+    print("=" * 80)
+    print("MSCOCO CROSS-DATASET EVALUATION")
+    print("No MSCOCO training / finetuning / tuning")
+    print("=" * 80)
+    print("device:", device)
+    print("conditions:", conditions)
+
+    ds = prepare_dataset(args.limit)
+
+    captions, image_to_text, text_to_image = build_caption_mappings(ds)
+
+    print("images:", len(ds))
+    print("captions:", len(captions))
+
+    if args.limit is None:
+        if len(ds) != 5000:
+            raise AssertionError("Formal evaluation requires 5000 images.")
+        if len(captions) != 25010:
+            raise AssertionError(
+                f"Formal evaluation requires 25010 captions, got {len(captions)}"
+            )
+
+    clip_model = CLIPModel.from_pretrained(
+        MODEL_NAME,
+        cache_dir=str(args.cache_dir),
+        use_safetensors=True,
+    ).to(device)
+    clip_model.eval()
+
+    for parameter in clip_model.parameters():
+        parameter.requires_grad_(False)
+
+    processor = CLIPProcessor.from_pretrained(
+        MODEL_NAME,
+        cache_dir=str(args.cache_dir),
+    )
+
+    print("\nEncoding MSCOCO text captions once...")
+    text_features = encode_texts(
+        clip_model,
+        processor,
+        captions,
+        device,
+        args.text_batch_size,
+    )
+
+    print("text_features:", tuple(text_features.shape))
+
+    a3_models = {}
+
+    for seed, checkpoint_path in DEFAULT_CHECKPOINTS.items():
+        path = Path(checkpoint_path)
+
+        if not path.exists():
+            raise FileNotFoundError(path)
+
+        print(f"Loading A3 seed {seed}: {path}")
+        a3_models[seed] = load_a3(path, device)
+
+    args.output_dir.mkdir(parents=True, exist_ok=True)
+
+    all_results = []
+
+    for condition_index, (degradation, severity) in enumerate(conditions, 1):
+        condition_name = f"{degradation}_s{severity}"
+        output_path = args.output_dir / f"{condition_name}.json"
+
+        if args.resume and output_path.exists():
+            print(f"\nSKIP existing: {output_path}")
+            saved = json.loads(output_path.read_text(encoding="utf-8"))
+            all_results.append(saved)
+            continue
+
+        print()
+        print("=" * 80)
+        print(
+            f"[{condition_index}/{len(conditions)}] "
+            f"{degradation} S{severity}"
+        )
+        print("=" * 80)
+
+        baseline_chunks = []
+        corrected_chunks = {
+            seed: [] for seed in a3_models
+        }
+
+        for start in range(0, len(ds), args.image_batch_size):
+            stop = min(start + args.image_batch_size, len(ds))
+            batch_rows = [ds[i] for i in range(start, stop)]
+
+            degraded_images = []
+
+            for local_index, row in enumerate(batch_rows):
+                global_index = start + local_index
+
+                image = row["image"].convert("RGB")
+
+                degraded = apply_degradation(
+                    image,
+                    degradation=degradation,
+                    severity=severity,
+                    seed=2026,
+                    image_index=global_index,
+                )
+
+                degraded_images.append(degraded)
+
+            z_degraded = encode_images(
+                clip_model,
+                processor,
+                degraded_images,
+                device,
+            )
+
+            baseline_chunks.append(z_degraded)
+
+            quality = torch.stack(
+                [
+                    extract_quality_descriptor(image)
+                    for image in degraded_images
+                ]
+            ).to(device)
+
+            z_device = z_degraded.to(device)
+
+            with torch.no_grad():
+                for seed, a3_model in a3_models.items():
+                    outputs = a3_model(z_device, quality)
+                    z_corrected = outputs["z_corrected"]
+
+                    corrected_chunks[seed].append(
+                        z_corrected.cpu()
+                    )
+
+            if start == 0 or stop == len(ds) or stop % 512 == 0:
+                print(f"images processed: {stop}/{len(ds)}")
+
+        baseline_image_features = torch.cat(
+            baseline_chunks,
+            dim=0,
+        )
+
+        baseline_metrics = compute_retrieval_metrics(
+            baseline_image_features,
+            text_features,
+            image_to_text,
+            text_to_image,
+        )
+
+        seed_results = {}
+
+        for seed, chunks in corrected_chunks.items():
+            image_features = torch.cat(chunks, dim=0)
+
+            metrics = compute_retrieval_metrics(
+                image_features,
+                text_features,
+                image_to_text,
+                text_to_image,
+            )
+
+            seed_results[seed] = {
+                **metrics,
+                "primary_component": primary(metrics),
+            }
+
+        seed_primary = [
+            seed_results[seed]["primary_component"]
+            for seed in sorted(seed_results)
+        ]
+
+        result = {
+            "dataset": "romrawinjp/mscoco",
+            "split": "test",
+            "number_of_images": len(ds),
+            "number_of_captions": len(captions),
+            "degradation": degradation,
+            "severity": severity,
+            "baseline": {
+                **baseline_metrics,
+                "primary_component": primary(baseline_metrics),
+            },
+            "a3_seeds": seed_results,
+            "a3_primary_mean": mean(seed_primary),
+            "a3_primary_std": pstdev(seed_primary),
+            "delta_primary_mean": (
+                mean(seed_primary)
+                - primary(baseline_metrics)
+            ),
+        }
+
+        output_path.write_text(
+            json.dumps(result, indent=2, ensure_ascii=False) + "\n",
+            encoding="utf-8",
+        )
+
+        all_results.append(result)
+
+        print(
+            "Frozen primary:",
+            f"{result['baseline']['primary_component']:.4f}",
+        )
+        print(
+            "A3 mean±std:",
+            f"{result['a3_primary_mean']:.4f}",
+            "±",
+            f"{result['a3_primary_std']:.4f}",
+        )
+        print(
+            "Delta:",
+            f"{result['delta_primary_mean']:+.4f}",
+        )
+        print("Saved:", output_path)
+
+    baseline_mean = mean(
+        x["baseline"]["primary_component"]
+        for x in all_results
+    )
+
+    per_seed_means = {}
+
+    for seed in sorted(DEFAULT_CHECKPOINTS):
+        per_seed_means[seed] = mean(
+            x["a3_seeds"][seed]["primary_component"]
+            for x in all_results
+        )
+
+    a3_mean = mean(per_seed_means.values())
+    a3_std = pstdev(per_seed_means.values())
+
+    wins = sum(
+        x["delta_primary_mean"] > 1e-8
+        for x in all_results
+    )
+    ties = sum(
+        abs(x["delta_primary_mean"]) <= 1e-8
+        for x in all_results
+    )
+    losses = sum(
+        x["delta_primary_mean"] < -1e-8
+        for x in all_results
+    )
+
+    summary = {
+        "dataset": "romrawinjp/mscoco",
+        "split": "test",
+        "number_of_conditions": len(all_results),
+        "baseline_condition_mean": baseline_mean,
+        "a3_per_seed_condition_means": per_seed_means,
+        "a3_condition_mean": a3_mean,
+        "a3_condition_std_across_seeds": a3_std,
+        "delta_condition_mean": a3_mean - baseline_mean,
+        "wins": wins,
+        "ties": ties,
+        "losses": losses,
+    }
+
+    summary_path = args.output_dir / "summary.json"
+    summary_path.write_text(
+        json.dumps(summary, indent=2, ensure_ascii=False) + "\n",
+        encoding="utf-8",
+    )
+
+    print()
+    print("=" * 80)
+    print("FINAL SUMMARY")
+    print("=" * 80)
+    print(f"Frozen mean : {baseline_mean:.4f}")
+    print(f"A3 mean     : {a3_mean:.4f} ± {a3_std:.4f}")
+    print(f"Delta       : {a3_mean - baseline_mean:+.4f}")
+    print(f"W/T/L       : {wins}/{ties}/{losses}")
+    print("Saved:", summary_path)
+
+
+if __name__ == "__main__":
+    main()

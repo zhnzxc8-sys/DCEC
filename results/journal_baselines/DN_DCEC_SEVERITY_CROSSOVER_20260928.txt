@@ -1,0 +1,46 @@
+DN vs DCEC VALIDATION SEVERITY ANALYSIS
+Date: 2026-09-28
+
+22-condition aggregate:
+Frozen mean = 65.466200
+DN mean     = 67.034158
+DCEC mean   = 66.867342
+DCEC-DN     = -0.166816
+DCEC/DN WTL = 6/0/16
+
+Severity aggregate:
+S1:
+DN   = 70.956607
+DCEC = 70.462572
+DCEC-DN = -0.494036
+DCEC wins = 0/7
+
+S2:
+DN   = 69.070442
+DCEC = 68.811872
+DCEC-DN = -0.258570
+DCEC wins = 2/7
+
+S3:
+DN   = 60.519583
+DCEC = 60.889452
+DCEC-DN = +0.369869
+DCEC wins = 4/7
+
+DCEC win conditions:
+gaussian_blur_s3 +2.585141
+low_light_s2     +0.335306
+low_light_s3     +0.473373
+contrast_s2      +0.126233
+contrast_s3      +0.738988
+pixelate_s3      +0.634451
+
+Interpretation:
+A severity-dependent crossover is observed:
+DN is stronger on average at S1/S2, while DCEC becomes stronger on average at S3.
+This is descriptive evidence, not a universal causal claim.
+
+DN stage is CLOSED.
+No lambda tuning.
+No further DN statistics tuning.
+Final Test remains untouched.

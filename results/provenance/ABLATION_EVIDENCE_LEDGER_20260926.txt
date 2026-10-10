@@ -1,0 +1,47 @@
+DCEC ABLATION EVIDENCE LEDGER — 2026-09-26
+====================================================================================================
+
+TABLE A — CONTROLLED ABLATION SELECTION
+----------------------------------------------------------------------------------------------------
+Variant                     Params   Epoch    Seed     Val Primary       Δ vs A3
+A1 residual_only            262912       3    2026       69.700197     -0.467456
+A2 quality_no_gate          281600       3    2026       69.714004     -0.453649
+A3 no_sem                   283713       3    2026       70.167653     +0.000000
+A4 no_rank                  283713       1    2026       69.463511     -0.704142
+
+IMPORTANT: A0 Frozen CLIP is intentionally omitted from Table A because its exact same-protocol source has not yet been recovered.
+
+TABLE B — A3 VS A5 FULL 13-CONDITION VALIDATION
+----------------------------------------------------------------------------------------------------
+clean_S0                A3= 70.1479  A5= 69.9507  Δ= +0.1972
+jpeg_S1                 A3= 70.9763  A5= 71.1045  Δ= -0.1282
+jpeg_S2                 A3= 71.3905  A5= 71.0059  Δ= +0.3846
+jpeg_S3                 A3= 71.4201  A5= 71.0651  Δ= +0.3550
+gaussian_blur_S1        A3= 70.1677  A5= 70.1282  Δ= +0.0395
+gaussian_blur_S2        A3= 68.1558  A5= 68.3235  Δ= -0.1677
+gaussian_blur_S3        A3= 55.8679  A5= 56.1341  Δ= -0.2662
+gaussian_noise_S1       A3= 71.1538  A5= 70.9961  Δ= +0.1577
+gaussian_noise_S2       A3= 70.9073  A5= 70.6509  Δ= +0.2564
+gaussian_noise_S3       A3= 69.3195  A5= 69.3787  Δ= -0.0592
+low_light_S1            A3= 70.3846  A5= 70.0000  Δ= +0.3846
+low_light_S2            A3= 70.2367  A5= 70.4832  Δ= -0.2465
+low_light_S3            A3= 69.1124  A5= 69.4379  Δ= -0.3255
+
+13-condition mean: A3=69.1724 A5=69.1276 Δ=+0.0448
+12-corruption mean: A3=69.0911 A5=69.0590 Δ=+0.0321
+A3 vs A5 W/T/L: 7/0/6
+
+PROVENANCE GAPS
+----------------------------------------------------------------------------------------------------
+1. A0 Frozen CLIP same-protocol controlled-selection source: UNRESOLVED
+2. A5 seed2026 exact checkpoint path: UNRESOLVED
+
+INTERPRETATION
+----------------------------------------------------------------------------------------------------
+A3 is the strongest of the recovered A1-A4 controlled ablations.
+A3 exceeds A2 quality_no_gate by approximately +0.4536.
+A3 exceeds A1 residual_only by approximately +0.4675.
+A3 exceeds A4 no_rank by approximately +0.7041.
+On full 13-condition validation, A3 and A5 are very close: A3=69.1724, A5=69.1276, Δ=+0.0448.
+
+Do not merge Table A and Table B into one score column: they use different evaluation scopes.
